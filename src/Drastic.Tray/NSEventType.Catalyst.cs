@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="NSEventType.Catalyst.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Runtime.Versioning;
 
 namespace Drastic.Tray
@@ -38,6 +42,6 @@ namespace Drastic.Tray
         QuickLook = 33uL,
         Pressure = 34uL,
         DirectTouch = 37uL,
-        ChangeMode = 38uL
+        ChangeMode = 38uL,
     }
 }

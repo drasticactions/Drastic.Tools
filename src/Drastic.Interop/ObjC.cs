@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="ObjC.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Runtime.InteropServices;
 
 namespace Drastic.Interop
@@ -65,7 +69,7 @@ namespace Drastic.Interop
         public static extern IntPtr SendMessage(IntPtr self, IntPtr op, IntPtr[] a, IntPtr b);
 
         [DllImport(ObjCLib, EntryPoint = "objc_msgSend")]
-        public static extern IntPtr SendMessage(IntPtr self, IntPtr op, [MarshalAs(UnmanagedType.I1)]bool value);
+        public static extern IntPtr SendMessage(IntPtr self, IntPtr op, [MarshalAs(UnmanagedType.I1)] bool value);
 
         [DllImport(ObjCLib, EntryPoint = "objc_msgSend")]
         public static extern IntPtr SendMessage(IntPtr self, IntPtr op, double value);
@@ -80,7 +84,7 @@ namespace Drastic.Interop
         public static extern IntPtr SendMessage(IntPtr self, IntPtr op, CGRect a, bool b, bool c);
 
         [DllImport(ObjCLib, EntryPoint = "objc_msgSend")]
-        public static extern IntPtr SendMessage(IntPtr self, IntPtr op, CGRect rect, UIntPtr a, UIntPtr b, [MarshalAs(UnmanagedType.I1)]bool c);
+        public static extern IntPtr SendMessage(IntPtr self, IntPtr op, CGRect rect, UIntPtr a, UIntPtr b, [MarshalAs(UnmanagedType.I1)] bool c);
 
         [DllImport(ObjCLib, EntryPoint = "objc_msgSend")]
         public static extern IntPtr SendMessage(IntPtr self, IntPtr op, CGSize size);

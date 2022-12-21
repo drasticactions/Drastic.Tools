@@ -60,6 +60,23 @@ namespace Drastic.Tray
             }
         }
 
+        public void OpenMenu()
+        {
+            NativeHandle nonNullHandle = this.menu.GetNonNullHandle("menu");
+            Drastic.Interop.ObjC.Call(this.statusBarItem.Handle, "popUpStatusItemMenu:", nonNullHandle);
+        }
+
+        public void SetupStatusBarMenu(List<TrayMenuItem> menuItems)
+        {
+            this.menu.RemoveAllItems();
+
+            foreach (var item in this.menuItems)
+            {
+                var nsMenuItem = new ShimNSMenuItem(item);
+                this.menu.AddItem(nsMenuItem);
+            }
+        }
+
         private static NSObject GetNSMenu()
            => Runtime.GetNSObject(Drastic.Interop.AppKit.Call("NSMenu", "new"))!;
 
@@ -82,23 +99,6 @@ namespace Drastic.Tray
         {
             var sharedApp = Drastic.Interop.AppKit.Call("NSApplication", "sharedApplication");
             return Runtime.GetNSObject<NSObject>(Drastic.Interop.ObjC.Call(sharedApp, "currentEvent"))!;
-        }
-
-        public void OpenMenu()
-        {
-            NativeHandle nonNullHandle = this.menu.GetNonNullHandle("menu");
-            Drastic.Interop.ObjC.Call(this.statusBarItem.Handle, "popUpStatusItemMenu:", nonNullHandle);
-        }
-
-        public void SetupStatusBarMenu(List<TrayMenuItem> menuItems)
-        {
-            this.menu.RemoveAllItems();
-
-            foreach (var item in this.menuItems)
-            {
-                var nsMenuItem = new ShimNSMenuItem(item);
-                this.menu.AddItem(nsMenuItem);
-            }
         }
 
         private void NativeElementDispose()
@@ -145,32 +145,32 @@ namespace Drastic.Tray
 
         internal class ShimNSMenuItem : NSObject
         {
-            private readonly NativeClassInstance callbackClass;
+            internal TrayMenuItem Item;
 
             private static readonly NativeClassDefinition CallbackClassDefinition;
 
-            internal TrayMenuItem item;
+            private readonly NativeClassInstance callbackClass;
+
+            static ShimNSMenuItem()
+            {
+                CallbackClassDefinition = CreateCallbackClass();
+            }
 
             public ShimNSMenuItem(TrayMenuItem item)
             {
-                this.item = item;
+                this.Item = item;
                 this.Handle = Drastic.Interop.AppKit.Call("NSMenuItem", "alloc");
                 ObjC.Call(this.Handle, "initWithTitle:action:keyEquivalent:", Drastic.Interop.NSString.Create(item.Text), ObjC.RegisterName("menuCallback:"), Drastic.Interop.NSString.Create(string.Empty));
                 this.callbackClass = CallbackClassDefinition.CreateInstance(this);
                 this.SetTarget(this.callbackClass.Handle);
 
-                if (this.item.Icon is not null)
+                if (this.Item.Icon is not null)
                 {
-                    this.Image = this.item.Icon.Image;
+                    this.Image = this.Item.Icon.Image;
                 }
 
                 this.KeyEquivalent = item.KeyEquivalent;
                 this.KeyEquivalentModifierMask = item.KeyEquivalentModifierMask;
-            }
-
-            static ShimNSMenuItem()
-            {
-                CallbackClassDefinition = CreateCallbackClass();
             }
 
             public AppKit.NSImage? Image
@@ -227,7 +227,7 @@ namespace Drastic.Tray
                     (self, op, menu) =>
                     {
                         var instance = definition.GetParent<ShimNSMenuItem>(self);
-                        instance.item.Action?.Invoke();
+                        instance.Item.Action?.Invoke();
                     });
 
                 definition.FinishDeclaration();

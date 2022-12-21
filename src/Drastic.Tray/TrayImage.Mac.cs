@@ -1,4 +1,4 @@
-﻿// <copyright file="TrayImage.Catalyst.cs" company="Drastic Actions">
+﻿// <copyright file="TrayImage.Mac.cs" company="Drastic Actions">
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 

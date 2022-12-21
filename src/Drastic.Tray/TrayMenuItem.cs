@@ -33,7 +33,7 @@ namespace Drastic.Tray
         /// <param name="icon">Icon.</param>
         /// <param name="action">Action to perform when clicked.</param>
         /// <param name="keyEquivalent">Keyboard Shortcut key.</param>
-        /// <param name="keyEquivalentModifierMask">Key</param>
+        /// <param name="keyEquivalentModifierMask">Key.</param>
         public TrayMenuItem(string text, TrayImage? icon = null, Func<Task>? action = null, string? keyEquivalent = default, NSEventModifierMask? keyEquivalentModifierMask = default)
         {
             this.Text = text;

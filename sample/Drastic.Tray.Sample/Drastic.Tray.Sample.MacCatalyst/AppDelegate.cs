@@ -1,3 +1,7 @@
+// <copyright file="AppDelegate.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
 using AppKit;
 using Drastic.PureLayout;
 
@@ -15,12 +19,12 @@ public class AppDelegate : UIApplicationDelegate
     public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
     {
         // create a new window instance based on the screen size
-        Window = new UIWindow(UIScreen.MainScreen.Bounds);
+        this.Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-        Window.RootViewController = new SampleViewController(Window!);
+        this.Window.RootViewController = new SampleViewController(this.Window!);
 
         // make the window visible
-        Window.MakeKeyAndVisible();
+        this.Window.MakeKeyAndVisible();
 
         return true;
     }
@@ -28,8 +32,10 @@ public class AppDelegate : UIApplicationDelegate
 
 public class SampleViewController : UIViewController
 {
-    public UIButton trayButton = new UIButton(UIButtonType.RoundedRect);
+    public UIButton TrayButton = new UIButton(UIButtonType.RoundedRect);
     private UIWindow window;
+
+    private TrayIcon? trayIcon;
 
     public SampleViewController(UIWindow window)
     {
@@ -40,12 +46,10 @@ public class SampleViewController : UIViewController
 
     private void SetupUI()
     {
-        this.View!.AddSubview(this.trayButton);
-        this.trayButton.SetTitle("Add Tray Icon", UIControlState.Normal);
-        this.trayButton.TouchUpInside += TrayButton_TouchUpInside;
+        this.View!.AddSubview(this.TrayButton);
+        this.TrayButton.SetTitle("Add Tray Icon", UIControlState.Normal);
+        this.TrayButton.TouchUpInside += this.TrayButton_TouchUpInside;
     }
-
-    private TrayIcon? trayIcon;
 
     private async void TrayButton_TouchUpInside(object? sender, EventArgs e)
     {
@@ -56,17 +60,17 @@ public class SampleViewController : UIViewController
         menuItems.Add(new TrayMenuItem("From!", trayImage, async () => { }, "f"));
         menuItems.Add(new TrayMenuItem("Mac Catalyst!", trayImage, async () => { }, "m", NSEventModifierMask.ControlKeyMask | NSEventModifierMask.CommandKeyMask));
         this.trayIcon = new Drastic.Tray.TrayIcon("Tray Sample", trayImage, menuItems);
-        trayIcon.RightClicked += (object? sender, EventArgs e) => { trayIcon.OpenMenu(); };
-        trayIcon.LeftClicked += (object? sender, EventArgs e) => {
+        this.trayIcon.RightClicked += (object? sender, EventArgs e) => { this.trayIcon.OpenMenu(); };
+        this.trayIcon.LeftClicked += (object? sender, EventArgs e) =>
+        {
             var okAlertController = UIAlertController.Create("Drastic.Tray.Sample", "Welcome!", UIAlertControllerStyle.Alert);
             okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            PresentViewController(okAlertController, true, null);
-
+            this.PresentViewController(okAlertController, true, null);
         };
     }
 
     private void SetupLayout()
     {
-        this.trayButton.AutoCenterInSuperview();
+        this.TrayButton.AutoCenterInSuperview();
     }
 }

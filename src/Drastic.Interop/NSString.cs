@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="NSString.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Text;
 
 namespace Drastic.Interop
@@ -7,7 +11,10 @@ namespace Drastic.Interop
     {
         public static unsafe IntPtr Create(string? value)
         {
-            if (value == null) { return IntPtr.Zero; }
+            if (value == null)
+            {
+                return IntPtr.Zero;
+            }
 
             fixed (char* ptr = value)
             {
@@ -21,7 +28,10 @@ namespace Drastic.Interop
 
         public static string? GetString(IntPtr handle)
         {
-            if (handle == IntPtr.Zero) { return null; }
+            if (handle == IntPtr.Zero)
+            {
+                return null;
+            }
 
             IntPtr utf8 = ObjC.Call(handle, "UTF8String");
             return Utf8PointerToString(utf8);
@@ -29,7 +39,10 @@ namespace Drastic.Interop
 
         public static unsafe string? Utf8PointerToString(IntPtr utf8)
         {
-            if (utf8 == IntPtr.Zero) { return null; }
+            if (utf8 == IntPtr.Zero)
+            {
+                return null;
+            }
 
             int count = 0;
             byte* ptr = (byte*)utf8;

@@ -43,7 +43,7 @@ namespace Drastic.Tray
 
         public void OpenMenu()
         {
-            this.statusBarItem!.PopUpStatusItemMenu(menu);
+            this.statusBarItem!.PopUpStatusItemMenu(this.menu);
         }
 
         public void SetupStatusBarMenu(List<TrayMenuItem> menuItems)

@@ -16,6 +16,6 @@ namespace Drastic.Tray
         NumericPadKeyMask = 0x200000uL,
         HelpKeyMask = 0x400000uL,
         FunctionKeyMask = 0x800000uL,
-        DeviceIndependentModifierFlagsMask = 0xFFFF0000uL
+        DeviceIndependentModifierFlagsMask = 0xFFFF0000uL,
     }
 }

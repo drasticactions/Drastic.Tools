@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="Dispatch.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Runtime.InteropServices;
 using Drastic.Interop;
 
@@ -6,13 +10,13 @@ namespace Drastic.Interop
 {
     internal static class Dispatch
     {
+        private const string DispatchLib = "/usr/lib/system/libdispatch.dylib";
+        private const string SystemLib = "/usr/lib/libSystem.dylib";
+
         public static IntPtr MainQueue
         {
             get { return MainQueueHandle; }
         }
-
-        private const string DispatchLib = "/usr/lib/system/libdispatch.dylib";
-        private const string SystemLib = "/usr/lib/libSystem.dylib";
 
         private static readonly IntPtr MainQueueHandle = IntPtr.Zero;
         private static readonly IntPtr DispatchLibHandle = IntPtr.Zero;

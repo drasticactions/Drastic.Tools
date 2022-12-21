@@ -1,34 +1,38 @@
-﻿using System;
+﻿// <copyright file="NativeClassInstance.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Runtime.InteropServices;
 
 namespace Drastic.Interop
 {
     internal sealed class NativeClassInstance : IDisposable
     {
-        public IntPtr Handle { get; }
-
         private readonly GCHandle parentHandle;
 
         internal NativeClassInstance(IntPtr instance, GCHandle parentHandle)
         {
-            Handle = instance;
+            this.Handle = instance;
             this.parentHandle = parentHandle;
         }
 
+        public IntPtr Handle { get; }
+
         ~NativeClassInstance()
         {
-            Dispose(false);
+            this.Dispose(false);
         }
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
         private void Dispose(bool disposing)
         {
-            parentHandle.Free();
+            this.parentHandle.Free();
         }
     }
 }

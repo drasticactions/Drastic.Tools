@@ -6,7 +6,7 @@ using System;
 
 namespace Drastic.Tray
 {
-	public partial class TrayIcon : IDisposable
+    public partial class TrayIcon : IDisposable
     {
         private string? iconName;
         private List<TrayMenuItem> menuItems;

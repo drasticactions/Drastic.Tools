@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="Foundation.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Runtime.InteropServices;
 
 namespace Drastic.Interop
