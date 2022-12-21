@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Tray", "Drastic.Tray\Drastic.Tray.csproj", "{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Tray", "Drastic.Tray\Drastic.Tray.csproj", "{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Drastic.Interop", "Drastic.Interop\Drastic.Interop.shproj", "{55C248A2-4A67-468D-8010-E04849A081F1}"
 EndProject
@@ -12,13 +12,17 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Drastic.Interop\Drastic.Interop.projitems*{55c248a2-4a67-468d-8010-e04849a081f1}*SharedItemsImports = 13
+		Drastic.Interop\Drastic.Interop.projitems*{90aeaa8d-1950-4509-b9e6-8313a7f55f7b}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
