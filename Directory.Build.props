@@ -1,0 +1,71 @@
+<Project>
+	<PropertyGroup>
+		<LangVersion>preview</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<WarningsAsErrors>nullable</WarningsAsErrors>
+		<Company>Drastic Actions</Company>
+		<Copyright>Copyright (C) Drastic Actions</Copyright>
+		<IsPackable>false</IsPackable>
+		<Version>1.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)favicon.png" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<Authors>$(Company)</Authors>
+		<PackageTags>rss parser feed</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/CHANGELOG.md</PackageReleaseNotes>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>favicon.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<Target Name="AddInternalsVisibleTo" BeforeTargets="BeforeCompile">
+		<!-- Add default suffix if there is no InternalsVisibleTo or InternalsVisibleToSuffix defined -->
+		<ItemGroup Condition="@(InternalsVisibleToSuffix->Count()) == 0 AND @(InternalsVisibleTo->Count()) == 0">
+			<InternalsVisibleToSuffix Include=".Tests" />
+		</ItemGroup>
+
+		<!-- Handle InternalsVisibleTo -->
+		<ItemGroup Condition="'@(InternalsVisibleTo->Count())' &gt; 0">
+			<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+				<_Parameter1>%(InternalsVisibleTo.Identity)</_Parameter1>
+			</AssemblyAttribute>
+		</ItemGroup>
+
+		<!-- Handle InternalsVisibleToSuffix -->
+		<ItemGroup Condition="@(InternalsVisibleToSuffix->Count()) &gt; 0">
+			<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+				<_Parameter1>$(AssemblyName)%(InternalsVisibleToSuffix.Identity)</_Parameter1>
+			</AssemblyAttribute>
+		</ItemGroup>
+	</Target>
+
+</Project>
