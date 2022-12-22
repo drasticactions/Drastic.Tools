@@ -14,8 +14,6 @@ namespace Drastic.Interop
         private readonly IntPtr[] protocols;
 
         private bool registered;
-
-        public IntPtr Handle { get; private set; }
         private IntPtr ivar;
 
         private NativeClassDefinition(string name, IntPtr parent, IntPtr[] protocols)
@@ -29,6 +27,8 @@ namespace Drastic.Interop
             this.callbacks = new List<Delegate>();
             this.Handle = ObjC.AllocateClassPair(parent, name, IntPtr.Zero);
         }
+
+        public IntPtr Handle { get; private set; }
 
         public static NativeClassDefinition FromObject(string name, params IntPtr[] protocols)
         {

@@ -14,11 +14,6 @@ namespace Drastic.Interop
         private const string SystemLib = "/usr/lib/libSystem.dylib";
 
         private static readonly IntPtr MainQueueHandle = IntPtr.Zero;
-
-        public static IntPtr MainQueue
-        {
-            get { return MainQueueHandle; }
-        }
         private static readonly IntPtr DispatchLibHandle = IntPtr.Zero;
 
         static Dispatch()
@@ -26,6 +21,11 @@ namespace Drastic.Interop
             // dispatch_get_main_queue is not exposed (macro?) so we need to access the main queue field instead
             DispatchLibHandle = LoadLibrary(DispatchLib, 0);
             MainQueueHandle = GetSymbol(DispatchLibHandle, "_dispatch_main_q");
+        }
+
+        public static IntPtr MainQueue
+        {
+            get { return MainQueueHandle; }
         }
 
         [DllImport(DispatchLib, EntryPoint = "dispatch_sync_f")]

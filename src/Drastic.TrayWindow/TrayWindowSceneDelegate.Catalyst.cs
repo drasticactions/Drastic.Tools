@@ -10,10 +10,10 @@ namespace Drastic.TrayWindow
     [Register("TraySceneDelegate")]
     public class TrayWindowSceneDelegate : UIResponder, IUIWindowSceneDelegate
     {
+        private UITrayWindow? trayWindow;
+
         [Export("window")]
         public UIWindow? Window { get; set; }
-
-        private UITrayWindow? trayWindow;
 
         [Export("scene:willConnectToSession:options:")]
         public virtual void WillConnect(UIScene scene, UISceneSession session, UISceneConnectionOptions connectionOptions)
