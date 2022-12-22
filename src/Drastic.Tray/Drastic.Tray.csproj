@@ -7,6 +7,9 @@
 		<Description>Create Menu Status Bar items for your macOS and Mac Catalyst apps.</Description>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<InternalsVisibleTo>Drastic.TrayWindow</InternalsVisibleTo>
+		<PackageTags>status bar macos catalyst task tray</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Tray</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Tray/CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

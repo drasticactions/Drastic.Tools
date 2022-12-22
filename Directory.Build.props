@@ -20,9 +20,6 @@
 
 	<PropertyGroup>
 		<Authors>$(Company)</Authors>
-		<PackageTags>rss parser feed</PackageTags>
-		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools</PackageProjectUrl>
-		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/CHANGELOG.md</PackageReleaseNotes>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageIcon>favicon.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>

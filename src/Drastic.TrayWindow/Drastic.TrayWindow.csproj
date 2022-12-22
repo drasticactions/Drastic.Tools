@@ -6,6 +6,9 @@
 		<IsPackable>true</IsPackable>
 		<Description>Create popup windows from tray icons for macOS and Mac Catalyst apps.</Description>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<PackageTags>status popup bar macos catalyst task tray</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.TrayWindow</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.TrayWindow/CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
