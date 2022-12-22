@@ -41,6 +41,8 @@ namespace Drastic.Tray
             }
         }
 
+        public NSStatusItem StatusBarItem => this.statusBarItem;
+
         public void OpenMenu()
         {
             this.statusBarItem!.PopUpStatusItemMenu(this.menu);

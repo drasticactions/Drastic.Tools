@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow.Sample.MacCatalyst", "Drastic.TrayWindow.Sample.MacCatalyst\Drastic.TrayWindow.Sample.MacCatalyst.csproj", "{96150E17-3C7D-4EF2-B19E-012896438277}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Drastic.Interop", "..\..\src\Drastic.Interop\Drastic.Interop.shproj", "{55C248A2-4A67-468D-8010-E04849A081F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Tray", "..\..\src\Drastic.Tray\Drastic.Tray.csproj", "{8D1CC08E-2242-4BFD-AD15-E83546A07F94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow", "..\..\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj", "{F93C6071-053E-4BAF-91B2-B2211D5DAD23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow.Sample.MacOS", "Drastic.TrayWindow.Sample.MacOS\Drastic.TrayWindow.Sample.MacOS.csproj", "{E1C7BAB2-8C97-4995-89A8-BD6C506D6D4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96150E17-3C7D-4EF2-B19E-012896438277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96150E17-3C7D-4EF2-B19E-012896438277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96150E17-3C7D-4EF2-B19E-012896438277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96150E17-3C7D-4EF2-B19E-012896438277}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D1CC08E-2242-4BFD-AD15-E83546A07F94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D1CC08E-2242-4BFD-AD15-E83546A07F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D1CC08E-2242-4BFD-AD15-E83546A07F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D1CC08E-2242-4BFD-AD15-E83546A07F94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F93C6071-053E-4BAF-91B2-B2211D5DAD23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F93C6071-053E-4BAF-91B2-B2211D5DAD23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F93C6071-053E-4BAF-91B2-B2211D5DAD23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F93C6071-053E-4BAF-91B2-B2211D5DAD23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1C7BAB2-8C97-4995-89A8-BD6C506D6D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C7BAB2-8C97-4995-89A8-BD6C506D6D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C7BAB2-8C97-4995-89A8-BD6C506D6D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C7BAB2-8C97-4995-89A8-BD6C506D6D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

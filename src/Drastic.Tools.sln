@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Tray", "Drastic.Tra
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Drastic.Interop", "Drastic.Interop\Drastic.Interop.shproj", "{55C248A2-4A67-468D-8010-E04849A081F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow", "Drastic.TrayWindow\Drastic.TrayWindow.csproj", "{B56223DF-5D29-4499-8E83-0F13EBFBA098}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90AEAA8D-1950-4509-B9E6-8313A7F55F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B56223DF-5D29-4499-8E83-0F13EBFBA098}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B56223DF-5D29-4499-8E83-0F13EBFBA098}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B56223DF-5D29-4499-8E83-0F13EBFBA098}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B56223DF-5D29-4499-8E83-0F13EBFBA098}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -60,6 +60,20 @@ namespace Drastic.Tray
             }
         }
 
+        public CGRect GetFrame()
+        {
+            var statusBarButton = Runtime.GetNSObject(Drastic.Interop.ObjC.Call(this.statusBarItem!.Handle, "button"));
+            var nsButtonWindow = Runtime.GetNSObject(Drastic.Interop.ObjC.Call(statusBarButton!.Handle, "window"));
+            if (nsButtonWindow is null)
+            {
+                return new CGRect(0, 0, 0, 0);
+            }
+
+            var windowFrame = (NSValue)nsButtonWindow.ValueForKey(new Foundation.NSString("frame"));
+
+            return windowFrame.CGRectValue;
+        }
+
         public void OpenMenu()
         {
             NativeHandle nonNullHandle = this.menu.GetNonNullHandle("menu");
