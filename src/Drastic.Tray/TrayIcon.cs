@@ -16,12 +16,12 @@ namespace Drastic.Tray
         /// <summary>
         /// Left Clicked Event.
         /// </summary>
-        public event EventHandler<EventArgs>? LeftClicked;
+        public event EventHandler<TrayClickedEventArgs>? LeftClicked;
 
         /// <summary>
         /// Right Clicked Event.
         /// </summary>
-        public event EventHandler<EventArgs>? RightClicked;
+        public event EventHandler<TrayClickedEventArgs>? RightClicked;
 
         /// <summary>
         /// Menu Item Clicked.

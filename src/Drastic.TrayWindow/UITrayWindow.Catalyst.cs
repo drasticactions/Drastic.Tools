@@ -4,37 +4,23 @@
 
 using System;
 using Drastic.Tray;
-using static Drastic.TrayWindow.UITrayWindow;
 
 namespace Drastic.TrayWindow
 {
-    public class MAUITrayWindow
+    internal class UITrayWindow : UIWindow
     {
         private TrayIcon icon;
         private TrayViewController trayViewController;
-        private UIWindow window;
 
-        public MAUITrayWindow(UIWindow window, TrayIcon icon, TrayWindowOptions options, UIViewController? contentViewController = default)
+        public UITrayWindow(TrayIcon icon, TrayWindowOptions options, UIViewController? contentViewController = default)
+            : base(UIScreen.MainScreen.Bounds)
         {
-            this.window = window;
             this.icon = icon;
-            this.window.RootViewController = this.trayViewController = new TrayViewController(this.window, icon, options, contentViewController);
+            this.RootViewController = this.trayViewController = new TrayViewController(this, icon, options, contentViewController);
         }
 
-        public Task ToggleVisibilityAsync()
-            => this.trayViewController.ToggleVisibilityAsync();
-
-        public void SetContent(UIViewController contentViewController)
-            => this.trayViewController.SetContent(contentViewController);
-    }
-
-    public class UITrayWindow : UIWindow
-    {
-        private TrayIcon icon;
-        private TrayViewController trayViewController;
-
         public UITrayWindow(UIWindowScene scene, TrayIcon icon, TrayWindowOptions options, UIViewController? contentViewController = default)
-            : base (scene)
+            : base(scene)
         {
             this.icon = icon;
             this.RootViewController = this.trayViewController = new TrayViewController(this, icon, options, contentViewController);
@@ -73,6 +59,7 @@ namespace Drastic.TrayWindow
             /// <summary>
             /// Toggle Visibility of the window.
             /// </summary>
+            /// <returns>A Task.</returns>
             public async Task ToggleVisibilityAsync()
             {
                 if (this.uinsWindow is null)

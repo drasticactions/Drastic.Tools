@@ -1,9 +1,13 @@
-﻿using System;
+﻿// <copyright file="NSWindowLevel.Catalyst.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Runtime.Versioning;
 
 namespace Drastic.TrayWindow
 {
-    public enum NSWindowLevel : long
+    internal enum NSWindowLevel : long
     {
         Normal = 0L,
         Dock = 20L,
@@ -14,6 +18,6 @@ namespace Drastic.TrayWindow
         ScreenSaver = 1000L,
         Status = 25L,
         Submenu = 3L,
-        TornOffMenu = 3L
+        TornOffMenu = 3L,
     }
 }

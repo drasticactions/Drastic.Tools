@@ -1,15 +1,18 @@
-﻿using System;
+﻿// <copyright file="UIWindowExtensions.Catalyst.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using Drastic.Interop;
 using ObjCRuntime;
 
 namespace Drastic.TrayWindow
 {
-    public static class UIWindowExtensions
+    internal static class UIWindowExtensions
     {
         public static async Task Hide(this UIWindow window)
         {
             var uinswindow = await window.ToUINSWindowAsync()!;
-
         }
 
         internal static async Task ToggleTitleBarButtons(this UIWindow window, bool hideButtons)

@@ -13,12 +13,12 @@ namespace Drastic.Interop
         private const string DispatchLib = "/usr/lib/system/libdispatch.dylib";
         private const string SystemLib = "/usr/lib/libSystem.dylib";
 
+        private static readonly IntPtr MainQueueHandle = IntPtr.Zero;
+
         public static IntPtr MainQueue
         {
             get { return MainQueueHandle; }
         }
-
-        private static readonly IntPtr MainQueueHandle = IntPtr.Zero;
         private static readonly IntPtr DispatchLibHandle = IntPtr.Zero;
 
         static Dispatch()

@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="NSTrayWindow.Mac.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using Drastic.Tray;
 
 namespace Drastic.TrayWindow
@@ -18,7 +22,7 @@ namespace Drastic.TrayWindow
             {
                 ContentViewController = new NSViewController(),
                 Behavior = NSPopoverBehavior.ApplicationDefined,
-                Delegate = new NSPopoverDelegate()
+                Delegate = new NSPopoverDelegate(),
             };
 
             if (contentViewController is not null)
@@ -35,7 +39,7 @@ namespace Drastic.TrayWindow
             }
             else
             {
-                this.popover.ContentViewController.View.Frame = new CoreGraphics.CGRect(0, 0, options.WindowWidth, options.WindowHeight);
+                this.popover.ContentViewController.View.Frame = new CoreGraphics.CGRect(0, 0, this.options.WindowWidth, this.options.WindowHeight);
                 this.popover.Show(this.icon.StatusBarItem.Button.Bounds, this.icon.StatusBarItem.Button, NSRectEdge.MaxYEdge);
             }
         }

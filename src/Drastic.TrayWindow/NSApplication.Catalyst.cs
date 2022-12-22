@@ -8,7 +8,7 @@ using ObjCRuntime;
 
 namespace Drastic.TrayWindow
 {
-    public static class NSApplication
+    internal static class NSApplication
     {
         public static NSObject GetSharedApplication()
         {

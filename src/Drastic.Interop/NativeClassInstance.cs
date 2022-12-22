@@ -17,12 +17,12 @@ namespace Drastic.Interop
             this.parentHandle = parentHandle;
         }
 
-        public IntPtr Handle { get; }
-
         ~NativeClassInstance()
         {
             this.Dispose(false);
         }
+
+        public IntPtr Handle { get; }
 
         public void Dispose()
         {

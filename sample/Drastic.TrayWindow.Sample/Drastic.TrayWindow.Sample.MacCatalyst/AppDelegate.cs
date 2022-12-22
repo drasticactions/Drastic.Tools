@@ -1,10 +1,14 @@
+// <copyright file="AppDelegate.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
 using Drastic.PureLayout;
 using Drastic.Tray;
 
 namespace Drastic.TrayWindow.Sample.MacCatalyst;
 
 [Register("AppDelegate")]
-public class AppDelegate : UIApplicationDelegate
+public class AppDelegate : TrayAppDelegate
 {
     public override UIWindow? Window
     {
@@ -12,43 +16,32 @@ public class AppDelegate : UIApplicationDelegate
         set;
     }
 
-    public static Drastic.Tray.TrayIcon? Icon;
-    public static Drastic.TrayWindow.UITrayWindow? TrayWindow;
-
-    public AppDelegate()
+    public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
     {
         var image = UIImage.GetSystemImage("trophy.circle");
         var trayImage = new TrayImage(image!);
-        Icon = new Tray.TrayIcon("Drastic.Sample", trayImage);
-        Icon.LeftClicked += Icon_LeftClicked;
-    }
+        var icon = new Tray.TrayIcon("Drastic.Sample", trayImage);
+        this.CreateTrayWindow(icon, new TrayWindowOptions(), new SampleViewController("Welcome to the tray!"));
 
-    private async void Icon_LeftClicked(object? sender, EventArgs e)
-    {
-        await TrayWindow?.ToggleVisibilityAsync()!;
-    }
-
-    public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
-    {
         return true;
     }
 }
 
 public class SampleViewController : UIViewController
 {
-    public UILabel label = new UILabel();
+    public UILabel Label = new UILabel();
 
-    public SampleViewController()
+    public SampleViewController(string title)
     {
-        this.label = new UILabel()
+        this.Label = new UILabel()
         {
             BackgroundColor = UIColor.Clear,
             TextAlignment = UITextAlignment.Center,
-            Text = "Hello, Mac Catalyst Tray Window!",
+            Text = title,
             AutoresizingMask = UIViewAutoresizing.All,
         };
 
-        this.View!.AddSubview(label);
-        this.label.AutoCenterInSuperview();
+        this.View!.AddSubview(this.Label);
+        this.Label.AutoCenterInSuperview();
     }
 }

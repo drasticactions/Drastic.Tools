@@ -13,9 +13,9 @@ namespace Drastic.Interop
         private readonly List<Delegate> callbacks;
         private readonly IntPtr[] protocols;
 
-        public IntPtr Handle { get; private set; }
-
         private bool registered;
+
+        public IntPtr Handle { get; private set; }
         private IntPtr ivar;
 
         private NativeClassDefinition(string name, IntPtr parent, IntPtr[] protocols)

@@ -65,7 +65,6 @@ namespace Drastic.TrayWindow
 
         public void Hide()
         {
-
         }
     }
 }

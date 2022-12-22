@@ -78,10 +78,10 @@ namespace Drastic.Tray
             switch (currentEvent.Type)
             {
                 case NSEventType.LeftMouseDown:
-                    this.LeftClicked?.Invoke(this, EventArgs.Empty);
+                    this.LeftClicked?.Invoke(this, TrayClickedEventArgs.Empty);
                     break;
                 case NSEventType.RightMouseDown:
-                    this.RightClicked?.Invoke(this, EventArgs.Empty);
+                    this.RightClicked?.Invoke(this, TrayClickedEventArgs.Empty);
                     break;
             }
         }
