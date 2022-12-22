@@ -4,9 +4,30 @@
 
 using System;
 using Drastic.Tray;
+using static Drastic.TrayWindow.UITrayWindow;
 
 namespace Drastic.TrayWindow
 {
+    public class MAUITrayWindow
+    {
+        private TrayIcon icon;
+        private TrayViewController trayViewController;
+        private UIWindow window;
+
+        public MAUITrayWindow(UIWindow window, TrayIcon icon, TrayWindowOptions options, UIViewController? contentViewController = default)
+        {
+            this.window = window;
+            this.icon = icon;
+            this.window.RootViewController = this.trayViewController = new TrayViewController(this.window, icon, options, contentViewController);
+        }
+
+        public Task ToggleVisibilityAsync()
+            => this.trayViewController.ToggleVisibilityAsync();
+
+        public void SetContent(UIViewController contentViewController)
+            => this.trayViewController.SetContent(contentViewController);
+    }
+
     public class UITrayWindow : UIWindow
     {
         private TrayIcon icon;
