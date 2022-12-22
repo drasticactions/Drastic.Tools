@@ -61,7 +61,7 @@ namespace Drastic.TrayWindow
         /// <inheritdoc/>
         public override UISceneConfiguration GetConfiguration(UIApplication application, UISceneSession connectingSceneSession, UISceneConnectionOptions options)
         {
-            var name = options.UserActivities.AnyObject.ActivityType;
+            var name = options.UserActivities.AnyObject?.ActivityType ?? string.Empty;
 
             if (name is "TraySceneDelegate")
             {
@@ -70,7 +70,7 @@ namespace Drastic.TrayWindow
                 return test;
             }
 
-            return base.GetConfiguration(application, connectingSceneSession, options);
+            return new UISceneConfiguration("SceneDelegate", connectingSceneSession.Role);
         }
     }
 }
