@@ -50,7 +50,7 @@ public class MainWindow : NSWindow
         menuItems.Add(new TrayMenuItem("Hello!", trayImage, async () => { }, "h"));
         menuItems.Add(new TrayMenuItem("From!", trayImage, async () => { }, "f"));
         menuItems.Add(new TrayMenuItem("MacOS!", trayImage, async () => { }, "m", NSEventModifierMask.ControlKeyMask | NSEventModifierMask.CommandKeyMask));
-        var trayIcon = new Drastic.Tray.TrayIcon("Tray Sample", trayImage, menuItems);
+        var trayIcon = new Drastic.Tray.TrayIcon(trayImage, menuItems);
         trayIcon.LeftClicked += (object? sender, TrayClickedEventArgs e) => trayIcon.OpenMenu();
         trayIcon.RightClicked += (object? sender, TrayClickedEventArgs e) => { };
     }

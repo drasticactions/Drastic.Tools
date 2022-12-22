@@ -15,9 +15,11 @@ using UIKit;
 
 namespace Drastic.Tray
 {
+    /// <summary>
+    /// Tray Icon.
+    /// </summary>
     public partial class TrayIcon : NSObject
     {
-        private bool setupFrames;
         private NSObject statusBarItem;
         private ShimNSMenu menu;
 
@@ -27,7 +29,7 @@ namespace Drastic.Tray
         /// <param name="name">Name of the icon.</param>
         /// <param name="image">Icon Image Stream. Optional.</param>
         /// <param name="menuItems">Items to populate context menu. Optional.</param>
-        public TrayIcon(string name, TrayImage? image = null, List<TrayMenuItem>? menuItems = null)
+        public TrayIcon(TrayImage? image = null, List<TrayMenuItem>? menuItems = null)
         {
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
 

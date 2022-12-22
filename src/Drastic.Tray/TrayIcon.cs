@@ -8,9 +8,7 @@ namespace Drastic.Tray
 {
     public partial class TrayIcon : IDisposable
     {
-        private string? iconName;
         private List<TrayMenuItem> menuItems;
-        private bool holdsWindowInTray;
         private bool disposedValue;
 
         /// <summary>
@@ -22,11 +20,6 @@ namespace Drastic.Tray
         /// Right Clicked Event.
         /// </summary>
         public event EventHandler<TrayClickedEventArgs>? RightClicked;
-
-        /// <summary>
-        /// Menu Item Clicked.
-        /// </summary>
-        public event EventHandler<MenuClickedEventArgs>? MenuClicked;
 
         /// <inheritdoc/>
         public void Dispose()

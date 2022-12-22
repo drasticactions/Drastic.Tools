@@ -4,8 +4,14 @@
 
 namespace Drastic.Tray
 {
+    /// <summary>
+    /// Tray Clicked Event Arguments.
+    /// </summary>
     public class TrayClickedEventArgs : EventArgs
     {
-        public static readonly TrayClickedEventArgs Empty = new TrayClickedEventArgs();
+        /// <summary>
+        /// Empty Event Arguments.
+        /// </summary>
+        public static new readonly TrayClickedEventArgs Empty = new TrayClickedEventArgs();
     }
 }

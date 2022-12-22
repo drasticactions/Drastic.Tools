@@ -4,7 +4,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
 		<IsPackable>true</IsPackable>
-		<Description>Create popup windows from tray icons on Mac Catalyst.</Description>
+		<Description>Create popup windows from tray icons for macOS and Mac Catalyst apps.</Description>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 

@@ -7,6 +7,8 @@ using System.Runtime.Versioning;
 
 namespace Drastic.TrayWindow
 {
+#pragma warning disable SA1600
+#pragma warning disable SA1602
     internal enum NSWindowLevel : long
     {
         Normal = 0L,
@@ -20,4 +22,6 @@ namespace Drastic.TrayWindow
         Submenu = 3L,
         TornOffMenu = 3L,
     }
+#pragma warning restore SA1600
+#pragma warning restore SA1602
 }

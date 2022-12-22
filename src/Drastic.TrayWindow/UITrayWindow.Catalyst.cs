@@ -7,18 +7,21 @@ using Drastic.Tray;
 
 namespace Drastic.TrayWindow
 {
+    /// <summary>
+    /// The handler for the TrayWindow for Mac Catalyst apps.
+    /// </summary>
     internal class UITrayWindow : UIWindow
     {
         private TrayIcon icon;
         private TrayViewController trayViewController;
 
-        public UITrayWindow(TrayIcon icon, TrayWindowOptions options, UIViewController? contentViewController = default)
-            : base(UIScreen.MainScreen.Bounds)
-        {
-            this.icon = icon;
-            this.RootViewController = this.trayViewController = new TrayViewController(this, icon, options, contentViewController);
-        }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UITrayWindow"/> class.
+        /// </summary>
+        /// <param name="scene"><see cref="UIScene"/>.</param>
+        /// <param name="icon"><see cref="TrayIcon"/>.</param>
+        /// <param name="options"><see cref="TrayWindowOptions"/>.</param>
+        /// <param name="contentViewController">The Content Controller to inject into the given view.</param>
         public UITrayWindow(UIWindowScene scene, TrayIcon icon, TrayWindowOptions options, UIViewController? contentViewController = default)
             : base(scene)
         {
@@ -26,12 +29,22 @@ namespace Drastic.TrayWindow
             this.RootViewController = this.trayViewController = new TrayViewController(this, icon, options, contentViewController);
         }
 
-        public Task ToggleVisibilityAsync()
-            => this.trayViewController.ToggleVisibilityAsync();
+        /// <summary>
+        /// Toggle the visibility of the window.
+        /// </summary>
+        public void ToggleVisibility()
+            => this.trayViewController.ToggleVisibility();
 
+        /// <summary>
+        /// Set the content of the underlying Window.
+        /// </summary>
+        /// <param name="contentViewController">The Content Controller to inject into the given view.</param>
         public void SetContent(UIViewController contentViewController)
             => this.trayViewController.SetContent(contentViewController);
 
+        /// <summary>
+        /// Tray View Controller.
+        /// </summary>
         internal class TrayViewController : UIViewController
         {
             private TrayIcon icon;
@@ -41,6 +54,13 @@ namespace Drastic.TrayWindow
             private UINSWindow? uinsWindow;
             private TrayWindowOptions options;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="TrayViewController"/> class.
+            /// </summary>
+            /// <param name="window">The UIWindow.</param>
+            /// <param name="icon"><see cref="TrayIcon"/>.</param>
+            /// <param name="options"><see cref="TrayWindowOptions"/>.</param>
+            /// <param name="contentViewController">The Content Controller to inject into the given view.</param>
             public TrayViewController(UIWindow window, TrayIcon icon, TrayWindowOptions options, UIViewController? contentViewController = default)
             {
                 this.icon = icon;
@@ -51,6 +71,10 @@ namespace Drastic.TrayWindow
                 this.SetupWindow();
             }
 
+            /// <summary>
+            /// Set the content of the view.
+            /// </summary>
+            /// <param name="contentViewController">The Content Controller to inject into the given view.</param>
             public void SetContent(UIViewController contentViewController)
             {
                 this.contentViewController = contentViewController;
@@ -59,8 +83,7 @@ namespace Drastic.TrayWindow
             /// <summary>
             /// Toggle Visibility of the window.
             /// </summary>
-            /// <returns>A Task.</returns>
-            public async Task ToggleVisibilityAsync()
+            public void ToggleVisibility()
             {
                 if (this.uinsWindow is null)
                 {
@@ -114,7 +137,9 @@ namespace Drastic.TrayWindow
             private async void SetupWindow()
             {
                 this.window.RootViewController = this;
+#pragma warning disable CA1416 // Validate platform compatibility
                 if (this.window.WindowScene?.Titlebar is null)
+#pragma warning restore CA1416 // Validate platform compatibility
                 {
                     return;
                 }
@@ -124,7 +149,9 @@ namespace Drastic.TrayWindow
                     return;
                 }
 
+#pragma warning disable CA1416 // Validate platform compatibility
                 this.window.WindowScene.Titlebar.TitleVisibility = UITitlebarTitleVisibility.Hidden;
+#pragma warning restore CA1416 // Validate platform compatibility
                 this.window.WindowScene.SizeRestrictions.MinimumSize = new CoreGraphics.CGSize(1, 1);
                 this.window.WindowScene.SizeRestrictions.MaximumSize = new CoreGraphics.CGSize(1, 1);
 

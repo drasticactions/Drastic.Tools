@@ -4,7 +4,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
 		<IsPackable>true</IsPackable>
-		<Description>Helpers to create tray icons.</Description>
+		<Description>Create Menu Status Bar items for your macOS and Mac Catalyst apps.</Description>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<InternalsVisibleTo>Drastic.TrayWindow</InternalsVisibleTo>
 	</PropertyGroup>

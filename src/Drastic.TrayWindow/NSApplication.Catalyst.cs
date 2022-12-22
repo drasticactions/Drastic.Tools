@@ -8,8 +8,15 @@ using ObjCRuntime;
 
 namespace Drastic.TrayWindow
 {
+    /// <summary>
+    /// NSApplication Helpers.
+    /// </summary>
     internal static class NSApplication
     {
+        /// <summary>
+        /// Gets the shared NSApplication instance.
+        /// </summary>
+        /// <returns>NSObject.</returns>
         public static NSObject GetSharedApplication()
         {
             var nsApplication = Runtime.GetNSObject(Class.GetHandle("NSApplication"))!;
@@ -17,6 +24,10 @@ namespace Drastic.TrayWindow
             return sharedApplication;
         }
 
+        /// <summary>
+        /// Hides all the windows in a given application.
+        /// </summary>
+        /// <param name="window">The sender UIWindow to invoke the command.</param>
         public static async void Hide(UIWindow window)
         {
             var sharedApplication = GetSharedApplication();

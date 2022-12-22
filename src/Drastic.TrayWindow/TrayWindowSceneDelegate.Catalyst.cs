@@ -7,14 +7,27 @@ using Drastic.Tray;
 
 namespace Drastic.TrayWindow
 {
+    /// <summary>
+    /// Tray Window Scene Delegate.
+    /// Handles creating the UITrayWindow for Mac Catalyst.
+    /// </summary>
     [Register("TraySceneDelegate")]
-    public class TrayWindowSceneDelegate : UIResponder, IUIWindowSceneDelegate
+    internal class TrayWindowSceneDelegate : UIResponder, IUIWindowSceneDelegate
     {
         private UITrayWindow? trayWindow;
 
+        /// <summary>
+        /// Gets the Window.
+        /// </summary>
         [Export("window")]
         public UIWindow? Window { get; set; }
 
+        /// <summary>
+        /// Run when SceneDelegate willConnectToSession is run.
+        /// </summary>
+        /// <param name="scene"><see cref="UIScene"/>.</param>
+        /// <param name="session"><see cref="UISceneSession"/>.</param>
+        /// <param name="connectionOptions"><see cref="UISceneConnectionOptions"/>.</param>
         [Export("scene:willConnectToSession:options:")]
         public virtual void WillConnect(UIScene scene, UISceneSession session, UISceneConnectionOptions connectionOptions)
         {
@@ -40,50 +53,12 @@ namespace Drastic.TrayWindow
 
             if (TrayAppDelegate.HandleWindowOpenOnRightClick)
             {
-                TrayAppDelegate.Icon!.RightClicked += (object? sender, TrayClickedEventArgs e) => this.trayWindow.ToggleVisibilityAsync();
+                TrayAppDelegate.Icon!.RightClicked += (object? sender, TrayClickedEventArgs e) => this.trayWindow.ToggleVisibility();
             }
             else
             {
-                TrayAppDelegate.Icon!.LeftClicked += (object? sender, TrayClickedEventArgs e) => this.trayWindow.ToggleVisibilityAsync();
+                TrayAppDelegate.Icon!.LeftClicked += (object? sender, TrayClickedEventArgs e) => this.trayWindow.ToggleVisibility();
             }
-        }
-
-        [Export("sceneDidDisconnect:")]
-        public virtual void DidDisconnect(UIScene scene)
-        {
-            // Called as the scene is being released by the system.
-            // This occurs shortly after the scene enters the background, or when its session is discarded.
-            // Release any resources associated with this scene that can be re-created the next time the scene connects.
-            // The scene may re-connect later, as its session was not neccessarily discarded (see UIApplicationDelegate `DidDiscardSceneSessions` instead).
-        }
-
-        [Export("sceneDidBecomeActive:")]
-        public virtual void DidBecomeActive(UIScene scene)
-        {
-            // Called when the scene has moved from an inactive state to an active state.
-            // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        }
-
-        [Export("sceneWillResignActive:")]
-        public virtual void WillResignActive(UIScene scene)
-        {
-            // Called when the scene will move from an active state to an inactive state.
-            // This may occur due to temporary interruptions (ex. an incoming phone call).
-        }
-
-        [Export("sceneWillEnterForeground:")]
-        public virtual void WillEnterForeground(UIScene scene)
-        {
-            // Called as the scene transitions from the background to the foreground.
-            // Use this method to undo the changes made on entering the background.
-        }
-
-        [Export("sceneDidEnterBackground:")]
-        public virtual void DidEnterBackground(UIScene scene)
-        {
-            // Called as the scene transitions from the foreground to the background.
-            // Use this method to save data, release shared resources, and store enough scene-specific state information
-            // to restore the scene back to its current state.
         }
     }
 }

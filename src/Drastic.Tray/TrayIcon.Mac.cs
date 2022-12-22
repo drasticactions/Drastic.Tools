@@ -7,6 +7,9 @@ using AppKit;
 
 namespace Drastic.Tray
 {
+    /// <summary>
+    /// Tray Icon.
+    /// </summary>
     public partial class TrayIcon
     {
         private TrayImage? iconImage;
@@ -16,13 +19,11 @@ namespace Drastic.Tray
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayIcon"/> class.
         /// </summary>
-        /// <param name="name">Name of the icon.</param>
         /// <param name="image">Icon Image Stream. Optional.</param>
         /// <param name="menuItems">Items to populate context menu. Optional.</param>
-        public TrayIcon(string name, TrayImage? image = null, List<TrayMenuItem>? menuItems = null)
+        public TrayIcon(TrayImage? image = null, List<TrayMenuItem>? menuItems = null)
         {
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
-            this.iconName = name;
             this.iconImage = image;
 
             // Create the status bar item
@@ -41,13 +42,28 @@ namespace Drastic.Tray
             }
         }
 
+        /// <summary>
+        /// Gets the Status Bar.
+        /// </summary>
         public NSStatusItem StatusBarItem => this.statusBarItem;
 
+        /// <summary>
+        /// Opens the menu.
+        /// </summary>
         public void OpenMenu()
         {
+#pragma warning disable CA1416 // Validate platform compatibility
+#pragma warning disable CA1422 // Validate platform compatibility
             this.statusBarItem!.PopUpStatusItemMenu(this.menu);
+#pragma warning restore CA1416 // Validate platform compatibility
+#pragma warning disable CA1422 // Validate platform compatibility
         }
 
+        /// <summary>
+        /// Set up the list of status bar menu items.
+        /// Clears out the existing list of items and replaces them.
+        /// </summary>
+        /// <param name="menuItems">List of TrayMenuItems.</param>
         public void SetupStatusBarMenu(List<TrayMenuItem> menuItems)
         {
             this.menu.RemoveAllItems();

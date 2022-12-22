@@ -7,7 +7,10 @@ using System.Runtime.Versioning;
 
 namespace Drastic.Tray
 {
-    public enum NSEventType : ulong
+#pragma warning disable SA1602 // Enumeration items should be documented
+#pragma warning disable SA1600 // Elements should be documented
+    internal enum NSEventType : ulong
+#pragma warning restore SA1600 // Elements should be documented
     {
         LeftMouseDown = 1uL,
         LeftMouseUp = 2uL,
@@ -44,4 +47,5 @@ namespace Drastic.Tray
         DirectTouch = 37uL,
         ChangeMode = 38uL,
     }
+#pragma warning restore SA1602 // Enumeration items should be documented
 }

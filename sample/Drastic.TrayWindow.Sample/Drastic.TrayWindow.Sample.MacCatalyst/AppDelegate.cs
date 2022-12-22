@@ -20,28 +20,9 @@ public class AppDelegate : TrayAppDelegate
     {
         var image = UIImage.GetSystemImage("trophy.circle");
         var trayImage = new TrayImage(image!);
-        var icon = new Tray.TrayIcon("Drastic.Sample", trayImage);
+        var icon = new Tray.TrayIcon(trayImage);
         this.CreateTrayWindow(icon, new TrayWindowOptions(), new SampleViewController("Welcome to the tray!"));
 
         return true;
-    }
-}
-
-public class SampleViewController : UIViewController
-{
-    public UILabel Label = new UILabel();
-
-    public SampleViewController(string title)
-    {
-        this.Label = new UILabel()
-        {
-            BackgroundColor = UIColor.Clear,
-            TextAlignment = UITextAlignment.Center,
-            Text = title,
-            AutoresizingMask = UIViewAutoresizing.All,
-        };
-
-        this.View!.AddSubview(this.Label);
-        this.Label.AutoCenterInSuperview();
     }
 }

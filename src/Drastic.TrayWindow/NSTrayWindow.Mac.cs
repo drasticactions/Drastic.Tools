@@ -7,12 +7,22 @@ using Drastic.Tray;
 
 namespace Drastic.TrayWindow
 {
+    /// <summary>
+    /// NSTrayWindow.
+    /// The Tray Window for macOS apps.
+    /// </summary>
     public class NSTrayWindow
     {
         private TrayIcon icon;
         private TrayWindowOptions options;
         private NSPopover popover;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NSTrayWindow"/> class.
+        /// </summary>
+        /// <param name="icon"><see cref="TrayIcon"/>.</param>
+        /// <param name="options"><see cref="TrayWindowOptions"/>.</param>
+        /// <param name="contentViewController">The NSViewController used in the hosted TrayWindow.</param>
         public NSTrayWindow(TrayIcon icon, TrayWindowOptions options, NSViewController? contentViewController = default)
         {
             this.icon = icon;
@@ -31,6 +41,9 @@ namespace Drastic.TrayWindow
             }
         }
 
+        /// <summary>
+        /// Toggle Visibility of the TrayWindow.
+        /// </summary>
         public void ToggleVisibility()
         {
             if (this.popover.Shown)
@@ -44,6 +57,10 @@ namespace Drastic.TrayWindow
             }
         }
 
+        /// <summary>
+        /// Set the internal content view of the TrayWindow.
+        /// </summary>
+        /// <param name="contentViewController">The NSViewController to use in the hosted frame.</param>
         public void SetContent(NSViewController contentViewController)
         {
             this.popover.ContentViewController = contentViewController;
