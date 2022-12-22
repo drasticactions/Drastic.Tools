@@ -12,15 +12,15 @@ public partial class App : Application
     {
         InitializeComponent();
 
+        var menuItems = new List<TrayMenuItem>();
         var image = UIImage.GetSystemImage("trophy.circle");
         var trayImage = new TrayImage(image!);
-        Icon = new Tray.TrayIcon("Drastic.Sample", trayImage);
-        Icon.LeftClicked += Icon_LeftClicked;
-    }
-
-    private async void Icon_LeftClicked(object? sender, EventArgs e)
-    {
-        await this.window?.ToggleVisibilityAsync()!;
+        menuItems.Add(new TrayMenuItem("Hello!", trayImage, async () => { }, "h"));
+        menuItems.Add(new TrayMenuItem("From!", trayImage, async () => { }, "f"));
+        menuItems.Add(new TrayMenuItem("Mac Catalyst!", trayImage, async () => { }, "m", NSEventModifierMask.ControlKeyMask | NSEventModifierMask.CommandKeyMask));
+        Icon = new Tray.TrayIcon("Drastic.Sample", trayImage, menuItems);
+        this.Icon.RightClicked += (object? sender, EventArgs e) => { this.Icon.OpenMenu(); };
+        Icon.LeftClicked += (object? sender, EventArgs e) => { this.window?.ToggleVisibilityAsync(); };
     }
 
     protected override Window CreateWindow(IActivationState? activationState)
