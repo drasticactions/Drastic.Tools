@@ -31,7 +31,7 @@ namespace Drastic.Tray
             NSStatusBar statusBar = NSStatusBar.SystemStatusBar;
             this.statusBarItem = statusBar.CreateStatusItem(NSStatusItemLength.Variable);
 
-            this.statusBarItem!.Button.Title = name ?? string.Empty;
+            this.statusBarItem!.Button.ToolTip = name ?? string.Empty;
             this.statusBarItem!.Button.Image = image?.Image ?? null;
 
             // Listen to touches on the status bar item
