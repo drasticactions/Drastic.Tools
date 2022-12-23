@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Tray", "Drastic.Tra
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Drastic.Interop", "Drastic.Interop\Drastic.Interop.shproj", "{55C248A2-4A67-468D-8010-E04849A081F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow", "Drastic.TrayWindow\Drastic.TrayWindow.csproj", "{B56223DF-5D29-4499-8E83-0F13EBFBA098}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow", "Drastic.TrayWindow\Drastic.TrayWindow.csproj", "{B56223DF-5D29-4499-8E83-0F13EBFBA098}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +30,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Drastic.Interop\Drastic.Interop.projitems*{55c248a2-4a67-468d-8010-e04849a081f1}*SharedItemsImports = 13
 		Drastic.Interop\Drastic.Interop.projitems*{90aeaa8d-1950-4509-b9e6-8313a7f55f7b}*SharedItemsImports = 5
+		Drastic.Interop\Drastic.Interop.projitems*{b56223df-5d29-4499-8e83-0f13ebfba098}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

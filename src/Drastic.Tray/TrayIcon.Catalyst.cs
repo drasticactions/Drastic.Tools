@@ -29,7 +29,7 @@ namespace Drastic.Tray
         /// <param name="name">Name of the icon.</param>
         /// <param name="image">Icon Image Stream. Optional.</param>
         /// <param name="menuItems">Items to populate context menu. Optional.</param>
-        public TrayIcon(TrayImage? image = null, List<TrayMenuItem>? menuItems = null)
+        public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null)
         {
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
 

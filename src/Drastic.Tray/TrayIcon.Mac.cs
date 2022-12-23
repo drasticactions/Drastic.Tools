@@ -19,9 +19,10 @@ namespace Drastic.Tray
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayIcon"/> class.
         /// </summary>
-        /// <param name="image">Icon Image Stream. Optional.</param>
+        /// <param name="name">Icon Title.</param>
+        /// <param name="image">Icon Image Stream.</param>
         /// <param name="menuItems">Items to populate context menu. Optional.</param>
-        public TrayIcon(TrayImage? image = null, List<TrayMenuItem>? menuItems = null)
+        public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null)
         {
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
             this.iconImage = image;
@@ -30,6 +31,7 @@ namespace Drastic.Tray
             NSStatusBar statusBar = NSStatusBar.SystemStatusBar;
             this.statusBarItem = statusBar.CreateStatusItem(NSStatusItemLength.Variable);
 
+            this.statusBarItem!.Button.Title = name ?? string.Empty;
             this.statusBarItem!.Button.Image = image?.Image ?? null;
 
             // Listen to touches on the status bar item

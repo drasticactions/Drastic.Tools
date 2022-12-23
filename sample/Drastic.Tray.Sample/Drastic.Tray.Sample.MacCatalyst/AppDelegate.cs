@@ -59,7 +59,7 @@ public class SampleViewController : UIViewController
         menuItems.Add(new TrayMenuItem("Hello!", trayImage, async () => { }, "h"));
         menuItems.Add(new TrayMenuItem("From!", trayImage, async () => { }, "f"));
         menuItems.Add(new TrayMenuItem("Mac Catalyst!", trayImage, async () => { }, "m", NSEventModifierMask.ControlKeyMask | NSEventModifierMask.CommandKeyMask));
-        this.trayIcon = new Drastic.Tray.TrayIcon(trayImage, menuItems);
+        this.trayIcon = new Drastic.Tray.TrayIcon("Tray Icon", trayImage, menuItems);
         this.trayIcon.RightClicked += (object? sender, TrayClickedEventArgs e) => { this.trayIcon.OpenMenu(); };
         this.trayIcon.LeftClicked += (object? sender, TrayClickedEventArgs e) =>
         {

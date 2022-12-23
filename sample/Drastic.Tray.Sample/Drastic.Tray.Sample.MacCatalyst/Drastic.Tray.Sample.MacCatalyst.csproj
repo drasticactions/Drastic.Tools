@@ -16,7 +16,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\src\Drastic.Tray\Drastic.Tray.csproj" />
-		<ProjectReference Include="..\..\..\src\Drastic.AppKitInterop\Drastic.AppKitInterop.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Drastic.PureLayout" Version="1.0.4" />

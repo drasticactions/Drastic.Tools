@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="..\Drastic.Interop\Drastic.Interop.projitems" Label="Shared" Condition="Exists('..\Drastic.Interop\Drastic.Interop.projitems')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Condition="$(TargetFramework.Contains('-windows')) != true " Project="..\Drastic.Interop\Drastic.Interop.projitems" Label="Shared" />
 	<Import Project="../MultiTargeting.targets" />
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
+		<TargetFrameworks>net7.0-maccatalyst;net7.0-macos;net7.0-windows10.0.19041</TargetFrameworks>
 		<IsPackable>true</IsPackable>
 		<Description>Create Menu Status Bar items for your macOS and Mac Catalyst apps.</Description>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -10,6 +10,7 @@
 		<PackageTags>status bar macos catalyst task tray</PackageTags>
 		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Tray</PackageProjectUrl>
 		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Tray/CHANGELOG.md</PackageReleaseNotes>
+		<UseWindowsForms Condition="$(TargetFramework.Contains('-windows')) == true ">true</UseWindowsForms>
 	</PropertyGroup>
 
 	<ItemGroup>
