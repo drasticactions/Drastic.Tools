@@ -62,8 +62,12 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="favicon.png" />
+	  <None Remove="TrayIcon.ico" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Include="favicon.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="TrayIcon.ico" />
 	</ItemGroup>
 </Project>

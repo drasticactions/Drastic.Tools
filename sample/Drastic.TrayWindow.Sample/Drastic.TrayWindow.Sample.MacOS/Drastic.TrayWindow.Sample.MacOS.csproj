@@ -22,6 +22,9 @@
     <ProjectReference Include="..\..\..\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj" />
   </ItemGroup>
   	<ItemGroup>
-		<BundleResource Include="Resources\TrayIcon.ico" />
-	</ItemGroup>
+  	  <None Remove="Resources\" />
+  	</ItemGroup>
+  	<ItemGroup>
+  	  <Folder Include="Resources\" />
+  	</ItemGroup>
 </Project>

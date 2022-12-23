@@ -29,9 +29,7 @@ namespace Drastic.TrayWindow.Maui
         public static TrayIcon? Generate(string name, Stream image, TrayWindowOptions options, Page page, bool handleOnRightClick = false, List<TrayMenuItem>? menuItems = default)
         {
 #if MACCATALYST
-
-            var uiImage = UIKit.UIImage.LoadFromData(Foundation.NSData.FromStream(image)!)!;
-            var trayIcon = new TrayIcon(name, new TrayImage(UIKit.UIImage.GetSystemImage("circle")!), menuItems);
+            var trayIcon = new TrayIcon(name, new TrayImage(image), menuItems);
             if (UIKit.UIApplication.SharedApplication.Delegate is MauiTrayUIApplicationDelegate trayDelegate)
             {
                 var control = page.ToUIViewController(Microsoft.Maui.Controls.Application.Current!.Handler.MauiContext!);

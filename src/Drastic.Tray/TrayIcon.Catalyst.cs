@@ -42,16 +42,13 @@ namespace Drastic.Tray
             if (statusBarButton is not null && image is not null)
             {
                 Drastic.Interop.ObjC.Call(statusBarButton.Handle, "setImage:", image.Image.Handle);
-                Drastic.Interop.ObjC.Call(image.Image.Handle, "setTemplate:", true);
-
-                image.Image.Size = new CoreGraphics.CGSize(24, 24);
             }
 
             if (statusBarButton is not null)
             {
                 // Handle click
                 // 26 = NSEventType.OtherMouseUp
-                Drastic.Interop.ObjC.Call(statusBarButton.Handle, "sendActionOn:", 26);
+                Drastic.Interop.ObjC.Call(statusBarButton.Handle, "sendActionOn:", (nint)NSEventType.OtherMouseUp);
                 Drastic.Interop.ObjC.Call(statusBarButton.Handle, "setTarget:", this.Handle);
                 Drastic.Interop.ObjC.Call(statusBarButton.Handle, "setAction:", new Selector("handleButtonClick:").Handle);
             }

@@ -16,6 +16,17 @@ namespace Drastic.Tray
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayImage"/> class.
         /// </summary>
+        /// <param name="stream">Image stream.</param>
+        public TrayImage(Stream stream)
+        {
+            var imageStream = Foundation.NSData.FromStream(stream)!;
+            this.Image = Runtime.GetNSObject<AppKit.NSImage>(IntPtr_objc_msgSend(ObjCRuntime.Class.GetHandle("NSImage"), Selector.GetHandle("alloc")))!;
+            IntPtr_objc_msgSend_IntPtr(this.Image.Handle, Selector.GetHandle("initWithData:"), imageStream.Handle);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TrayImage"/> class.
+        /// </summary>
         /// <param name="image">UIImage to use for the tray icon.</param>
         public TrayImage(UIImage image)
         {
