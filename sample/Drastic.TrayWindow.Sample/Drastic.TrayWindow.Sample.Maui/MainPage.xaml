@@ -30,7 +30,7 @@
 
             <Button
                 x:Name="CounterBtn"
-                Text="Click me"
+                Text="Add Tray Icon!"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />

@@ -9,13 +9,21 @@
          <Image
                 Source="dotnet_bot.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
+                HeightRequest="100"
                 HorizontalOptions="Center" />
 
-            <Label
-                Text="Welcome to the tray!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
+        <Label
+                Text="Welcome to the Tray!"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+        <Button
+                x:Name="CounterBtn"
+                Text="Click me"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

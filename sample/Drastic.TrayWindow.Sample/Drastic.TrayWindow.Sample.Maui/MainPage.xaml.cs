@@ -13,6 +13,6 @@ public partial class MainPage : ContentPage
     {
         var image = App.GetResourceFileContent("favicon.png");
 
-        Drastic.TrayWindow.Maui.TrayWindow.GenerateTrayWindow("Test", image!, new TrayWindowOptions(), new SamplePage());
+        Drastic.TrayWindow.Maui.MauiTrayWindow.Generate("Test", image!, new TrayWindowOptions(), new SamplePage());
     }
 }

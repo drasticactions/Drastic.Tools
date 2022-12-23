@@ -3,6 +3,8 @@
 // </copyright>
 
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using Drastic.Tray;
 using Microsoft.Maui.Platform;
 
@@ -27,6 +29,7 @@ namespace Drastic.TrayWindow.Maui
         public static TrayIcon? Generate(string name, Stream image, TrayWindowOptions options, Page page, bool handleOnRightClick = false, List<TrayMenuItem>? menuItems = default)
         {
 #if MACCATALYST
+
             var uiImage = UIKit.UIImage.LoadFromData(Foundation.NSData.FromStream(image)!)!;
             var trayIcon = new TrayIcon(name, new TrayImage(UIKit.UIImage.GetSystemImage("circle")!), menuItems);
             if (UIKit.UIApplication.SharedApplication.Delegate is MauiTrayUIApplicationDelegate trayDelegate)
@@ -39,10 +42,13 @@ namespace Drastic.TrayWindow.Maui
                 throw new ArgumentException("You must set your AppDelegate to use Drastic.TrayWindow.TrayAppDelegate");
             }
             return trayIcon;
+
 #elif WINDOWS
-            var trayIcon = new TrayIcon(name, new TrayImage(image), menuItems);
-            var content = (Microsoft.UI.Xaml.UIElement)page.Handler?.PlatformView!;
-            var window = new WinUITrayWindow(trayIcon, options) { Content = content };
+
+            var bitmap = System.Drawing.Image.FromStream(image);
+            var trayIcon = new TrayIcon(name, new TrayImage(bitmap!), menuItems);
+            var element = page.ToPlatform(Microsoft.Maui.Controls.Application.Current!.Handler.MauiContext!);
+            var window = new WinUITrayWindow(trayIcon, options) { Content = element };
             if (handleOnRightClick)
             {
                 trayIcon.RightClicked += (object? sender, TrayClickedEventArgs e) => window.ToggleVisibility();

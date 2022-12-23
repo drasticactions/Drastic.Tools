@@ -13,11 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow", "..\..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow.Sample.MacOS", "Drastic.TrayWindow.Sample.MacOS\Drastic.TrayWindow.Sample.MacOS.csproj", "{E1C7BAB2-8C97-4995-89A8-BD6C506D6D4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow.Sample.WinUI", "Drastic.TrayWindow.Sample.WinUI\Drastic.TrayWindow.Sample.WinUI.csproj", "{EDE0CAE7-657A-4F32-96D9-00C4B6CDFC15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow.Sample.WinUI", "Drastic.TrayWindow.Sample.WinUI\Drastic.TrayWindow.Sample.WinUI.csproj", "{EDE0CAE7-657A-4F32-96D9-00C4B6CDFC15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow.Sample.Maui", "Drastic.TrayWindow.Sample.Maui\Drastic.TrayWindow.Sample.Maui.csproj", "{2302265A-09EA-4E72-AF8D-C3ECEB220F51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow.Sample.Maui", "Drastic.TrayWindow.Sample.Maui\Drastic.TrayWindow.Sample.Maui.csproj", "{2302265A-09EA-4E72-AF8D-C3ECEB220F51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow.Maui", "..\..\src\Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj", "{4EBE7E29-C609-45D6-BFC6-114B51972361}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow.Maui", "..\..\src\Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj", "{4EBE7E29-C609-45D6-BFC6-114B51972361}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,6 +127,7 @@ Global
 		{EDE0CAE7-657A-4F32-96D9-00C4B6CDFC15}.Release|x86.Deploy.0 = Release|x86
 		{2302265A-09EA-4E72-AF8D-C3ECEB220F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2302265A-09EA-4E72-AF8D-C3ECEB220F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2302265A-09EA-4E72-AF8D-C3ECEB220F51}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{2302265A-09EA-4E72-AF8D-C3ECEB220F51}.Debug|ARM64.ActiveCfg = Debug|Any CPU
 		{2302265A-09EA-4E72-AF8D-C3ECEB220F51}.Debug|ARM64.Build.0 = Debug|Any CPU
 		{2302265A-09EA-4E72-AF8D-C3ECEB220F51}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -161,9 +162,10 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CAD556F-9987-4C41-830B-F6EB2BAD7240}
+	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\..\src\Drastic.Interop\Drastic.Interop.projitems*{55c248a2-4a67-468d-8010-e04849a081f1}*SharedItemsImports = 13
-		..\..\src\Drastic.Interop\Drastic.Interop.projitems*{8d1cc08e-2242-4bfd-ad15-e83546a07f94}*SharedItemsImports = 5
-		..\..\src\Drastic.Interop\Drastic.Interop.projitems*{f93c6071-053e-4baf-91b2-b2211d5dad23}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

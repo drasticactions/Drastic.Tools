@@ -2,6 +2,7 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
+using System.Drawing;
 using System.Reflection;
 using Drastic.Tray;
 using Microsoft.UI.Xaml;
@@ -21,7 +22,8 @@ namespace Drastic.TrayWindow.Sample.WinUI
         public App()
         {
             this.InitializeComponent();
-            var trayImage = new TrayImage(GetResourceFileContent("TrayIcon.ico")!);
+            var bitmap = Image.FromStream(GetResourceFileContent("TrayIcon.ico")!);
+            var trayImage = new TrayImage(bitmap);
             var menuItems = new List<TrayMenuItem>
             {
                 new TrayMenuItem("Hello!", trayImage, async () => { }),

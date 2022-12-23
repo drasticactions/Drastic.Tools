@@ -2,6 +2,8 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
+using System.Drawing.Imaging;
+
 namespace Drastic.Tray
 {
     /// <summary>
@@ -12,12 +14,12 @@ namespace Drastic.Tray
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayImage"/> class.
         /// </summary>
-        /// <param name="image">NSImage.</param>
-        public TrayImage(Stream image)
+        /// <param name="image">System.Drawing.Icon</param>
+        public TrayImage(System.Drawing.Image image)
         {
             this.Image = image;
         }
 
-        public Stream Image { get; }
+        public System.Drawing.Image Image { get; }
     }
 }

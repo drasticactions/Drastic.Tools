@@ -21,7 +21,8 @@ namespace Drastic.Tray
         /// <param name="menuItems">Items to populate context menu. Optional.</param>
         public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null)
         {
-            this.icon = new Icon(image?.Image!);
+            var test = new Bitmap(image?.Image!);
+            this.icon = Icon.FromHandle(test.GetHicon());
             this.notifyIcon = new NotifyIcon();
             this.notifyIcon.Icon = this.icon;
             this.notifyIcon.Text = name;
@@ -68,7 +69,7 @@ namespace Drastic.Tray
             menu.Text = item.Text;
             if (item.Icon is not null)
             {
-                menu.Image = System.Drawing.Image.FromStream(item.Icon.Image);
+                menu.Image = item.Icon.Image;
             }
 
             return menu;
@@ -81,7 +82,7 @@ namespace Drastic.Tray
                 this.Text = item.Text;
                 if (item.Icon is not null)
                 {
-                    this.Image = System.Drawing.Image.FromStream(item.Icon.Image);
+                    this.Image = item.Icon.Image;
                 }
 
                 this.Item = item;
