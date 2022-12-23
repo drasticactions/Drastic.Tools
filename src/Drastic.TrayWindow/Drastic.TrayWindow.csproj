@@ -1,19 +1,39 @@
-<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="..\Drastic.Interop\Drastic.Interop.projitems" Label="Shared" Condition="Exists('..\Drastic.Interop\Drastic.Interop.projitems')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Condition="$(TargetFramework.Contains('-windows')) != true " Project="..\Drastic.Interop\Drastic.Interop.projitems" Label="Shared" />
 	<Import Project="../MultiTargeting.targets" />
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
+		<TargetFrameworks>net7.0-maccatalyst;net7.0-macos;net7.0-windows10.0.19041</TargetFrameworks>
 		<IsPackable>true</IsPackable>
-		<Description>Create popup windows from tray icons for macOS and Mac Catalyst apps.</Description>
+		<Description>Create popup windows from tray icons for macOS, Mac Catalyst, and WinUI apps.</Description>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PackageTags>status popup bar macos catalyst task tray</PackageTags>
 		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.TrayWindow</PackageProjectUrl>
 		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.TrayWindow/CHANGELOG.md</PackageReleaseNotes>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<WinUIVersion>1.2.221109.1</WinUIVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
 		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+
+	<!-- 
+		Yes, this is weird. We can't directly reference the WindowsAppSDK while also referencing WinForms for... reasons
+		However, we can directly reference the UI dlls and build against those. This assumes the user is running WinUI, which is what this is intended for.
+	-->
+	
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
+		<PackageDownload GeneratePathProperty="true" Include="Microsoft.WindowsAppSDK" Version="[$(WinUIVersion)]" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
+		<Reference Include="Microsoft.WinUI">
+			<HintPath>$(NuGetPackageRoot)\microsoft.windowsappsdk\$(WinUIVersion)\lib\net6.0-windows10.0.18362.0\Microsoft.WinUI.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.InteractiveExperiences.Projection">
+			<HintPath>$(NuGetPackageRoot)\microsoft.windowsappsdk\$(WinUIVersion)\lib\net6.0-windows10.0.18362.0\Microsoft.InteractiveExperiences.Projection.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>
