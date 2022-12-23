@@ -2,6 +2,7 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
+using System.Reflection;
 using Drastic.PureLayout;
 using Drastic.Tray;
 using Drastic.TrayWindow;
@@ -47,7 +48,7 @@ public class MainWindow : NSWindow
     private void Button_Activated(object? sender, EventArgs e)
     {
         var menuItems = new List<TrayMenuItem>();
-        var trayImage = new TrayImage(NSImage.ImageNamed("TrayIcon.ico")!);
+        var trayImage = new TrayImage(GetResourceFileContent("TrayIcon.ico")!);
         menuItems.Add(new TrayMenuItem("Hello!", trayImage, async () => { }, "h"));
         menuItems.Add(new TrayMenuItem("From!", trayImage, async () => { }, "f"));
         menuItems.Add(new TrayMenuItem("MacOS!", trayImage, async () => { }, "m", NSEventModifierMask.ControlKeyMask | NSEventModifierMask.CommandKeyMask));
@@ -55,6 +56,23 @@ public class MainWindow : NSWindow
         var trayWindow = new NSTrayWindow(trayIcon, new TrayWindowOptions(), new SampleViewController());
         trayIcon.LeftClicked += (object? sender, TrayClickedEventArgs e) => trayWindow.ToggleVisibility();
         trayIcon.RightClicked += (object? sender, TrayClickedEventArgs e) => trayIcon.OpenMenu();
+    }
+
+    /// <summary>
+    /// Get Resource File Content via FileName.
+    /// </summary>
+    /// <param name="fileName">Filename.</param>
+    /// <returns>Stream.</returns>
+    public static Stream? GetResourceFileContent(string fileName)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        var resourceName = "Drastic.TrayWindow.Sample.MacOS." + fileName;
+        if (assembly is null)
+        {
+            return null;
+        }
+
+        return assembly.GetManifestResourceStream(resourceName);
     }
 }
 

@@ -29,7 +29,8 @@ namespace Drastic.Tray
         /// <param name="name">Name of the icon.</param>
         /// <param name="image">Icon Image Stream. Optional.</param>
         /// <param name="menuItems">Items to populate context menu. Optional.</param>
-        public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null)
+        /// <param name="setToSystemTheme">Sets the icon to match the system theme.</param>
+        public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null, bool setToSystemTheme = true)
         {
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
 
@@ -41,7 +42,14 @@ namespace Drastic.Tray
 
             if (statusBarButton is not null && image is not null)
             {
+                // Matching what is on macOS...
+                // this.statusBarItem!.Button.Image.Size = new CGSize(20, 20);
+                // this.statusBarItem!.Button.Frame = new CGRect(0, 0, 40, 24);
+                var cgRect = new CGRect(0, 0, 40, 24);
+                image.Image.Size = new CoreGraphics.CGSize(20, 20);
                 Drastic.Interop.ObjC.Call(statusBarButton.Handle, "setImage:", image.Image.Handle);
+                Drastic.Interop.ObjC.Call(statusBarButton.Handle, "setFrame:", cgRect);
+                Drastic.Interop.ObjC.Call(image.Image.Handle, "setTemplate:", setToSystemTheme);
             }
 
             if (statusBarButton is not null)

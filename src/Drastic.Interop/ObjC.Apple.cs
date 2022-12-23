@@ -89,6 +89,9 @@ namespace Drastic.Interop
         [DllImport(ObjCLib, EntryPoint = "objc_msgSend")]
         public static extern IntPtr SendMessage(IntPtr self, IntPtr op, CGSize size);
 
+        [DllImport(ObjCLib, EntryPoint = "objc_msgSend")]
+        public static extern IntPtr SendMessage(IntPtr self, IntPtr op, CGRect rect);
+
         public static IntPtr Call(IntPtr id, string sel)
         {
             return SendMessage(id, RegisterName(sel));
@@ -142,6 +145,11 @@ namespace Drastic.Interop
         public static IntPtr Call(IntPtr id, string sel, CGSize size)
         {
             return SendMessage(id, RegisterName(sel), size);
+        }
+
+        public static IntPtr Call(IntPtr id, string sel, CGRect rect)
+        {
+            return SendMessage(id, RegisterName(sel), rect);
         }
     }
 }

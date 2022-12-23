@@ -11,7 +11,7 @@ public partial class MainPage : ContentPage
 
     private void OnCounterClicked(object sender, EventArgs e)
     {
-        var image = App.GetResourceFileContent("TrayIcon.ico");
+        var image = App.GetResourceFileContent("favicon.png");
 
         Drastic.TrayWindow.Maui.MauiTrayWindow.Generate("Test", image!, new TrayWindowOptions(), new SamplePage());
     }

@@ -31,5 +31,10 @@ namespace Drastic.TrayWindow
         /// Gets the window height.
         /// </summary>
         public int WindowHeight { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether to set the icon to match the system theme.
+        /// </summary>
+        public bool SetToSystemTheme { get; }
     }
 }

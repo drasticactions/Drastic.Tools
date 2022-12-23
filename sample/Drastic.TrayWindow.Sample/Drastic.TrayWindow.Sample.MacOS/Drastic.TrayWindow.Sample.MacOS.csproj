@@ -21,10 +21,10 @@
     <ProjectReference Include="..\..\..\src\Drastic.Tray\Drastic.Tray.csproj" />
     <ProjectReference Include="..\..\..\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj" />
   </ItemGroup>
-  	<ItemGroup>
-  	  <None Remove="Resources\" />
-  	</ItemGroup>
-  	<ItemGroup>
-  	  <Folder Include="Resources\" />
-  	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="favicon.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="TrayIcon.ico" />
+	</ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
+using System.Reflection;
 using Drastic.PureLayout;
 using Drastic.Tray;
 
@@ -18,11 +19,27 @@ public class AppDelegate : TrayAppDelegate
 
     public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
     {
-        var image = UIImage.GetSystemImage("trophy.circle");
-        var trayImage = new TrayImage(image!);
+        var trayImage = new TrayImage(GetResourceFileContent("favicon.png")!);
         var icon = new Tray.TrayIcon("Tray Window Sample", trayImage);
         this.CreateTrayWindow(icon, new TrayWindowOptions(), new SampleViewController("Welcome to the tray!"));
 
         return true;
+    }
+
+    /// <summary>
+    /// Get Resource File Content via FileName.
+    /// </summary>
+    /// <param name="fileName">Filename.</param>
+    /// <returns>Stream.</returns>
+    public static Stream? GetResourceFileContent(string fileName)
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+        var resourceName = "Drastic.TrayWindow.Sample.MacCatalyst." + fileName;
+        if (assembly is null)
+        {
+            return null;
+        }
+
+        return assembly.GetManifestResourceStream(resourceName);
     }
 }

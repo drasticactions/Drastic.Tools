@@ -22,7 +22,8 @@ namespace Drastic.Tray
         /// <param name="name">Icon Title.</param>
         /// <param name="image">Icon Image Stream.</param>
         /// <param name="menuItems">Items to populate context menu. Optional.</param>
-        public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null)
+        /// <param name="setToSystemTheme">Sets the icon to match the system theme.</param>
+        public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null, bool setToSystemTheme = true)
         {
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
             this.iconImage = image;
@@ -32,7 +33,10 @@ namespace Drastic.Tray
             this.statusBarItem = statusBar.CreateStatusItem(NSStatusItemLength.Variable);
 
             this.statusBarItem!.Button.ToolTip = name ?? string.Empty;
-            this.statusBarItem!.Button.Image = image?.Image ?? null;
+            this.statusBarItem!.Button.Image = image?.Image!;
+            this.statusBarItem!.Button.Image.Size = new CGSize(20, 20);
+            this.statusBarItem!.Button.Frame = new CGRect(0, 0, 40, 24);
+            this.statusBarItem!.Button.Image.Template = setToSystemTheme;
 
             // Listen to touches on the status bar item
             this.statusBarItem.Button.SendActionOn(NSEventType.OtherMouseUp);
