@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Condition="$(TargetFramework.Contains('-windows')) != true " Project="..\Drastic.Interop\Drastic.Interop.projitems" Label="Shared" />
+	<Import Condition="$(TargetFramework.Contains('-windows')) != true AND $(TargetFramework.Equals('net7.0')) != true " Project="..\Drastic.Interop\Drastic.Interop.projitems" Label="Shared" />
 	<Import Project="../MultiTargeting.targets" />
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-maccatalyst;net7.0-macos;net7.0-windows10.0.19041</TargetFrameworks>
+		<TargetFrameworks>net7.0;net7.0-maccatalyst;net7.0-macos;net7.0-windows10.0.19041</TargetFrameworks>
 		<IsPackable>true</IsPackable>
 		<Description>Create popup windows from tray icons for macOS, Mac Catalyst, and WinUI apps.</Description>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -14,6 +14,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<InternalsVisibleToSuffix Include=".Maui" />
 		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
 		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
 	</ItemGroup>

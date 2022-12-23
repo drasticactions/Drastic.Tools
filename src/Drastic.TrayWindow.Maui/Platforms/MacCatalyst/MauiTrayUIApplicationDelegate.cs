@@ -1,17 +1,14 @@
-﻿// <copyright file="TrayAppDelegate.Catalyst.cs" company="Drastic Actions">
+﻿// <copyright file="MauiTrayUIApplicationDelegate.cs" company="Drastic Actions">
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
 using System;
+using Foundation;
+using UIKit;
 
 namespace Drastic.TrayWindow
 {
-    /// <summary>
-    /// Tray App Delegate.
-    /// Manages the Tray Icon and Window session, as well as the Scene Delegates for handling the window.
-    /// In order to use TrayWindow with Catalyst, you must base your AppDelegate off of this delegate.
-    /// </summary>
-    public partial class TrayAppDelegate : UIApplicationDelegate
+    public class MauiTrayUIApplicationDelegate : MauiUIApplicationDelegate
     {
         /// <summary>
         /// Gets the internal TrayIcon. Used for handling setting up the tray window via the scene delegate.
@@ -49,23 +46,26 @@ namespace Drastic.TrayWindow
             Options = options;
             Controller = controller;
             HandleWindowOpenOnRightClick = handleOnRightClick;
-
             UIApplication.SharedApplication.RequestSceneSessionActivation(null, new NSUserActivity("TraySceneDelegate"), null, null);
         }
 
-        /// <inheritdoc/>
         public override UISceneConfiguration GetConfiguration(UIApplication application, UISceneSession connectingSceneSession, UISceneConnectionOptions options)
         {
             var name = options.UserActivities.AnyObject?.ActivityType ?? string.Empty;
 
             if (name is "TraySceneDelegate")
             {
-                var test = new UISceneConfiguration("TraySceneDelegate", connectingSceneSession.Role);
-                test.DelegateType = typeof(TrayWindowSceneDelegate);
+                var test = new UISceneConfiguration("MauiTraySceneDelegate", connectingSceneSession.Role);
+                test.DelegateType = typeof(MauiTrayWindowSceneDelegate);
                 return test;
             }
 
-            return new UISceneConfiguration("SceneDelegate", connectingSceneSession.Role);
+            return base.GetConfiguration(application, connectingSceneSession, options);
+        }
+
+        protected override MauiApp CreateMauiApp()
+        {
+            throw new NotImplementedException();
         }
     }
 }

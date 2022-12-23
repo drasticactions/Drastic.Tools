@@ -40,8 +40,12 @@
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj" />
-		<ProjectReference Include="..\..\..\src\Drastic.Tray\Drastic.Tray.csproj" />
+		<ProjectReference Include="..\..\..\src\Drastic.TrayWindow\Drastic.TrayWindow.csproj">
+		  <ReferenceSourceTarget></ReferenceSourceTarget>
+		</ProjectReference>
+		<ProjectReference Include="..\..\..\src\Drastic.Tray\Drastic.Tray.csproj">
+		  <ReferenceSourceTarget></ReferenceSourceTarget>
+		</ProjectReference>
 	</ItemGroup>
 
 	<!-- 

@@ -10,7 +10,7 @@ namespace Drastic.Tray
     /// <summary>
     /// Tray Image.
     /// </summary>
-    public class TrayImage
+    public partial class TrayImage
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayImage"/> class.
