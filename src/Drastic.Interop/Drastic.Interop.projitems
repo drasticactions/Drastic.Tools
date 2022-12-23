@@ -11,13 +11,13 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)NativeClassDefinition.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NativeClassInstance.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NSString.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AppKit.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Delegates.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Dispatch.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Foundation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ObjC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NativeClassDefinition.Apple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NativeClassInstance.Apple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NSString.Apple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AppKit.Apple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Delegates.Apple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dispatch.Apple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Foundation.Apple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObjC.Apple.cs" />
   </ItemGroup>
 </Project>
