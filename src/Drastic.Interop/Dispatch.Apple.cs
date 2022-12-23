@@ -1,4 +1,4 @@
-﻿// <copyright file="Dispatch.cs" company="Drastic Actions">
+﻿// <copyright file="Dispatch.Apple.cs" company="Drastic Actions">
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 

@@ -10,12 +10,14 @@ namespace Drastic.Tray.Sample.MacCatalyst;
 [Register("AppDelegate")]
 public class AppDelegate : UIApplicationDelegate
 {
+    /// <inheritdoc/>
     public override UIWindow? Window
     {
         get;
         set;
     }
 
+    /// <inheritdoc/>
     public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
     {
         // create a new window instance based on the screen size

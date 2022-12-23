@@ -1,4 +1,4 @@
-﻿// <copyright file="NSString.cs" company="Drastic Actions">
+﻿// <copyright file="NSString.Apple.cs" company="Drastic Actions">
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 

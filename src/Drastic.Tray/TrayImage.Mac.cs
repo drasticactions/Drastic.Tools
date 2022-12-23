@@ -12,7 +12,6 @@ namespace Drastic.Tray
     /// </summary>
     public class TrayImage
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayImage"/> class.
         /// </summary>

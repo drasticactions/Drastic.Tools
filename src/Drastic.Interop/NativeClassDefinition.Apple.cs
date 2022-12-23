@@ -1,4 +1,4 @@
-﻿// <copyright file="NativeClassDefinition.cs" company="Drastic Actions">
+﻿// <copyright file="NativeClassDefinition.Apple.cs" company="Drastic Actions">
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 

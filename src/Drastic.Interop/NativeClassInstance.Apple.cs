@@ -1,4 +1,4 @@
-﻿// <copyright file="NativeClassInstance.cs" company="Drastic Actions">
+﻿// <copyright file="NativeClassInstance.Apple.cs" company="Drastic Actions">
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
@@ -24,6 +24,7 @@ namespace Drastic.Interop
 
         public IntPtr Handle { get; }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             this.Dispose(true);

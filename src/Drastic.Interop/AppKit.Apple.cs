@@ -1,4 +1,4 @@
-﻿// <copyright file="AppKit.cs" company="Drastic Actions">
+﻿// <copyright file="AppKit.Apple.cs" company="Drastic Actions">
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 

@@ -17,7 +17,7 @@ namespace Drastic.TrayWindow
         private UITrayWindow? trayWindow;
 
         /// <summary>
-        /// Gets the Window.
+        /// Gets or sets the Window.
         /// </summary>
         [Export("window")]
         public UIWindow? Window { get; set; }

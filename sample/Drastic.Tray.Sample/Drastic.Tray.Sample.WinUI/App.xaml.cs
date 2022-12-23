@@ -2,9 +2,9 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
+using System.Reflection;
 using Drastic.Tray;
 using Microsoft.UI.Xaml;
-using System.Reflection;
 
 namespace Drastic.Tray.Sample.WinUI
 {
@@ -13,7 +13,9 @@ namespace Drastic.Tray.Sample.WinUI
     /// </summary>
     public partial class App : Application
     {
-        private TrayIcon _icon;
+        private TrayIcon icon;
+
+        private Window? window;
 
         public App()
         {
@@ -24,11 +26,13 @@ namespace Drastic.Tray.Sample.WinUI
                 new TrayMenuItem("From!", trayImage, async () => { }),
                 new TrayMenuItem("Windows!", trayImage, async () => { }),
             };
-            this._icon = new TrayIcon("Tray Icon", trayImage, menuItems);
-            this._icon.RightClicked += (object? sender, TrayClickedEventArgs e) => {
+            this.icon = new TrayIcon("Tray Icon", trayImage, menuItems);
+            this.icon.RightClicked += (object? sender, TrayClickedEventArgs e) =>
+            {
                 System.Diagnostics.Debug.WriteLine("Right Click!");
             };
-            this._icon.LeftClicked += (object? sender, TrayClickedEventArgs e) => {
+            this.icon.LeftClicked += (object? sender, TrayClickedEventArgs e) =>
+            {
                 System.Diagnostics.Debug.WriteLine("Left Click!");
             };
             this.InitializeComponent();
@@ -40,11 +44,9 @@ namespace Drastic.Tray.Sample.WinUI
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            this.m_window = new MainWindow();
-            this.m_window.Activate();
+            this.window = new MainWindow();
+            this.window.Activate();
         }
-
-        private Window? m_window;
 
         /// <summary>
         /// Get Resource File Content via FileName.

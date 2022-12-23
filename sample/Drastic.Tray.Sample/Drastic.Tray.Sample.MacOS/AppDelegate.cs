@@ -12,12 +12,14 @@ public class AppDelegate : NSApplicationDelegate
 {
     private MainWindowController? mainWindowController;
 
+    /// <inheritdoc/>
     public override void DidFinishLaunching(NSNotification notification)
     {
         this.mainWindowController = new MainWindowController();
         this.mainWindowController.Window.MakeKeyAndOrderFront(this);
     }
 
+    /// <inheritdoc/>
     public override void WillTerminate(NSNotification notification)
     {
         // Insert code here to tear down your application
