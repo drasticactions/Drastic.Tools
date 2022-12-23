@@ -14,7 +14,7 @@ namespace Drastic.Tray
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayImage"/> class.
         /// </summary>
-        /// <param name="image">System.Drawing.Icon</param>
+        /// <param name="image">System.Drawing.Icon.</param>
         public TrayImage(System.Drawing.Image image)
         {
             this.Image = image;

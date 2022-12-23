@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="MauiTrayApplicationExtensions.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using Microsoft.Maui.Controls;
 
 namespace Microsoft.Maui

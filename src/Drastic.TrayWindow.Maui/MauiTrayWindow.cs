@@ -39,6 +39,7 @@ namespace Drastic.TrayWindow.Maui
             {
                 throw new ArgumentException("You must set your AppDelegate to use Drastic.TrayWindow.TrayAppDelegate");
             }
+
             return trayIcon;
 
 #elif WINDOWS
