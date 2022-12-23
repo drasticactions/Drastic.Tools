@@ -8,7 +8,9 @@ Drastic.TrayWindow.Maui supports Mac Catalyst and WinUI.
 
 ## Setup
 
-First, for Mac Catalyst, you need to set it up to allow for multiple windows. You **MUST** following the [documentation](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/windows?view=net-maui-7.0#ipados-and-macos-configuration). Once you do this, verify that multiple window support works for your project. Then, install this nuget.
+First, for Mac Catalyst, you need to set it up to allow for multiple windows. You **MUST** follow the [documentation](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/windows?view=net-maui-7.0#ipados-and-macos-configuration), including setting up the info.plist and SceneDelegate for MAUI. If you don't do this, you won't get full multi-window support and this won't work. 
+
+Once you do this, verify that multiple window support works for your project. Then, install this nuget.
 
 In your `AppDelegate.cs`, switch it to use `MauiTrayUIApplicationDelegate`
 
