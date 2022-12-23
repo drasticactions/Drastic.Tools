@@ -80,3 +80,40 @@ this.CreateTrayWindow(icon, new TrayWindowOptions(), new SampleViewController("W
 ```
 
 Now it should appear on your systems menu bar.
+
+## WinUI
+
+WinUI is similar to macOS. You can create any number of `WinUITrayWindow`s and apply them to `TrayIcon`. 
+
+```c#
+            var trayImage = new TrayImage(GetResourceFileContent("TrayIcon.ico")!);
+            var menuItems = new List<TrayMenuItem>
+            {
+                new TrayMenuItem("Hello!", trayImage, async () => { }),
+                new TrayMenuItem("From!", trayImage, async () => { }),
+                new TrayMenuItem("Windows!", trayImage, async () => { }),
+            };
+            this.icon = new TrayIcon("Tray Icon", trayImage, menuItems);
+            this.trayWindow = new SampleTrayWindow(this.icon, new TrayWindowOptions(500, 700));
+            this.icon.RightClicked += (object? sender, TrayClickedEventArgs e) =>
+            {
+                System.Diagnostics.Debug.WriteLine("Right Click!");
+            };
+            this.icon.LeftClicked += (object? sender, TrayClickedEventArgs e) =>
+            {
+                this.trayWindow.ToggleVisibility();
+            };
+```
+
+```c#
+    public sealed partial class SampleTrayWindow : WinUITrayWindow
+    {
+        public SampleTrayWindow(TrayIcon icon, TrayWindowOptions options)
+            : base(icon, options)
+        {
+            this.InitializeComponent();
+        }
+    ...
+```
+
+The `WinUITrayWindow` can be created from codebehind or XAML. It is the same as a regular `Window`.

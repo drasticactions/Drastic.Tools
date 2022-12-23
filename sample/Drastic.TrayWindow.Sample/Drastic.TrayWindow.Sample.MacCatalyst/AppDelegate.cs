@@ -20,7 +20,7 @@ public class AppDelegate : TrayAppDelegate
     {
         var image = UIImage.GetSystemImage("trophy.circle");
         var trayImage = new TrayImage(image!);
-        var icon = new Tray.TrayIcon(trayImage);
+        var icon = new Tray.TrayIcon("Tray Window Sample", trayImage);
         this.CreateTrayWindow(icon, new TrayWindowOptions(), new SampleViewController("Welcome to the tray!"));
 
         return true;
