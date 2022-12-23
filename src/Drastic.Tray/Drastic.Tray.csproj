@@ -4,13 +4,14 @@
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-maccatalyst;net7.0-macos;net7.0-windows10.0.19041</TargetFrameworks>
 		<IsPackable>true</IsPackable>
-		<Description>Create Menu Status Bar items for your macOS and Mac Catalyst apps.</Description>
+		<Description>Create Menu Status Bar items for your macOS, Mac Catalyst, and WinUI apps.</Description>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<InternalsVisibleTo>Drastic.TrayWindow</InternalsVisibleTo>
-		<PackageTags>status bar macos catalyst task tray</PackageTags>
+		<PackageTags>status bar macos catalyst winui task tray</PackageTags>
 		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Tray</PackageProjectUrl>
 		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Tray/CHANGELOG.md</PackageReleaseNotes>
 		<UseWindowsForms Condition="$(TargetFramework.Contains('-windows')) == true ">true</UseWindowsForms>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 	</PropertyGroup>
 
 	<ItemGroup>
