@@ -40,7 +40,7 @@ namespace Drastic.DragAndDrop
         /// <summary>
         /// Dispose Elements.
         /// </summary>
-        internal void DisposeNativeElements()
+        internal void DisposePlatformElements()
         {
             if (this.panel != null)
             {
@@ -81,6 +81,8 @@ namespace Drastic.DragAndDrop
                     this.Drop?.Invoke(this, new DragAndDropOverlayTappedEventArgs(filePaths));
                 }
             }
+
+            this.IsDragging = false;
         }
 
         private void Panel_DragOver(object sender, Microsoft.UI.Xaml.DragEventArgs e)

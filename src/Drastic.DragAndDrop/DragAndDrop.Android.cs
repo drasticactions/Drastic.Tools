@@ -13,7 +13,7 @@ namespace Drastic.DragAndDrop
         /// <summary>
         /// Dispose Elements.
         /// </summary>
-        internal void DisposeNativeElements()
+        internal void DisposePlatformElements()
         {
         }
     }

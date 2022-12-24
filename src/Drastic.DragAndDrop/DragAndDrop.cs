@@ -49,7 +49,7 @@ namespace Drastic.DragAndDrop
             {
                 if (disposing)
                 {
-                    this.DisposeNativeElements();
+                    this.DisposePlatformElements();
                 }
 
                 this.disposedValue = true;
@@ -90,7 +90,7 @@ namespace Drastic.DragAndDrop
         /// <summary>
         /// Dispose Elements.
         /// </summary>
-        internal void DisposeNativeElements()
+        internal void DisposePlatformElements()
         {
 
         }

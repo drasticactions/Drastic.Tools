@@ -2,48 +2,63 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
-using System;
-using Drastic.Overlay;
-
 namespace Drastic.DragAndDrop.Maui
 {
     /// <summary>
     /// Drag and Drop Overlay.
     /// </summary>
-    public partial class DragAndDropOverlay : BaseOverlay
+    public partial class DragAndDropOverlay : WindowOverlay
     {
-        public DragAndDropOverlay(IWindow window)
+        private DragAndDrop dragAndDrop;
+        private IDragWindowOverlayElement? dropElementOverlay;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DragAndDropOverlay"/> class.
+        /// </summary>
+        /// <param name="window"><see cref="IWindow"/>.</param>
+        /// <param name="overlayElement">Element to draw when the drag event is fired. Optional.</param>
+        public DragAndDropOverlay(IWindow window, IDragWindowOverlayElement? overlayElement = default)
             : base(window)
         {
+            this.dropElementOverlay = overlayElement;
+#if WINDOWS
+            var handler = window.Handler as Microsoft.Maui.Handlers.WindowHandler;
+            this.dragAndDrop = new DragAndDrop(handler!.PlatformView);
+#elif IOS || MACCATALYST
+            var handler = window.Handler as Microsoft.Maui.Handlers.WindowHandler;
+            this.dragAndDrop = new DragAndDrop(handler!.PlatformView);
+#else
+            this.dragAndDrop = new DragAndDrop();
+#endif
+            this.dragAndDrop.PropertyChanged += this.DragAndDrop_PropertyChanged;
+            if (this.dropElementOverlay is not null)
+            {
+                this.AddWindowElement(this.dropElementOverlay);
+            }
+
+            this.dragAndDrop.Drop += (sender, e) => this.Drop?.Invoke(this, e);
         }
 
-        private class DropElementOverlay : IWindowOverlayElement
+        /// <summary>
+        /// Fired when files are dropped on the overlay.
+        /// </summary>
+        public event EventHandler<DragAndDropOverlayTappedEventArgs>? Drop;
+
+        /// <summary>
+        /// Gets the DragAndDrop element. Use this to attach to the underlying events from the overlay.
+        /// </summary>
+        public DragAndDrop DragAndDrop => this.dragAndDrop;
+
+        private void DragAndDrop_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            public IWindowOverlayElement? OverlayElement { get; set; }
-
-            public bool IsDragging { get; set; }
-
-            public Microsoft.Maui.Graphics.Color Color { get; set; } = Microsoft.Maui.Graphics.Colors.Transparent;
-
-            // We are not going to use Contains for this.
-            // We're gonna set if it's invoked externally.
-            public bool Contains(Microsoft.Maui.Graphics.Point point) => false;
-
-            public void Draw(ICanvas canvas, Microsoft.Maui.Graphics.RectF dirtyRect)
+            if (e.PropertyName == nameof(this.DragAndDrop.IsDragging))
             {
-                if (!this.IsDragging)
+                if (this.dropElementOverlay is not null)
                 {
-                    return;
+                    this.dropElementOverlay.IsDragging = this.dragAndDrop?.IsDragging ?? false;
                 }
 
-                if (this.OverlayElement is not null)
-                {
-                    this.OverlayElement.Draw(canvas, dirtyRect);
-                    return;
-                }
-
-                canvas.FillColor = this.Color;
-                canvas.FillRectangle(dirtyRect);
+                this.Invalidate();
             }
         }
     }
