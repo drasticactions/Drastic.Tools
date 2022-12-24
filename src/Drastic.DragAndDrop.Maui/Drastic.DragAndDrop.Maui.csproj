@@ -9,10 +9,12 @@
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>true</IsPackable>
 		<Description>A simple and straightforward Drag and Drop control for MAUI apps. Supports WinUI, Mac Catalyst, and iOS.</Description>
+		<PackageTags>catalyst winui ios maui drag drop</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.DragAndDrop.Maui</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.DragAndDrop.Maui/CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="Drastic.TrayWindow" />
 		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
 		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
 	</ItemGroup>

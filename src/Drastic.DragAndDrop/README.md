@@ -1,4 +1,4 @@
-[![NuGet Version](https://img.shields.io/nuget/v/Drastic.DragAndDrop.Maui.svg)](https://www.nuget.org/packages/Drastic.DragAndDrop/) ![License](https://img.shields.io/badge/License-MIT-blue.svg)
+[![NuGet Version](https://img.shields.io/nuget/v/Drastic.DragAndDrop.svg)](https://www.nuget.org/packages/Drastic.DragAndDrop/) ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 # Drastic.DragAndDrop
 

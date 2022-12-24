@@ -8,6 +8,9 @@
 		<WinUIVersion>1.2.221109.1</WinUIVersion>
 		<IsPackable>true</IsPackable>
 		<Description>A simple and straightforward Drag and Drop control for iOS, Mac Catalyst and WinUI</Description>
+		<PackageTags>ios catalyst winui drag drop</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.DragAndDrop</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.DragAndDrop/CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

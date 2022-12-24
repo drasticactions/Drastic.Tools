@@ -10,6 +10,9 @@
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>true</IsPackable>
 		<Description>A implementation MAUI Library for generating overlay views.</Description>
+		<PackageTags>maui overlay base</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Overlay</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Overlay/CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -17,8 +20,5 @@
 		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
 		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
 	</ItemGroup>
-<!--
-	<ItemGroup>
-	  <Reference Include="Microsoft.Maui.Graphics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-	</ItemGroup>-->
+
 </Project>
