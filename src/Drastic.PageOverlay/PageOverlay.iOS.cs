@@ -52,7 +52,7 @@ namespace Drastic.PageOverlay
                 return false;
             }
 
-            this.passthroughView = new PassthroughView(this, nativeWindow.RootViewController.View.Frame);
+            this.passthroughView = new PassthroughView(this, nativeWindow.Frame);
             nativeWindow.RootViewController.View.AddSubview(this.passthroughView);
             nativeWindow.RootViewController.View.BringSubviewToFront(this.passthroughView);
             return this.pageOverlayNativeElementsInitialized = true;
@@ -77,6 +77,7 @@ namespace Drastic.PageOverlay
 
             element.PlatformView.Frame = this.passthroughView.Frame;
             element.PlatformView.AutoresizingMask = UIViewAutoresizing.All;
+
             this.passthroughView.AddSubview(element.PlatformView);
             this.passthroughView.BringSubviewToFront(element.PlatformView);
             this.passthroughView.AutoresizingMask = UIViewAutoresizing.All;
@@ -144,4 +145,3 @@ namespace Drastic.PageOverlay
         }
     }
 }
-

@@ -37,11 +37,12 @@ namespace Drastic.PageOverlay
         /// </summary>
         /// <param name="view">View.</param>
         /// <returns>Boolean.</returns>
-        /// <exception cref="ArgumentNullException">ArgumentNullException.</exception>
+        /// <exception cref="ArgumentNullException">You must base your view on a IHitTestView.</exception>
         public bool AddView(Page view)
         {
             if (view is not IHitTestView hitTestView)
             {
+                // You must base your view on a IHitTestView.
                 throw new ArgumentException(nameof(view));
             }
 
