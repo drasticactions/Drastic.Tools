@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.DragAndDrop.Sample.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.DragAndDrop", "..\..\src\Drastic.DragAndDrop\Drastic.DragAndDrop.csproj", "{865B2EC1-4F50-45E6-8134-F5B268F67A49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.DragAndDrop.Sample.MacCatalyst", "Drastic.DragAndDrop.Sample.MacCatalyst\Drastic.DragAndDrop.Sample.MacCatalyst.csproj", "{FEE4B143-573E-4668-B1C8-33FDC6297500}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,22 @@ Global
 		{865B2EC1-4F50-45E6-8134-F5B268F67A49}.Release|x64.Build.0 = Release|Any CPU
 		{865B2EC1-4F50-45E6-8134-F5B268F67A49}.Release|x86.ActiveCfg = Release|Any CPU
 		{865B2EC1-4F50-45E6-8134-F5B268F67A49}.Release|x86.Build.0 = Release|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Debug|x64.Build.0 = Debug|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Debug|x86.Build.0 = Debug|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Release|ARM64.Build.0 = Release|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Release|x64.ActiveCfg = Release|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Release|x64.Build.0 = Release|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Release|x86.ActiveCfg = Release|Any CPU
+		{FEE4B143-573E-4668-B1C8-33FDC6297500}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,7 +37,9 @@
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\Drastic.DragAndDrop\Drastic.DragAndDrop.csproj" />
+		<ProjectReference Include="..\..\..\src\Drastic.DragAndDrop\Drastic.DragAndDrop.csproj">
+		  <ReferenceSourceTarget></ReferenceSourceTarget>
+		</ProjectReference>
 	</ItemGroup>
 
 	<!-- 

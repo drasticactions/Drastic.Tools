@@ -6,8 +6,16 @@
 		<Nullable>enable</Nullable>
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<WinUIVersion>1.2.221109.1</WinUIVersion>
+		<IsPackable>true</IsPackable>
+		<Description>A simple and straightforward Drag and Drop control for iOS, Mac Catalyst and WinUI</Description>
 	</PropertyGroup>
 
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<InternalsVisibleTo Include="Drastic.TrayWindow" />
 		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
