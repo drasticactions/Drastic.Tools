@@ -86,7 +86,7 @@ namespace Drastic.DragAndDrop
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-#if !WINDOWS && !MACCATALYST && !IOS
+#if !WINDOWS && !MACCATALYST && !IOS && !ANDROID
         /// <summary>
         /// Dispose Elements.
         /// </summary>

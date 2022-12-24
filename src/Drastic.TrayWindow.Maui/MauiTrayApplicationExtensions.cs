@@ -7,8 +7,16 @@ using Microsoft.Maui.Controls;
 
 namespace Microsoft.Maui
 {
+    /// <summary>
+    /// Maui Tray Application Extensions.
+    /// </summary>
     public static class MauiTrayApplicationExtensions
     {
+        /// <summary>
+        /// Adds support for Tray Windows in MAUI.
+        /// </summary>
+        /// <param name="builder"><see cref="MauiAppBuilder"/>.</param>
+        /// <returns>MauiAppBuilder.</returns>
         public static MauiAppBuilder AddTrayWindowSupport(this MauiAppBuilder builder)
         {
 #if MACCATALYST

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+<Import Project="../MultiTargeting.targets" />
+	<PropertyGroup>
+		<TargetFrameworks>net7.0;net7.0-ios;net7.0-maccatalyst;net7.0-windows10.0.19041.0;net7.0-android</TargetFrameworks>
+		<UseMaui>true</UseMaui>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<IsPackable>true</IsPackable>
+		<Description>A simple and straightforward Drag and Drop control for MAUI apps. Supports WinUI, Mac Catalyst, and iOS.</Description>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Drastic.TrayWindow" />
+		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
+		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\Drastic.DragAndDrop\Drastic.DragAndDrop.csproj" />
+	  <ProjectReference Include="..\Drastic.Overlay\Drastic.Overlay.csproj" />
+	</ItemGroup>
+</Project>
