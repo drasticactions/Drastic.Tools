@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../MultiTargeting.targets" />
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-ios;net7.0-maccatalyst;net7.0-windows10.0.19041.0</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<WinUIVersion>1.2.221109.1</WinUIVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Drastic.TrayWindow" />
+		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
+		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
+		<PackageDownload GeneratePathProperty="true" Include="Microsoft.WindowsAppSDK" Version="[$(WinUIVersion)]" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
+		<Reference Include="Microsoft.WinUI">
+			<HintPath>$(NuGetPackageRoot)\microsoft.windowsappsdk\$(WinUIVersion)\lib\net6.0-windows10.0.18362.0\Microsoft.WinUI.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.InteractiveExperiences.Projection">
+			<HintPath>$(NuGetPackageRoot)\microsoft.windowsappsdk\$(WinUIVersion)\lib\net6.0-windows10.0.18362.0\Microsoft.InteractiveExperiences.Projection.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

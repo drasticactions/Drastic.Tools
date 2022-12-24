@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Drastic.DragAndDrop.Sample.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Drastic.DragAndDrop.Sample.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

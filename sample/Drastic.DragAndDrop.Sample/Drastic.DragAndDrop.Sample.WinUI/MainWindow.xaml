@@ -1,0 +1,23 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Window
+    x:Class="Drastic.DragAndDrop.Sample.WinUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Drastic.DragAndDrop.Sample.WinUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Image Source="/Assets/dotnetbot.png" x:Name="DropImage" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <StackPanel Grid.Row="1" Spacing="15"  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Drag and Drop an Image onto the Window to replace the image."/>
+        </StackPanel>
+    </Grid>
+</Window>

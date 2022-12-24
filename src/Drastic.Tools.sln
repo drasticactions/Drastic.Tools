@@ -9,7 +9,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Drastic.Interop", "Drastic.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow", "Drastic.TrayWindow\Drastic.TrayWindow.csproj", "{B56223DF-5D29-4499-8E83-0F13EBFBA098}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TrayWindow.Maui", "Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj", "{A1C79AD0-D610-43AA-BABB-FB036FD84C11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow.Maui", "Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj", "{A1C79AD0-D610-43AA-BABB-FB036FD84C11}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.DragAndDrop", "Drastic.DragAndDrop\Drastic.DragAndDrop.csproj", "{21529D1B-0798-4F89-AEEB-4757B8E764B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,13 +31,18 @@ Global
 		{A1C79AD0-D610-43AA-BABB-FB036FD84C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1C79AD0-D610-43AA-BABB-FB036FD84C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1C79AD0-D610-43AA-BABB-FB036FD84C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21529D1B-0798-4F89-AEEB-4757B8E764B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21529D1B-0798-4F89-AEEB-4757B8E764B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21529D1B-0798-4F89-AEEB-4757B8E764B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21529D1B-0798-4F89-AEEB-4757B8E764B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {656571A1-8837-49D4-B961-8E2F86ECAB3F}
+	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Drastic.Interop\Drastic.Interop.projitems*{55c248a2-4a67-468d-8010-e04849a081f1}*SharedItemsImports = 13
-		Drastic.Interop\Drastic.Interop.projitems*{90aeaa8d-1950-4509-b9e6-8313a7f55f7b}*SharedItemsImports = 5
-		Drastic.Interop\Drastic.Interop.projitems*{b56223df-5d29-4499-8e83-0f13ebfba098}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
