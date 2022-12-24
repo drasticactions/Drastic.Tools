@@ -6,6 +6,10 @@ Drastic.TrayWindow.Maui is a helper library for Drastic.TrayWindow, letting you 
 
 Drastic.TrayWindow.Maui supports Mac Catalyst and WinUI.
 
+## **IMPORTANT**
+
+For this to work on Mac Catalyst, we are using Objective-C Selectors for directly accessing AppKit APIs from UIKit. These are private, and are frowd upon by Apple. You may have issues publishing apps using this library within the Mac App Store. While it should "work" it is best seen as experimental.
+
 ## Setup
 
 First, for Mac Catalyst, you need to set it up to allow for multiple windows. You **MUST** follow the [documentation](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/windows?view=net-maui-7.0#ipados-and-macos-configuration), including setting up the info.plist and SceneDelegate for MAUI. If you don't do this, you won't get full multi-window support and this won't work. 
