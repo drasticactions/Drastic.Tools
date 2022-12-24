@@ -4,6 +4,8 @@
 
 Drastic.DragAndDrop.Maui is a component for adding drag and drop views and overlay effects to a MAUI Window.
 
+![fun](https://user-images.githubusercontent.com/898335/209435848-b93551fb-e7e7-4bcc-ae15-3d0292678222.gif)
+
 ## How To Use
 
 First, you need to create the overlay and add it to a `Window` instance. This can be done to an existing `Window` after it has been created, or in the `Window` itself with code you add.
