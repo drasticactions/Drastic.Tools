@@ -7,15 +7,26 @@ using Windows.Storage;
 
 namespace Drastic.DragAndDrop
 {
+    /// <summary>
+    /// Drag And Drop View.
+    /// </summary>
     public partial class DragAndDrop
     {
         private Microsoft.UI.Xaml.UIElement? panel;
 
-        public DragAndDrop (Microsoft.UI.Xaml.Window window)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DragAndDrop"/> class.
+        /// </summary>
+        /// <param name="window">Window. Sets the drag and drop view to the inner Window Contents.</param>
+        public DragAndDrop(Microsoft.UI.Xaml.Window window)
             : this(window.Content!)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DragAndDrop"/> class.
+        /// </summary>
+        /// <param name="element">Sets the drag and drop view to the UIElement.</param>
         public DragAndDrop(Microsoft.UI.Xaml.UIElement element)
         {
             this.panel = element;
@@ -26,16 +37,9 @@ namespace Drastic.DragAndDrop
             this.panel.DropCompleted += this.Panel_DropCompleted;
         }
 
-        private void Panel_DropCompleted(Microsoft.UI.Xaml.UIElement sender, Microsoft.UI.Xaml.DropCompletedEventArgs args)
-        {
-            this.IsDragging = false;
-        }
-
-        private void Panel_DragLeave(object sender, Microsoft.UI.Xaml.DragEventArgs e)
-        {
-            this.IsDragging = false;
-        }
-
+        /// <summary>
+        /// Dispose Elements.
+        /// </summary>
         internal void DisposeNativeElements()
         {
             if (this.panel != null)
@@ -46,6 +50,16 @@ namespace Drastic.DragAndDrop
                 this.panel.DragLeave -= this.Panel_DragLeave;
                 this.panel.DropCompleted -= this.Panel_DropCompleted;
             }
+        }
+
+        private void Panel_DropCompleted(Microsoft.UI.Xaml.UIElement sender, Microsoft.UI.Xaml.DropCompletedEventArgs args)
+        {
+            this.IsDragging = false;
+        }
+
+        private void Panel_DragLeave(object sender, Microsoft.UI.Xaml.DragEventArgs e)
+        {
+            this.IsDragging = false;
         }
 
         private async void Panel_Drop(object sender, Microsoft.UI.Xaml.DragEventArgs e)

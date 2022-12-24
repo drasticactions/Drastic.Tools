@@ -7,6 +7,9 @@ using System.Runtime.CompilerServices;
 
 namespace Drastic.DragAndDrop
 {
+    /// <summary>
+    /// Drag And Drop View.
+    /// </summary>
     public partial class DragAndDrop : IDisposable, INotifyPropertyChanged
     {
         private bool disposedValue;
@@ -29,7 +32,17 @@ namespace Drastic.DragAndDrop
             set { this.SetProperty(ref this.isDragging, value); }
         }
 
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            this.Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
 
+        /// <summary>
+        /// Called on Dispose.
+        /// </summary>
+        /// <param name="disposing">Is Disposing.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposedValue)
@@ -41,12 +54,6 @@ namespace Drastic.DragAndDrop
 
                 this.disposedValue = true;
             }
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(disposing: true);
-            GC.SuppressFinalize(this);
         }
 
 #pragma warning disable SA1600 // Elements should be documented
@@ -80,6 +87,9 @@ namespace Drastic.DragAndDrop
         }
 
 #if !WINDOWS && !MACCATALYST && !IOS
+        /// <summary>
+        /// Dispose Elements.
+        /// </summary>
         internal void DisposeNativeElements()
         {
 

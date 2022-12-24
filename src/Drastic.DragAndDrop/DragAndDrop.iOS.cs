@@ -4,30 +4,52 @@
 
 namespace Drastic.DragAndDrop
 {
+    /// <summary>
+    /// Drag And Drop View.
+    /// </summary>
     public partial class DragAndDrop
     {
-        private UIViewController controller;
+        private UIView view;
 
         private DragAndDropView? dragAndDropView;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DragAndDrop"/> class.
+        /// </summary>
+        /// <param name="window">UIWindow. Sets the context of the DragAndDrop view to the inner RootViewController view.</param>
         public DragAndDrop(UIWindow window)
             : this(window.RootViewController!)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DragAndDrop"/> class.
+        /// </summary>
+        /// <param name="controller">UIViewController, sets the drag and drop view to the inner View.</param>
         public DragAndDrop(UIViewController controller)
+            : this(controller.View!)
         {
-            this.controller = controller;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DragAndDrop"/> class.
+        /// </summary>
+        /// <param name="view">Sets the drag and drop view to the UIView.</param>
+        public DragAndDrop(UIView view)
+        {
+            this.view = view;
 
             // We're going to create a new view.
             // This will handle the "drop" events, and nothing else.
-
-            this.dragAndDropView = new DragAndDropView(this, this.controller.View!.Frame);
+            this.dragAndDropView = new DragAndDropView(this, this.view.Frame);
             this.dragAndDropView.UserInteractionEnabled = true;
-            this.controller.View.AddSubview(this.dragAndDropView);
-            this.controller.View.BringSubviewToFront(this.dragAndDropView);
+            this.view.AddSubview(this.dragAndDropView);
+            this.view.BringSubviewToFront(this.dragAndDropView);
         }
 
+        /// <summary>
+        /// Dispose Elements.
+        /// </summary>
         internal void DisposeNativeElements()
         {
             if (this.dragAndDropView != null)

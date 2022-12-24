@@ -1,4 +1,4 @@
-[![NuGet Version](https://img.shields.io/nuget/v/Drastic.TrayWindow.Maui.svg)](https://www.nuget.org/packages/Drastic.Tray/) ![License](https://img.shields.io/badge/License-MIT-blue.svg)
+[![NuGet Version](https://img.shields.io/nuget/v/Drastic.TrayWindow.Maui.svg)](https://www.nuget.org/packages/Drastic.TrayWindow.Maui/) ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 # Drastic.TrayWindow.Maui
 
