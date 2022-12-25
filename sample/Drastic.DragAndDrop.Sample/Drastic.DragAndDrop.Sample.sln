@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.DragAndDrop.Maui", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Overlay", "..\..\src\Drastic.Overlay\Drastic.Overlay.csproj", "{1711C89A-EECC-4993-9220-70619D45029A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.DragAndDrop.Sample.Mac", "Drastic.DragAndDrop.Sample.Mac\Drastic.DragAndDrop.Sample.Mac.csproj", "{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,22 @@ Global
 		{1711C89A-EECC-4993-9220-70619D45029A}.Release|x64.Build.0 = Release|Any CPU
 		{1711C89A-EECC-4993-9220-70619D45029A}.Release|x86.ActiveCfg = Release|Any CPU
 		{1711C89A-EECC-4993-9220-70619D45029A}.Release|x86.Build.0 = Release|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Debug|x64.Build.0 = Debug|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Debug|x86.Build.0 = Debug|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Release|ARM64.Build.0 = Release|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Release|x64.ActiveCfg = Release|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Release|x64.Build.0 = Release|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Release|x86.ActiveCfg = Release|Any CPU
+		{836CB7BF-8554-4633-B858-4F2BA7D8B2B1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

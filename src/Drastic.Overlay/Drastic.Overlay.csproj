@@ -15,6 +15,9 @@
 		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Overlay/CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>
 	
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<InternalsVisibleTo Include="Drastic.TrayWindow" />
 		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
