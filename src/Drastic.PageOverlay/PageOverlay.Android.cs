@@ -16,7 +16,6 @@ namespace Drastic.PageOverlay
     /// </summary>
     public partial class PageOverlay
     {
-        private Activity? nativeActivity;
         private ViewGroup? nativeLayer;
 
         /// <inheritdoc/>
@@ -37,43 +36,8 @@ namespace Drastic.PageOverlay
                 return false;
             }
 
-            var nativeWindow = this.Window?.Content?.ToPlatform(this.Window.Handler.MauiContext);
-            if (nativeWindow == null)
-            {
-                return false;
-            }
-
-            var handler = this.Window?.Handler as WindowHandler;
-            if (handler?.MauiContext == null)
-            {
-                return false;
-            }
-
-            this.context = handler.MauiContext;
-
-            var rootManager = handler.MauiContext.GetNavigationRootManager();
-            if (rootManager == null)
-            {
-                return false;
-            }
-
-            if (handler.PlatformView is not Activity activity)
-            {
-                return false;
-            }
-
-            this.nativeActivity = activity;
-            this.nativeLayer = rootManager.RootView as ViewGroup;
-
-            if (this.nativeLayer?.Context == null)
-            {
-                return false;
-            }
-
-            if (this.nativeActivity?.WindowManager?.DefaultDisplay == null)
-            {
-                return false;
-            }
+            this.context = this.Window.Handler.MauiContext;
+            this.nativeLayer = this.Window?.Content?.Handler?.PlatformView as ViewGroup;
 
             return this.pageOverlayNativeElementsInitialized = true;
         }

@@ -9,6 +9,11 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new PageOverlayWindow(new AppShell());
+        return new PageOverlayWindow() { Page = new MainPage() };
     }
+}
+
+public class TestWindow : Window
+{
+
 }
