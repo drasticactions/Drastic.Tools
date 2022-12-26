@@ -13,24 +13,19 @@ namespace Drastic.DragAndDrop
     public partial class DragAndDrop : IDisposable, INotifyPropertyChanged
     {
         private bool disposedValue;
-        private bool isDragging;
 
         /// <summary>
         /// Fired when files are dropped on the overlay.
         /// </summary>
         public event EventHandler<DragAndDropOverlayTappedEventArgs>? Drop;
 
+        /// <summary>
+        /// Fired when a user has started or stopped dragging to a surface.
+        /// </summary>
+        public event EventHandler<DragAndDropIsDraggingEventArgs>? Dragging;
+
         /// <inheritdoc/>
         public event PropertyChangedEventHandler? PropertyChanged;
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the user is dragging onto the view.
-        /// </summary>
-        public bool IsDragging
-        {
-            get { return this.isDragging; }
-            set { this.SetProperty(ref this.isDragging, value); }
-        }
 
         /// <inheritdoc/>
         public void Dispose()

@@ -77,15 +77,15 @@ namespace Drastic.DragAndDrop
             }
 
             [Export("dropInteraction:sessionDidEnter:")]
-            public void SessionDidEnter(UIDropInteraction interaction, IUIDropSession session)
+            public async void SessionDidEnter(UIDropInteraction interaction, IUIDropSession session)
             {
-                this.overlay.IsDragging = true;
+                this.overlay.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(true));
             }
 
             [Export("dropInteraction:sessionDidExit:")]
-            public void SessionDidExit(UIDropInteraction interaction, IUIDropSession session)
+            public async void SessionDidExit(UIDropInteraction interaction, IUIDropSession session)
             {
-                this.overlay.IsDragging = false;
+                this.overlay.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(false));
             }
 
             [Export("dropInteraction:sessionDidUpdate:")]
@@ -103,15 +103,7 @@ namespace Drastic.DragAndDrop
             public async void PerformDrop(UIDropInteraction interaction, IUIDropSession session)
             {
                 session.ProgressIndicatorStyle = UIDropSessionProgressIndicatorStyle.None;
-                var filePaths = new List<string>();
-                foreach (UIDragItem item in session.Items)
-                {
-                    var result = await this.LoadItemAsync(item.ItemProvider, item.ItemProvider.RegisteredTypeIdentifiers.ToList());
-                    if (result?.FileUrl.Path is string path)
-                    {
-                        filePaths.Add(path);
-                    }
-                }
+                var filePaths = await this.GetFileList(session);
 
                 this.overlay.Drop?.Invoke(this, new DragAndDropOverlayTappedEventArgs(filePaths));
             }
@@ -119,7 +111,7 @@ namespace Drastic.DragAndDrop
             [Export("dropInteraction:concludeDrop:")]
             public void ConcludeDrop(UIDropInteraction interaction, IUIDropSession session)
             {
-                this.overlay.IsDragging = false;
+                this.overlay.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(false));
             }
 
             public override bool PointInside(CGPoint point, UIEvent? uievent)
@@ -150,6 +142,21 @@ namespace Drastic.DragAndDrop
                 typeIdentifiers.Remove(typeIdent);
 
                 return await this.LoadItemAsync(itemProvider, typeIdentifiers);
+            }
+
+            private async Task<List<string>> GetFileList(IUIDropSession session)
+            {
+                var filePaths = new List<string>();
+                foreach (UIDragItem item in session.Items)
+                {
+                    var result = await this.LoadItemAsync(item.ItemProvider, item.ItemProvider.RegisteredTypeIdentifiers.ToList());
+                    if (result?.FileUrl.Path is string path)
+                    {
+                        filePaths.Add(path);
+                    }
+                }
+
+                return filePaths;
             }
         }
     }

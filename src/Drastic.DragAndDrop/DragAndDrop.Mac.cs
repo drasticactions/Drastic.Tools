@@ -60,7 +60,8 @@ namespace Drastic.DragAndDrop
             [Export("draggingEntered:")]
             public NSDragOperation DraggingEntered(INSDraggingInfo sender)
             {
-                this.overlay.IsDragging = true;
+                var filenames = this.DraggedFilenames(sender.DraggingPasteboard).ToList() ?? new List<string>();
+                this.overlay.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(true, filenames));
                 return NSDragOperation.Copy;
             }
 
@@ -87,7 +88,7 @@ namespace Drastic.DragAndDrop
                     this.overlay.Drop?.Invoke(this, new DragAndDropOverlayTappedEventArgs(filenames));
                 }
 
-                this.overlay.IsDragging = false;
+                this.overlay.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(false, filenames));
             }
 
             /// <summary>

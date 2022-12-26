@@ -52,43 +52,50 @@ namespace Drastic.DragAndDrop
             }
         }
 
-        private void Panel_DropCompleted(Microsoft.UI.Xaml.UIElement sender, Microsoft.UI.Xaml.DropCompletedEventArgs args)
+        private async void Panel_DropCompleted(Microsoft.UI.Xaml.UIElement sender, Microsoft.UI.Xaml.DropCompletedEventArgs args)
         {
-            this.IsDragging = false;
+            this.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(false));
         }
 
-        private void Panel_DragLeave(object sender, Microsoft.UI.Xaml.DragEventArgs e)
+        private async void Panel_DragLeave(object sender, Microsoft.UI.Xaml.DragEventArgs e)
         {
-            this.IsDragging = false;
+            var filePaths = await this.GetFileList(e);
+            this.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(false, filePaths));
         }
 
         private async void Panel_Drop(object sender, Microsoft.UI.Xaml.DragEventArgs e)
         {
+            var filePaths = await this.GetFileList(e);
             if (e.DataView.Contains(StandardDataFormats.StorageItems))
             {
-                var items = await e.DataView.GetStorageItemsAsync();
-                if (items.Any())
-                {
-                    var filePaths = new List<string>();
-                    foreach (var item in items)
-                    {
-                        if (item is StorageFile file)
-                        {
-                            filePaths.Add(item.Path);
-                        }
-                    }
-
-                    this.Drop?.Invoke(this, new DragAndDropOverlayTappedEventArgs(filePaths));
-                }
+                this.Drop?.Invoke(this, new DragAndDropOverlayTappedEventArgs(filePaths));
             }
 
-            this.IsDragging = false;
+            this.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(false, filePaths));
         }
 
         private void Panel_DragOver(object sender, Microsoft.UI.Xaml.DragEventArgs e)
         {
-            this.IsDragging = true;
+            this.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(true));
             e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
+        }
+
+        private async Task<List<string>> GetFileList(Microsoft.UI.Xaml.DragEventArgs e)
+        {
+            var filePaths = new List<string>();
+            var items = await e.DataView.GetStorageItemsAsync();
+            if (items.Any())
+            {
+                foreach (var item in items)
+                {
+                    if (item is StorageFile file)
+                    {
+                        filePaths.Add(item.Path);
+                    }
+                }
+            }
+
+            return filePaths;
         }
     }
 }
