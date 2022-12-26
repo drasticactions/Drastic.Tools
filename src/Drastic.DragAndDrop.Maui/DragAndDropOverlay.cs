@@ -30,13 +30,23 @@ namespace Drastic.DragAndDrop.Maui
 #else
             this.dragAndDrop = new DragAndDrop();
 #endif
-            this.dragAndDrop.PropertyChanged += this.DragAndDrop_PropertyChanged;
+            this.dragAndDrop.Dragging += DragAndDrop_Dragging;
             if (this.dropElementOverlay is not null)
             {
                 this.AddWindowElement(this.dropElementOverlay);
             }
 
             this.dragAndDrop.Drop += (sender, e) => this.Drop?.Invoke(this, e);
+        }
+
+        private void DragAndDrop_Dragging(object? sender, DragAndDropIsDraggingEventArgs e)
+        {
+            if (this.dropElementOverlay is not null)
+            {
+                this.dropElementOverlay.IsDragging = e.IsDragging;
+            }
+
+            this.Invalidate();
         }
 
         /// <summary>
@@ -48,18 +58,5 @@ namespace Drastic.DragAndDrop.Maui
         /// Gets the DragAndDrop element. Use this to attach to the underlying events from the overlay.
         /// </summary>
         public DragAndDrop DragAndDrop => this.dragAndDrop;
-
-        private void DragAndDrop_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(this.DragAndDrop.IsDragging))
-            {
-                if (this.dropElementOverlay is not null)
-                {
-                    this.dropElementOverlay.IsDragging = this.dragAndDrop?.IsDragging ?? false;
-                }
-
-                this.Invalidate();
-            }
-        }
     }
 }
