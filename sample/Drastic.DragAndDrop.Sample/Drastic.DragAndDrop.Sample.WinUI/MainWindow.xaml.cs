@@ -25,6 +25,11 @@ namespace Drastic.DragAndDrop.Sample.WinUI
             this.InitializeComponent();
             this.dragAndDrop = new DragAndDrop(this);
             this.dragAndDrop.Drop += DragAndDrop_Drop;
+            this.dragAndDrop.Dragging += DragAndDrop_Dragging;
+        }
+
+        private void DragAndDrop_Dragging(object? sender, DragAndDropIsDraggingEventArgs e)
+        {
         }
 
         private async void DragAndDrop_Drop(object? sender, DragAndDropOverlayTappedEventArgs e)
