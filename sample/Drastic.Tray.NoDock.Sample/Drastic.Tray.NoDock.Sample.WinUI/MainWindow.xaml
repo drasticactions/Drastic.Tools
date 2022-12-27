@@ -1,7 +1,7 @@
 <!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
-<traywindow:WinUITrayWindow
+<traywindow:WinUITrayAcrylicWindow
     xmlns:traywindow="using:Drastic.TrayWindow"
     x:Class="Drastic.Tray.NoDock.Sample.WinUI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -15,4 +15,4 @@
         <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
         <Button x:Name="myButton2" Click="myButton2_Click">Quit</Button>
     </StackPanel>
-</traywindow:WinUITrayWindow>
+</traywindow:WinUITrayAcrylicWindow>

@@ -25,7 +25,7 @@ namespace Drastic.Tray.NoDock.Sample.WinUI
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : WinUITrayWindow
+    public sealed partial class MainWindow : WinUITrayAcrylicWindow
     {
         public MainWindow(TrayIcon icon, TrayWindowOptions options) 
             : base(icon, options, true) 

@@ -5,6 +5,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Drastic.Tray;
+using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Windowing;
 using WinRT.Interop;
 
@@ -13,7 +14,7 @@ namespace Drastic.TrayWindow
     /// <summary>
     /// WinUI Tray Window.
     /// </summary>
-    public class WinUITrayWindow : Microsoft.UI.Xaml.Window
+    public class WinUITrayWindow : BaseWindow
     {
         private Microsoft.UI.Windowing.AppWindow appWindow;
         private bool appLaunched;
@@ -26,7 +27,10 @@ namespace Drastic.TrayWindow
         /// <param name="icon">Tray Icon.</param>
         /// <param name="options">Tray Icon Options.</param>
         /// <param name="hideWindowFromTaskbar">Hides the Tray Window from the Taskbar and Alt-Tab. Defaults to True.</param>
-        public WinUITrayWindow(TrayIcon icon, TrayWindowOptions options, bool hideWindowFromTaskbar = true)
+        public WinUITrayWindow(TrayIcon icon, TrayWindowOptions options, bool hideWindowFromTaskbar = true,
+            ISystemBackdropControllerWithTargets? controller = default,
+            SystemBackdropConfiguration? config = default)
+            : base(controller, config)
         {
             this.icon = icon;
             this.options = options;
