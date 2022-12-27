@@ -11,13 +11,13 @@ namespace Drastic.TrayWindow
     /// <summary>
     /// NSApplication Helpers.
     /// </summary>
-    internal static class NSApplication
+    public static class NSApplication
     {
         /// <summary>
         /// Gets the shared NSApplication instance.
         /// </summary>
         /// <returns>NSObject.</returns>
-        public static NSObject GetSharedApplication()
+        internal static NSObject GetSharedApplication()
         {
             var nsApplication = Runtime.GetNSObject(Class.GetHandle("NSApplication"))!;
             var sharedApplication = nsApplication.PerformSelector(new Selector("sharedApplication"))!;
@@ -34,6 +34,26 @@ namespace Drastic.TrayWindow
             var nsWindow = await window.GetNSWindowFromUIWindowAsync();
             NativeHandle nonNullHandle = nsWindow!.GetNonNullHandle("sender");
             Drastic.Interop.ObjC.Call(sharedApplication.Handle, "hide:", nonNullHandle);
+        }
+
+        /// <summary>
+        /// Sets the activaction policy on a Mac Catalyst app.
+        /// </summary>
+        /// <param name="policy">The sender UIWindow to invoke the command.</param>
+        public static void SetActivationPolicy(NSApplicationActivationPolicy policy)
+        {
+            var sharedApplication = GetSharedApplication();
+            Drastic.Interop.ObjC.Call(sharedApplication.Handle, "setActivationPolicy:", (nint)policy);
+        }
+
+        /// <summary>
+        /// Terminates a Catalyst application.
+        /// </summary>
+        public static void Terminate()
+        {
+            var sharedApplication = GetSharedApplication();
+            NativeHandle nonNullHandle = sharedApplication!.GetNonNullHandle("sender");
+            Drastic.Interop.ObjC.Call(sharedApplication.Handle, "terminate:", nonNullHandle);
         }
     }
 }

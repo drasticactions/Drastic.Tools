@@ -34,6 +34,11 @@ namespace Drastic.TrayWindow
         internal static bool HandleWindowOpenOnRightClick { get; private set; }
 
         /// <summary>
+        /// Gets or sets the default scene delegate to use if the user activity is null or empty.
+        /// </summary>
+        public static string DefaultSceneDelegate { get; set; } = string.Empty;
+
+        /// <summary>
         /// Create the TrayWindow for the application.
         /// When applied, the TrayIcon will auto-implement either the left or right clicked events
         /// to show the window.
@@ -58,14 +63,19 @@ namespace Drastic.TrayWindow
         {
             var name = options.UserActivities.AnyObject?.ActivityType ?? string.Empty;
 
-            if (name is "TraySceneDelegate")
+            if (string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(DefaultSceneDelegate))
             {
-                var test = new UISceneConfiguration("TraySceneDelegate", connectingSceneSession.Role);
-                test.DelegateType = typeof(TrayWindowSceneDelegate);
-                return test;
+                return new UISceneConfiguration(DefaultSceneDelegate, connectingSceneSession.Role);
             }
 
-            return new UISceneConfiguration("SceneDelegate", connectingSceneSession.Role);
+            if (!string.IsNullOrEmpty(name) && name is not "TraySceneDelegate")
+            {
+                return new UISceneConfiguration(name, connectingSceneSession.Role);
+            }
+
+            var test = new UISceneConfiguration("TraySceneDelegate", connectingSceneSession.Role);
+            test.DelegateType = typeof(TrayWindowSceneDelegate);
+            return test;
         }
     }
 }
