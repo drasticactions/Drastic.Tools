@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Drastic.Tray.NoDock.Sample.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Drastic.Tray.NoDock.Sample.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
