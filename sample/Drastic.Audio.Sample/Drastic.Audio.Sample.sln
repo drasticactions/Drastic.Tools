@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Audio.Sample.Maui", "Drastic.Audio.Sample.Maui\Drastic.Audio.Sample.Maui.csproj", "{5E34D337-71E3-4BB3-A6C0-744A9C83083C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Audio", "..\..\src\Drastic.Audio\Drastic.Audio.csproj", "{F6504936-40A8-415B-971D-994E50960399}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E34D337-71E3-4BB3-A6C0-744A9C83083C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E34D337-71E3-4BB3-A6C0-744A9C83083C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E34D337-71E3-4BB3-A6C0-744A9C83083C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E34D337-71E3-4BB3-A6C0-744A9C83083C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6504936-40A8-415B-971D-994E50960399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6504936-40A8-415B-971D-994E50960399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6504936-40A8-415B-971D-994E50960399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6504936-40A8-415B-971D-994E50960399}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

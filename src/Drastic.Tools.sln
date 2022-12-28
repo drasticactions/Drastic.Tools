@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maui", "Maui", "{95CF7EC6-4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.PageOverlay", "Drastic.PageOverlay\Drastic.PageOverlay.csproj", "{D2722D11-B464-4AE1-B690-C3BD2271CF2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Audio", "Drastic.Audio\Drastic.Audio.csproj", "{6F3BEC31-FADE-4E61-A962-4E26D9DC8B4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{D2722D11-B464-4AE1-B690-C3BD2271CF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2722D11-B464-4AE1-B690-C3BD2271CF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2722D11-B464-4AE1-B690-C3BD2271CF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F3BEC31-FADE-4E61-A962-4E26D9DC8B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3BEC31-FADE-4E61-A962-4E26D9DC8B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3BEC31-FADE-4E61-A962-4E26D9DC8B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3BEC31-FADE-4E61-A962-4E26D9DC8B4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

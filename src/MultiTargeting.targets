@@ -11,6 +11,12 @@
     <Compile Remove="**\Apple\**\*.cs" />
     <None Include="**\Apple\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.Contains('-macos')) != true AND $(TargetFramework.Contains('-tvos')) != true AND $(TargetFramework.Contains('-ios')) != true AND $(TargetFramework.Contains('-maccatalyst')) != true ">
+    <Compile Remove="**\*.AllApple.cs" />
+    <None Include="**\*.AllApple.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\AllApple\**\*.cs" />
+    <None Include="**\AllApple\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
   <ItemGroup Condition="$(TargetFramework.Contains('-macos')) != true ">
     <Compile Remove="**\*.Mac.cs" />
     <None Include="**\*.Mac.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
