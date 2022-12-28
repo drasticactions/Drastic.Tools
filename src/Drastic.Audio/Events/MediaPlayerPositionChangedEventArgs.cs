@@ -12,15 +12,31 @@ namespace Drastic.Audio
         /// <summary>
         /// Mediaplayer's current position.
         /// </summary>
-        public readonly float Position;
+        public readonly TimeSpan Position;
+
+        /// <summary>
+        /// Mediaplayer's duration of the current item.
+        /// </summary>
+        public readonly TimeSpan? Duration;
+
+        /// <summary>
+        /// Gets the total precent completed of the item, if duration is available.
+        /// </summary>
+        public readonly double PrecentCompleted;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaPlayerPositionChangedEventArgs"/> class.
         /// </summary>
         /// <param name="position">Position.</param>
-        public MediaPlayerPositionChangedEventArgs(float position)
+        public MediaPlayerPositionChangedEventArgs(TimeSpan position, TimeSpan? duration = default)
         {
             this.Position = position;
+            this.Duration = duration;
+            this.PrecentCompleted = 0;
+            if (duration is TimeSpan real)
+            {
+                this.PrecentCompleted = this.Position.TotalSeconds / real.TotalSeconds;
+            }
         }
     }
 }

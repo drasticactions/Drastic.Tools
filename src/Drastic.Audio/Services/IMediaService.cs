@@ -41,6 +41,8 @@ namespace Drastic.Audio.Services
         /// </summary>
         IMediaItem? CurrentMedia { get; set; }
 
+        TimeSpan? Duration { get; }
+
         /// <summary>
         /// Gets a value indicating whether the stream is playing.
         /// </summary>

@@ -24,7 +24,6 @@ namespace Drastic.Audio.Services
         /// </summary>
         public NativeMediaService()
         {
-            this.positionTimer = new Timer(this.PositionTimerElapsed, null, 0, 500);
             this.mediaPlayer = new MediaPlayer() { AudioCategory = MediaPlayerAudioCategory.Media };
             this.mediaPlayer.MediaEnded += this.MediaPlayer_MediaEnded;
             this.mediaPlayer.MediaOpened += this.MediaPlayer_MediaOpened;
@@ -52,6 +51,8 @@ namespace Drastic.Audio.Services
                 }
             }
         }
+
+        public TimeSpan? Duration => null;
 
         /// <inheritdoc/>
         public bool IsPlaying => this.mediaPlayer?.CurrentState == MediaPlayerState.Playing;

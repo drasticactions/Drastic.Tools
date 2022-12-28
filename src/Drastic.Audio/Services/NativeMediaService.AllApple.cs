@@ -3,28 +3,33 @@
 // </copyright>
 
 using AVFoundation;
+using CoreFoundation;
+using CoreMedia;
 
 namespace Drastic.Audio.Services
 {
     /// <summary>
     /// Native Media Player.
     /// </summary>
-    public partial class NativeMediaService
+    public partial class NativeMediaService : NSObject
     {
         private NSObject? playedToEndObserver;
         private IDisposable? statusObserver;
         private IDisposable? rateObserver;
         private IDisposable? volumeObserver;
 
-        private AVPlayer? avPlayer;
+        private AVPlayer avPlayer;
         private AVPlayerItem? playerItem;
+        private CMTime time;
+        private NSObject? timeObserverToken;
+        private TimeSpan? cachedDuration;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeMediaService"/> class.
         /// </summary>
         public NativeMediaService()
         {
-            this.positionTimer = new Timer(this.PositionTimerElapsed, null, 0, 500);
+            this.time = new CMTime(1, 1);
             this.avPlayer = new AVPlayer();
         }
 
@@ -56,15 +61,20 @@ namespace Drastic.Audio.Services
         /// <inheritdoc/>
         public Task StopAsync()
         {
-            this.avPlayer?.Pause();
+            this.avPlayer!.Pause();
             this.RaiseCanExecuteChanged?.Invoke(this, new EventArgs());
+            if (this.timeObserverToken is not null)
+            {
+                this.avPlayer.RemoveTimeObserver(this.timeObserverToken);
+            }
+
             return Task.CompletedTask;
         }
 
         /// <inheritdoc/>
         public Task PauseAsync()
         {
-            this.avPlayer?.Pause();
+            this.avPlayer.Pause();
             this.RaiseCanExecuteChanged?.Invoke(this, new EventArgs());
             return Task.CompletedTask;
         }
@@ -72,14 +82,14 @@ namespace Drastic.Audio.Services
         /// <inheritdoc/>
         public Task PlayAsync(double position = 0, bool fromPosition = false)
         {
+            this.AddTimeObserver();
 #if !MACOS
             var audioSession = AVAudioSession.SharedInstance();
             var err = audioSession.SetCategory(AVAudioSession.CategoryPlayback);
             audioSession.SetMode(AVAudioSession.ModeMoviePlayback, out err);
             err = audioSession.SetActive(true);
 #endif
-
-            this.avPlayer?.Play();
+            this.avPlayer.Play();
             this.RaiseCanExecuteChanged?.Invoke(this, new EventArgs());
             return Task.CompletedTask;
         }
@@ -87,7 +97,7 @@ namespace Drastic.Audio.Services
         /// <inheritdoc/>
         public Task ResumeAsync()
         {
-            this.avPlayer?.Play();
+            this.avPlayer.Play();
             this.RaiseCanExecuteChanged?.Invoke(this, new EventArgs());
             return Task.CompletedTask;
         }
@@ -109,6 +119,19 @@ namespace Drastic.Audio.Services
         /// <inheritdoc/>
         public Task<string> GetArtworkUrl() => this.GetMetadata();
 
+        public TimeSpan? Duration
+        {
+            get
+            {
+                if (this.cachedDuration is not null)
+                {
+                    return this.cachedDuration;
+                }
+
+                return null;
+            }
+        }
+
         /// <summary>
         /// Set current media native.
         /// </summary>
@@ -121,12 +144,13 @@ namespace Drastic.Audio.Services
 
             NSUrl url = this.CurrentMedia.LocalPath != null ? NSUrl.CreateFileUrl(this.CurrentMedia.LocalPath, false, null) : new NSUrl(this.CurrentMedia.OnlinePath?.ToString() ?? string.Empty);
 
-            var playerItem = new AVPlayerItem(url);
-            this.avPlayer?.ReplaceCurrentItemWithPlayerItem(playerItem);
+            this.playerItem = new AVPlayerItem(url);
+            this.avPlayer.ReplaceCurrentItemWithPlayerItem(playerItem);
             this.AddRateObserver();
             this.AddVolumeObserver();
             this.AddPlayedToEndObserver();
             this.AddStatusObserver();
+            this.AddTimeObserver();
         }
 
         private void DisposeObservers(ref IDisposable? disposable)
@@ -226,6 +250,46 @@ namespace Drastic.Audio.Services
         private void ObserveVolume(NSObservedChange e)
         {
             this.RaiseCanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void AddTimeObserver()
+        {
+            if (this.timeObserverToken is not null)
+            {
+                this.DestroyTimeObserver();
+            }
+
+            this.InvokeOnMainThread(() =>
+            {
+                this.timeObserverToken = this.avPlayer.AddPeriodicTimeObserver(this.time, DispatchQueue.MainQueue, (CMTime time) =>
+                {
+                    if (this.cachedDuration is null)
+                    {
+                        if (this.playerItem is not null)
+                        {
+                            this.cachedDuration = this.ConvertTime(this.playerItem!.Duration);
+                        }
+                    }
+
+                    this.PositionChanged?.Invoke(this, new MediaPlayerPositionChangedEventArgs(this.ConvertTime(time), this.cachedDuration));
+                });
+            });
+        }
+
+        private void DestroyTimeObserver()
+        {
+            this.InvokeOnMainThread(() =>
+            {
+                if (this.timeObserverToken is not null)
+                {
+                    this.avPlayer.RemoveTimeObserver(this.timeObserverToken);
+                }
+            });
+        }
+
+        TimeSpan ConvertTime(CMTime cmTime)
+        {
+            return TimeSpan.FromSeconds(Double.IsNaN(cmTime.Seconds) ? 0 : cmTime.Seconds);
         }
     }
 }

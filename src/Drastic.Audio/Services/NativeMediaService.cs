@@ -41,12 +41,10 @@ namespace Drastic.Audio.Services
             this.RaiseCanExecuteChanged?.Invoke(this, new EventArgs());
         }
 
-        internal void PositionTimerElapsed(object? state)
-        {
-            this.PositionChanged?.Invoke(this, new MediaPlayerPositionChangedEventArgs(this.CurrentPosition));
-        }
-
 #if !ANDROID && !IOS && !MACCATALYST && !WINDOWS && !TVOS && !MACOS
+
+        /// <inheritdoc/>
+        public TimeSpan? Duration => throw new NotImplementedException();
 
         internal void SetCurrentMediaNative()
         {
