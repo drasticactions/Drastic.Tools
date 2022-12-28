@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Audio.Sample.Maui",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Audio", "..\..\src\Drastic.Audio\Drastic.Audio.csproj", "{F6504936-40A8-415B-971D-994E50960399}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Audio.Sample.tvOS", "Drastic.Audio.Sample.tvOS\Drastic.Audio.Sample.tvOS.csproj", "{6C3619A9-CBD0-4875-9E5B-79F56617B9C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Audio.Sample.MacOS", "Drastic.Audio.Sample.MacOS\Drastic.Audio.Sample.MacOS.csproj", "{BFB842AF-B90D-47F1-B267-7371FF6C0B7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{F6504936-40A8-415B-971D-994E50960399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6504936-40A8-415B-971D-994E50960399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6504936-40A8-415B-971D-994E50960399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C3619A9-CBD0-4875-9E5B-79F56617B9C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C3619A9-CBD0-4875-9E5B-79F56617B9C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C3619A9-CBD0-4875-9E5B-79F56617B9C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C3619A9-CBD0-4875-9E5B-79F56617B9C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB842AF-B90D-47F1-B267-7371FF6C0B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB842AF-B90D-47F1-B267-7371FF6C0B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB842AF-B90D-47F1-B267-7371FF6C0B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB842AF-B90D-47F1-B267-7371FF6C0B7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

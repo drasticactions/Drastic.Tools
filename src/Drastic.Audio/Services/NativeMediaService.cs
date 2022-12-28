@@ -26,71 +26,7 @@ namespace Drastic.Audio.Services
         public event EventHandler<EventArgs>? MediaChanged;
 
         /// <inheritdoc/>
-
-/* プロジェクト 'Drastic.Audio(net7.0-ios)' からのマージされていない変更
-前:
         public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); } }
-後:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); }
-        }
-*/
-
-/* プロジェクト 'Drastic.Audio(net7.0-maccatalyst)' からのマージされていない変更
-前:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); } }
-後:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); }
-        }
-*/
-
-/* プロジェクト 'Drastic.Audio(net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); } }
-後:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); }
-        }
-*/
-
-/* プロジェクト 'Drastic.Audio(net7.0-macos)' からのマージされていない変更
-前:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); } }
-後:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); }
-        }
-*/
-
-/* プロジェクト 'Drastic.Audio(net7.0-tvos)' からのマージされていない変更
-前:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); } }
-後:
-        public Model.IMediaItem? CurrentMedia { get { return this.media; } set { this.media = value; this.SetCurrentMedia(); }
-        }
-*/
-        public Model.IMediaItem? CurrentMedia
-        {
-            get { return this.media; } set { this.media = value;
-                this.SetCurrentMedia(); }
-        }
-
-        /// <inheritdoc/>
-        public bool IsPlaying => throw new NotImplementedException();
-
-        /// <inheritdoc/>
-        public Task<string> GetArtworkUrl()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void PositionTimerElapsed(object? state)
-        {
-            this.PositionChanged?.Invoke(this, new MediaPlayerPositionChangedEventArgs(this.CurrentPosition));
-        }
-
-#if !ANDROID && !IOS && !MACCATALYST && !WINDOWS && !TVOS && !MACOS
-
-        internal void SetCurrentMediaNative()
-        {
-        }
 
         private void SetCurrentMedia()
         {
@@ -103,6 +39,17 @@ namespace Drastic.Audio.Services
 
             this.SetCurrentMediaNative();
             this.RaiseCanExecuteChanged?.Invoke(this, new EventArgs());
+        }
+
+        internal void PositionTimerElapsed(object? state)
+        {
+            this.PositionChanged?.Invoke(this, new MediaPlayerPositionChangedEventArgs(this.CurrentPosition));
+        }
+
+#if !ANDROID && !IOS && !MACCATALYST && !WINDOWS && !TVOS && !MACOS
+
+        internal void SetCurrentMediaNative()
+        {
         }
 
         /// <inheritdoc/>
@@ -140,6 +87,14 @@ namespace Drastic.Audio.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<string> GetArtworkUrl()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        public bool IsPlaying => throw new NotImplementedException();
 
         /// <inheritdoc/>
         public float CurrentPosition { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
