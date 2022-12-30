@@ -18,10 +18,12 @@ namespace Drastic.Tray
     /// <summary>
     /// Tray Icon.
     /// </summary>
-    public partial class TrayIcon : NSObject
+    public partial class TrayIcon : NSObject, ITrayIcon
     {
         private NSObject statusBarItem;
         private ShimNSMenu menu;
+        private NSObject? statusBarButton;
+        private bool setToSystemTheme;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayIcon"/> class.
@@ -32,25 +34,17 @@ namespace Drastic.Tray
         /// <param name="setToSystemTheme">Sets the icon to match the system theme.</param>
         public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null, bool setToSystemTheme = true)
         {
+            this.setToSystemTheme = setToSystemTheme;
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
 
             this.menu = new ShimNSMenu();
 
             var systemStatusBarObj = GetNSStatusBar().PerformSelector(new Selector("systemStatusBar"));
             this.statusBarItem = Runtime.GetNSObject(Drastic.Interop.ObjC.Call(systemStatusBarObj.Handle, "statusItemWithLength:", -1f))!;
-            var statusBarButton = Runtime.GetNSObject(Drastic.Interop.ObjC.Call(this.statusBarItem.Handle, "button"));
+            this.statusBarButton = Runtime.GetNSObject(Drastic.Interop.ObjC.Call(this.statusBarItem.Handle, "button"))!;
 
-            if (statusBarButton is not null && image is not null)
-            {
-                // Matching what is on macOS...
-                // this.statusBarItem!.Button.Image.Size = new CGSize(20, 20);
-                // this.statusBarItem!.Button.Frame = new CGRect(0, 0, 40, 24);
-                var cgRect = new CGRect(0, 0, 40, 24);
-                image.Image.Size = new CoreGraphics.CGSize(20, 20);
-                Drastic.Interop.ObjC.Call(statusBarButton.Handle, "setImage:", image.Image.Handle);
-                Drastic.Interop.ObjC.Call(statusBarButton.Handle, "setFrame:", cgRect);
-                Drastic.Interop.ObjC.Call(image.Image.Handle, "setTemplate:", setToSystemTheme);
-            }
+            this.UpdateImage(image, setToSystemTheme);
+            this.UpdateName(name);
 
             if (statusBarButton is not null)
             {
@@ -93,6 +87,12 @@ namespace Drastic.Tray
 
             foreach (var item in this.menuItems)
             {
+                if (item.IsSeperator)
+                {
+                    this.menu.AddItem(Runtime.GetNSObject<NSObject>(Drastic.Interop.ObjC.Call(Drastic.Interop.AppKit.GetClass("NSMenuItem"), "separatorItem"))!);
+                    continue;
+                }
+
                 var nsMenuItem = new ShimNSMenuItem(item);
                 this.menu.AddItem(nsMenuItem);
             }
@@ -145,6 +145,28 @@ namespace Drastic.Tray
             }
         }
 
+        public void UpdateMenu(IEnumerable<TrayMenuItem> items)
+            => this.SetupStatusBarMenu(items.ToList());
+
+        public void UpdateImage(TrayImage image, bool setToSystemTheme)
+        {
+            // Matching what is on macOS...
+            // this.statusBarItem!.Button.Image.Size = new CGSize(20, 20);
+            // this.statusBarItem!.Button.Frame = new CGRect(0, 0, 40, 24);
+            var cgRect = new CGRect(0, 0, 40, 24);
+            image.Image.Size = new CoreGraphics.CGSize(20, 20);
+            Drastic.Interop.ObjC.Call(statusBarButton!.Handle, "setImage:", image.Image.Handle);
+            Drastic.Interop.ObjC.Call(statusBarButton.Handle, "setFrame:", cgRect);
+            Drastic.Interop.ObjC.Call(image.Image.Handle, "setTemplate:", setToSystemTheme);
+        }
+
+        public void UpdateImage(TrayImage image)
+            => this.UpdateImage(image, this.setToSystemTheme);
+
+        public void UpdateName(string name)
+        {
+        }
+
         internal class ShimNSMenu : NSObject
         {
             public ShimNSMenu()
@@ -155,6 +177,12 @@ namespace Drastic.Tray
             public void RemoveAllItems()
             {
                 Drastic.Interop.ObjC.Call(this.Handle, "removeAllItems");
+            }
+
+            public void AddItem(NSObject item)
+            {
+                NativeHandle nonNullHandle = item.GetNonNullHandle("newItem");
+                Drastic.Interop.ObjC.Call(this.Handle, "addItem:", nonNullHandle);
             }
 
             public void AddItem(ShimNSMenuItem item)

@@ -7,11 +7,11 @@ namespace Drastic.Tray
     /// <summary>
     /// Tray Icon.
     /// </summary>
-    public partial class TrayIcon
+    public partial class TrayIcon : ITrayIcon
     {
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private NotifyIcon notifyIcon;
-        private Icon icon;
+        private Icon? icon;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayIcon"/> class.
@@ -21,19 +21,16 @@ namespace Drastic.Tray
         /// <param name="menuItems">Items to populate context menu. Optional.</param>
         public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null)
         {
-            var test = new Bitmap(image?.Image!);
-            this.icon = Icon.FromHandle(test.GetHicon());
             this.notifyIcon = new NotifyIcon();
-            this.notifyIcon.Icon = this.icon;
-            this.notifyIcon.Text = name;
+            this.UpdateName(name);
+            this.UpdateImage(image);
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
             this.contextMenuStrip = new ContextMenuStrip();
             this.contextMenuStrip.ItemClicked += this.ContextMenuStrip_ItemClicked;
-            var items = this.menuItems.Select(n => this.GenerateItem(n)).Reverse().ToArray();
-            this.contextMenuStrip.Items.AddRange(items);
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
             this.notifyIcon.MouseClick += this.NotifyIcon_MouseClick;
             this.notifyIcon.Visible = true;
+            this.UpdateMenu(this.menuItems);
         }
 
         private void ContextMenuStrip_ItemClicked(object? sender, ToolStripItemClickedEventArgs e)
@@ -63,8 +60,13 @@ namespace Drastic.Tray
             }
         }
 
-        private DrasticToolStripMenuItem GenerateItem(TrayMenuItem item)
+        private ToolStripItem GenerateItem(TrayMenuItem item)
         {
+            if (item.IsSeperator)
+            {
+                return new ToolStripSeparator();
+            }
+
             var menu = new DrasticToolStripMenuItem(item);
             menu.Text = item.Text;
             if (item.Icon is not null)
@@ -74,6 +76,24 @@ namespace Drastic.Tray
 
             return menu;
         }
+
+        public void UpdateMenu(IEnumerable<TrayMenuItem> menuItems)
+        {
+            this.menuItems = menuItems.ToList();
+            this.contextMenuStrip.Items.Clear();
+            var items = this.menuItems.Select(n => this.GenerateItem(n)).Reverse().ToArray();
+            this.contextMenuStrip.Items.AddRange(items);
+        }
+
+        public void UpdateImage(TrayImage image)
+        {
+            var test = new Bitmap(image?.Image!);
+            this.icon = Icon.FromHandle(test.GetHicon());
+            this.notifyIcon.Icon = this.icon;
+        }
+
+        public void UpdateName(string name)
+            => this.notifyIcon.Text = name;
 
         private class DrasticToolStripMenuItem : ToolStripMenuItem
         {

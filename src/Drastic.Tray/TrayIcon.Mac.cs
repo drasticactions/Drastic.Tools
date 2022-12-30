@@ -10,11 +10,12 @@ namespace Drastic.Tray
     /// <summary>
     /// Tray Icon.
     /// </summary>
-    public partial class TrayIcon
+    public partial class TrayIcon : NSObject, ITrayIcon
     {
         private TrayImage? iconImage;
         private NSStatusItem statusBarItem;
         private NSMenu menu = new NSMenu();
+        private bool setToSystemTheme;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayIcon"/> class.
@@ -25,6 +26,7 @@ namespace Drastic.Tray
         /// <param name="setToSystemTheme">Sets the icon to match the system theme.</param>
         public TrayIcon(string name, TrayImage image, List<TrayMenuItem>? menuItems = null, bool setToSystemTheme = true)
         {
+            this.setToSystemTheme = setToSystemTheme;
             this.menuItems = menuItems ?? new List<TrayMenuItem>();
             this.iconImage = image;
 
@@ -32,11 +34,8 @@ namespace Drastic.Tray
             NSStatusBar statusBar = NSStatusBar.SystemStatusBar;
             this.statusBarItem = statusBar.CreateStatusItem(NSStatusItemLength.Variable);
 
-            this.statusBarItem!.Button.ToolTip = name ?? string.Empty;
-            this.statusBarItem!.Button.Image = image?.Image!;
-            this.statusBarItem!.Button.Image.Size = new CGSize(20, 20);
-            this.statusBarItem!.Button.Frame = new CGRect(0, 0, 40, 24);
-            this.statusBarItem!.Button.Image.Template = setToSystemTheme;
+            this.UpdateName(name);
+            this.UpdateImage(image, setToSystemTheme);
 
             // Listen to touches on the status bar item
             this.statusBarItem.Button.SendActionOn(NSEventType.OtherMouseUp);
@@ -52,6 +51,9 @@ namespace Drastic.Tray
         /// Gets the Status Bar.
         /// </summary>
         public NSStatusItem StatusBarItem => this.statusBarItem;
+
+        public void UpdateMenu(IEnumerable<TrayMenuItem> items)
+            => this.SetupStatusBarMenu(items.ToList());
 
         /// <summary>
         /// Opens the menu.
@@ -76,6 +78,12 @@ namespace Drastic.Tray
 
             foreach (var item in this.menuItems)
             {
+                if (item.IsSeperator)
+                {
+                    this.menu.AddItem(NSMenuItem.SeparatorItem);
+                    continue;
+                }
+
                 var menuItem = new NSMenuItem(item.Text);
                 var icon = item.Icon;
                 if (icon?.Image is not null)
@@ -112,5 +120,19 @@ namespace Drastic.Tray
         {
             this.statusBarItem?.Dispose();
         }
+
+        private void UpdateImage(TrayImage image, bool setToSystemTheme)
+        {
+            this.statusBarItem!.Button.Image = image?.Image!;
+            this.statusBarItem!.Button.Image.Size = new CGSize(20, 20);
+            this.statusBarItem!.Button.Frame = new CGRect(0, 0, 40, 24);
+            this.statusBarItem!.Button.Image.Template = setToSystemTheme;
+        }
+
+        public void UpdateImage(TrayImage image)
+            => this.UpdateImage(image, this.setToSystemTheme);
+
+        public void UpdateName(string name)
+            => this.statusBarItem!.Button.ToolTip = name;
     }
 }

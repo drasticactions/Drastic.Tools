@@ -14,6 +14,15 @@ namespace Drastic.Tray
         /// <summary>
         /// Initializes a new instance of the <see cref="TrayMenuItem"/> class.
         /// </summary>
+        public TrayMenuItem()
+        {
+            this.Text = string.Empty;
+            this.IsSeperator = true;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TrayMenuItem"/> class.
+        /// </summary>
         /// <param name="text">Menu Text.</param>
         /// <param name="icon">Icon.</param>
         /// <param name="action">Action to perform when clicked.</param>
@@ -44,6 +53,11 @@ namespace Drastic.Tray
         }
 
 #endif
+
+        /// <summary>
+        /// Gets a value indicating whether the tray menu item is a seperator.
+        /// </summary>
+        public bool IsSeperator { get; }
 
         /// <summary>
         /// Gets the text for the menu item.

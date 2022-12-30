@@ -8,7 +8,7 @@ namespace Drastic.Tray
 {
     public partial class TrayIcon : IDisposable
     {
-        private List<TrayMenuItem> menuItems = new List<TrayMenuItem>();
+        private List<TrayMenuItem> menuItems { get; set; } = new List<TrayMenuItem>();
         private bool disposedValue;
 
         /// <summary>
