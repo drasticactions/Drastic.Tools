@@ -25,7 +25,6 @@ namespace Drastic.Modal
             this.currentWindows = applicationWindows ??= new List<Window>();
             this.options = options ??= new ModalWindowOptions();
 
-
             this.window = this.GetAppWindow();
 
             if (this.window.Presenter is OverlappedPresenter presenter)
@@ -33,6 +32,7 @@ namespace Drastic.Modal
                 presenter.IsResizable = options.IsResizable;
                 presenter.IsMaximizable = options.IsMaximizable;
                 presenter.IsMinimizable = options.IsMinimizable;
+                presenter.IsAlwaysOnTop = options.AlwaysOnTop;
             }
 
             this.window.IsShownInSwitchers = options.IsShownInSwitchers;
