@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Drastic.Modal.Sample (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Drastic.Modal.Sample (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

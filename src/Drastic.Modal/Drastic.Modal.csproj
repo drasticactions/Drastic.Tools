@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0-windows10.0.19041</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<WinUIVersion>1.2.221109.1</WinUIVersion>
+		<IsPackable>true</IsPackable>
+		<Description>Create Modal Windows for your WinUI apps.</Description>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<PackageTags>winui modal windows</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Modal</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Modal/CHANGELOG.md</PackageReleaseNotes>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
+		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
+		<PackageDownload GeneratePathProperty="true" Include="Microsoft.WindowsAppSDK" Version="[$(WinUIVersion)]" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true ">
+		<Reference Include="Microsoft.WinUI">
+			<HintPath>$(NuGetPackageRoot)\microsoft.windowsappsdk\$(WinUIVersion)\lib\net6.0-windows10.0.18362.0\Microsoft.WinUI.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.InteractiveExperiences.Projection">
+			<HintPath>$(NuGetPackageRoot)\microsoft.windowsappsdk\$(WinUIVersion)\lib\net6.0-windows10.0.18362.0\Microsoft.InteractiveExperiences.Projection.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

@@ -1,0 +1,45 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Window
+    x:Class="Drastic.Modal.Sample.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Drastic.Modal.Sample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:media="using:Microsoft.UI.Xaml.Media"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Rectangle x:Name="DisabledRectangle" Visibility="{Binding IsDisabled, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Rectangle.Fill>
+                <media:AcrylicBrush Opacity=".9"
+                              TintColor="Black"
+                              TintOpacity="0.7"
+                             />
+            </Rectangle.Fill>
+        </Rectangle>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="AppTitleBar" Grid.Row="0" Height="34">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="130"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Margin="8,0,0,0" Width="24" Height="24" Source="Assets/StoreLogo.png" x:Name="AppIcon" />
+                <TextBlock Grid.Column="1"  x:Name="AppTitleTextBlock" Text="Drastic.Modal.Sample"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                               TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
+                       Margin="12,0,0,0" VerticalAlignment="Center" />
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
