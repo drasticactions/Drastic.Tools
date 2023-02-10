@@ -11,15 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow", "Drast
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TrayWindow.Maui", "Drastic.TrayWindow.Maui\Drastic.TrayWindow.Maui.csproj", "{A1C79AD0-D610-43AA-BABB-FB036FD84C11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.DragAndDrop", "Drastic.DragAndDrop\Drastic.DragAndDrop.csproj", "{21529D1B-0798-4F89-AEEB-4757B8E764B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.DragAndDrop", "Drastic.DragAndDrop\Drastic.DragAndDrop.csproj", "{21529D1B-0798-4F89-AEEB-4757B8E764B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.DragAndDrop.Maui", "Drastic.DragAndDrop.Maui\Drastic.DragAndDrop.Maui.csproj", "{6BED4AD2-D896-485D-AA20-213A05B3FF1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.DragAndDrop.Maui", "Drastic.DragAndDrop.Maui\Drastic.DragAndDrop.Maui.csproj", "{6BED4AD2-D896-485D-AA20-213A05B3FF1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Overlay", "Drastic.Overlay\Drastic.Overlay.csproj", "{EE41B5B2-31CA-4052-9E4D-7A40EA3F5650}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Overlay", "Drastic.Overlay\Drastic.Overlay.csproj", "{EE41B5B2-31CA-4052-9E4D-7A40EA3F5650}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Maui", "Maui", "{95CF7EC6-4585-45E7-A182-29C795B04850}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.PageOverlay", "Drastic.PageOverlay\Drastic.PageOverlay.csproj", "{D2722D11-B464-4AE1-B690-C3BD2271CF2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.PageOverlay", "Drastic.PageOverlay\Drastic.PageOverlay.csproj", "{D2722D11-B464-4AE1-B690-C3BD2271CF2E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Modal", "Drastic.Modal\Drastic.Modal.csproj", "{44009273-EFC3-47AB-85DC-BBD9BD7B532F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,20 +57,24 @@ Global
 		{D2722D11-B464-4AE1-B690-C3BD2271CF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2722D11-B464-4AE1-B690-C3BD2271CF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2722D11-B464-4AE1-B690-C3BD2271CF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44009273-EFC3-47AB-85DC-BBD9BD7B532F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44009273-EFC3-47AB-85DC-BBD9BD7B532F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44009273-EFC3-47AB-85DC-BBD9BD7B532F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44009273-EFC3-47AB-85DC-BBD9BD7B532F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1C79AD0-D610-43AA-BABB-FB036FD84C11} = {95CF7EC6-4585-45E7-A182-29C795B04850}
+		{6BED4AD2-D896-485D-AA20-213A05B3FF1F} = {95CF7EC6-4585-45E7-A182-29C795B04850}
+		{EE41B5B2-31CA-4052-9E4D-7A40EA3F5650} = {95CF7EC6-4585-45E7-A182-29C795B04850}
+		{D2722D11-B464-4AE1-B690-C3BD2271CF2E} = {95CF7EC6-4585-45E7-A182-29C795B04850}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {656571A1-8837-49D4-B961-8E2F86ECAB3F}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Drastic.Interop\Drastic.Interop.projitems*{55c248a2-4a67-468d-8010-e04849a081f1}*SharedItemsImports = 13
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{6BED4AD2-D896-485D-AA20-213A05B3FF1F} = {95CF7EC6-4585-45E7-A182-29C795B04850}
-		{A1C79AD0-D610-43AA-BABB-FB036FD84C11} = {95CF7EC6-4585-45E7-A182-29C795B04850}
-		{EE41B5B2-31CA-4052-9E4D-7A40EA3F5650} = {95CF7EC6-4585-45E7-A182-29C795B04850}
-		{D2722D11-B464-4AE1-B690-C3BD2271CF2E} = {95CF7EC6-4585-45E7-A182-29C795B04850}
 	EndGlobalSection
 EndGlobal

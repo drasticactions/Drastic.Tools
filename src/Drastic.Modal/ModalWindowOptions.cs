@@ -53,7 +53,7 @@ namespace Drastic.Modal
 
         /// <summary>
         /// Gets or sets the position of the window.
-        /// Use the helper command <see cref="ModalWindowExtensions.ExtendsContentIntoAppTitleBar"/> to set the window to appear in the center of a given window.
+        /// Use the helper command <see cref="ModalWindowExtensions.PositionModalInCenter"/> to set the window to appear in the center of a given window.
         /// </summary>
         public PointInt32? Position { get; set; }
     }

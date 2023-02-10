@@ -4,10 +4,12 @@
 
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
-using Windows.Graphics;
 
 namespace Drastic.Modal
 {
+    /// <summary>
+    /// Modal Window.
+    /// </summary>
     public abstract partial class ModalWindow : Window
     {
         private ModalWindowOptions options;
@@ -15,11 +17,21 @@ namespace Drastic.Modal
         private List<Window> currentWindows;
         private bool isCreated;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModalWindow"/> class.
+        /// </summary>
+        /// <param name="window">Parent Window.</param>
+        /// <param name="options"><see cref="ModalWindowOptions"/>.</param>
         public ModalWindow(Window window, ModalWindowOptions? options = default)
             : this(new List<Window>() { window }, options)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModalWindow"/> class.
+        /// </summary>
+        /// <param name="applicationWindows">List of Application Windows.</param>
+        /// <param name="options"><see cref="ModalWindowOptions"/>.</param>
         public ModalWindow(List<Window>? applicationWindows = default, ModalWindowOptions? options = default)
         {
             this.currentWindows = applicationWindows ??= new List<Window>();
