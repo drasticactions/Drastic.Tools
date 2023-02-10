@@ -1,4 +1,4 @@
-﻿// <copyright file="ModalWindowExtensions.cs" company="Drastic Actions">
+﻿// <copyright file="WindowExtensions.cs" company="Drastic Actions">
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
