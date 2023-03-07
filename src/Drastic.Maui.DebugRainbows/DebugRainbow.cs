@@ -10,12 +10,11 @@ namespace Drastic.Maui.DebugRainbows
 {
     public static class DebugRainbow
     {
-        private static readonly Random _randomGen = new Random();
-
-        #region obsolete
-
         [Obsolete("This property has been made obsolete. Please use 'ShowColors' instead.")]
         public static readonly BindableProperty IsDebugProperty = BindableProperty.CreateAttached("IsDebug", typeof(bool), typeof(VisualElement), default(bool));
+        private static readonly Random randomGen = new Random();
+
+        public static readonly BindableProperty ShowColorsProperty = BindableProperty.CreateAttached("ShowColors", typeof(bool), typeof(VisualElement), default(bool), propertyChanged: (b, o, n) => OnShowDebugModeChanged(b, (bool)o, (bool)n));
 
         public static void SetIsDebug(BindableObject b, bool value)
         {
@@ -26,10 +25,6 @@ namespace Drastic.Maui.DebugRainbows
         {
             return (bool)b.GetValue(IsDebugProperty);
         }
-
-        #endregion
-
-        public static readonly BindableProperty ShowColorsProperty = BindableProperty.CreateAttached("ShowColors", typeof(bool), typeof(VisualElement), default(bool), propertyChanged: (b, o, n) => OnShowDebugModeChanged(b, (bool)o, (bool)n));
         public static readonly BindableProperty HorizontalItemSizeProperty = BindableProperty.CreateAttached("HorizontalItemSize", typeof(double), typeof(Page), 10.0);
         public static readonly BindableProperty VerticalItemSizeProperty = BindableProperty.CreateAttached("VerticalItemSize", typeof(double), typeof(Page), 10.0);
 
@@ -199,7 +194,7 @@ namespace Drastic.Maui.DebugRainbows
             return (DebugGridOrigin)b.GetValue(GridOriginProperty);
         }
 
-        static void OnShowDebugModeChanged(BindableObject bindable, bool oldValue, bool newValue)
+        private static void OnShowDebugModeChanged(BindableObject bindable, bool oldValue, bool newValue)
         {
 #if DEBUG
             var showColors = GetShowColors(bindable);
@@ -208,27 +203,39 @@ namespace Drastic.Maui.DebugRainbows
             // Property changed implementation goes here
             if (bindable.GetType().IsSubclassOf(typeof(Page)))
             {
-                var page = (bindable as Page);
+                var page = bindable as Page;
 
                 if (showColors || showGrid)
+                {
                     page.Appearing += Page_Appearing;
+                }
                 else
+                {
                     page.Appearing -= Page_Appearing;
+                }
 
                 // Size Changed gets called in time to size the actual initial grid.
                 // However, it doesn't get called when using Hot Reload, so we also hook up Appearing.
                 // Inside of the handler we check whether or not the Grid overlay has already been added.
                 if (showGrid)
+                {
                     page.SizeChanged += Page_SizeChanged;
+                }
                 else
+                {
                     page.SizeChanged -= Page_SizeChanged;
+                }
             }
             else if (bindable.GetType().IsSubclassOf(typeof(View)))
             {
                 if (showColors)
+                {
                     (bindable as View).SizeChanged += View_SizeChanged;
+                }
                 else
+                {
                     (bindable as View).SizeChanged -= View_SizeChanged;
+                }
             }
 #endif
         }
@@ -243,17 +250,17 @@ namespace Drastic.Maui.DebugRainbows
 #endif
         }
 
-        static void View_SizeChanged(object sender, EventArgs e)
+        private static void View_SizeChanged(object sender, EventArgs e)
         {
 #if DEBUG
             if (sender.GetType().IsSubclassOf(typeof(View)))
             {
-                IterateChildren((sender as View));
+                IterateChildren(sender as View);
             }
 #endif
         }
 
-        static void Page_Appearing(object sender, EventArgs e)
+        private static void Page_Appearing(object sender, EventArgs e)
         {
 #if DEBUG
             if (sender.GetType().IsSubclassOf(typeof(ContentPage)))
@@ -262,10 +269,14 @@ namespace Drastic.Maui.DebugRainbows
                 var showGrid = GetShowGrid(sender as Page);
 
                 if (showColors)
+                {
                     IterateChildren((sender as ContentPage).Content);
+                }
 
                 if (showGrid)
+                {
                     BuildGrid(sender as ContentPage);
+                }
             }
             else if (sender is IViewContainer<Page>)
             {
@@ -278,7 +289,9 @@ namespace Drastic.Maui.DebugRainbows
                         var showColors = GetShowColors(sender as Page);
 
                         if (showColors)
+                        {
                             IterateChildren(((ContentPage)item).Content);
+                        }
                     }
                 }
             }
@@ -309,14 +322,14 @@ namespace Drastic.Maui.DebugRainbows
                     Inverse = GetInverse(page),
                     HeightRequest = pageContent.Height,
                     WidthRequest = pageContent.Width,
-                    GridOrigin = GetGridOrigin(page)
+                    GridOrigin = GetGridOrigin(page),
                 };
 
                 Grid newContent = new Grid()
                 {
                     ClassId = nameof(DebugRainbow),
                     HeightRequest = pageContent.Height,
-                    WidthRequest = pageContent.Width
+                    WidthRequest = pageContent.Width,
                 };
 
                 newContent.Children.Add(pageContent);
@@ -351,7 +364,7 @@ namespace Drastic.Maui.DebugRainbows
 
         private static Color GetRandomColor()
         {
-            var color = Color.FromRgb((byte)_randomGen.Next(0, 255), (byte)_randomGen.Next(0, 255), (byte)_randomGen.Next(0, 255));
+            var color = Color.FromRgb((byte)randomGen.Next(0, 255), (byte)randomGen.Next(0, 255), (byte)randomGen.Next(0, 255));
             return color;
         }
     }

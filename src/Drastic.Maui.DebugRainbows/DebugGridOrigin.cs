@@ -9,6 +9,6 @@ namespace Drastic.Maui.DebugRainbows
     public enum DebugGridOrigin
     {
         TopLeft,
-        Center
+        Center,
     }
 }

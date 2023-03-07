@@ -4,32 +4,39 @@
 
 #nullable disable
 
-using Drastic.Maui.DebugRainbows;
+using System.Linq;
+using Android.App;
 using Android.Content;
-using AView = Android.Views.View;
 using Android.Graphics;
 using Android.Util;
-using Android.App;
-using System.Linq;
+using Drastic.Maui.DebugRainbows;
 using Microsoft.Maui.Controls.Compatibility;
-using Microsoft.Maui.Controls.Platform;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Microsoft.Maui.Controls.Platform;
+using AView = Android.Views.View;
 using Color = Microsoft.Maui.Graphics.Color;
 
 [assembly: ExportRenderer(typeof(DebugGridWrapper), typeof(DebugGridWrapperRendererDroid))]
-namespace Drastic.Maui.DebugRainbows {
-    public class DebugGridWrapperRendererDroid : ViewRenderer<DebugGridWrapper, AView> {
-        public DebugGridWrapperRendererDroid(Context context) : base(context) {
 
+namespace Drastic.Maui.DebugRainbows
+{
+    public class DebugGridWrapperRendererDroid : ViewRenderer<DebugGridWrapper, AView>
+    {
+        public DebugGridWrapperRendererDroid(Context context)
+            : base(context)
+        {
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<DebugGridWrapper> e) {
+        protected override void OnElementChanged(ElementChangedEventArgs<DebugGridWrapper> e)
+        {
             base.OnElementChanged(e);
 
-            if (e.NewElement != null) {
+            if (e.NewElement != null)
+            {
                 var grid = e.NewElement as DebugGridWrapper;
 
-                SetNativeControl(new DebugGridViewDroid(Context) {
+                this.SetNativeControl(new DebugGridViewDroid(this.Context)
+                {
                     HorizontalItemSize = (float)grid.HorizontalItemSize,
                     VerticalItemSize = (float)grid.VerticalItemSize,
                     MajorGridLineInterval = grid.MajorGridLineInterval,
@@ -41,79 +48,102 @@ namespace Drastic.Maui.DebugRainbows {
                     GridLineThickness = (float)grid.GridLineWidth,
                     MakeGridRainbows = grid.MakeGridRainbows,
                     Inverse = grid.Inverse,
-                    GridOrigin = grid.GridOrigin
+                    GridOrigin = grid.GridOrigin,
                 });
             }
         }
     }
 
-    public class DebugGridViewDroid : AView {
+    public class DebugGridViewDroid : AView
+    {
         private int screenWidth;
         private int screenHeight;
 
-        public float HorizontalItemSize { get; set; }
-        public float VerticalItemSize { get; set; }
-        public int MajorGridLineInterval { get; set; }
-        public Color MajorGridLineColor { get; set; }
-        public Color GridLineColor { get; set; }
-        public float MajorGridLineOpacity { get; set; }
-        public float GridLineOpacity { get; set; }
-        public float MajorGridLineThickness { get; set; }
-        public float GridLineThickness { get; set; }
-        public bool MakeGridRainbows { get; set; }
-        public bool Inverse { get; set; }
-        public DebugGridOrigin GridOrigin { get; set; }
-
-        public DebugGridViewDroid(Context context) : base(context) {
-            Init();
+        public DebugGridViewDroid(Context context)
+            : base(context)
+        {
+            this.Init();
         }
 
-        public static float ConvertDpToPixel(float dp, Context context) {
+        public float HorizontalItemSize { get; set; }
+
+        public float VerticalItemSize { get; set; }
+
+        public int MajorGridLineInterval { get; set; }
+
+        public Color MajorGridLineColor { get; set; }
+
+        public Color GridLineColor { get; set; }
+
+        public float MajorGridLineOpacity { get; set; }
+
+        public float GridLineOpacity { get; set; }
+
+        public float MajorGridLineThickness { get; set; }
+
+        public float GridLineThickness { get; set; }
+
+        public bool MakeGridRainbows { get; set; }
+
+        public bool Inverse { get; set; }
+
+        public DebugGridOrigin GridOrigin { get; set; }
+
+        public static float ConvertDpToPixel(float dp, Context context)
+        {
             return dp * ((float)context.Resources.DisplayMetrics.DensityDpi / (int)DisplayMetricsDensity.Default);
         }
 
-        public void Init() {
-            GetScreenDimensions();
+        public void Init()
+        {
+            this.GetScreenDimensions();
         }
 
-        private void GetScreenDimensions() {
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            ((Activity)Context).WindowManager.DefaultDisplay.GetMetrics(displayMetrics);
-            screenWidth = displayMetrics.WidthPixels;
-            screenHeight = displayMetrics.HeightPixels;
-        }
-
-        protected override void OnLayout(bool changed, int left, int top, int right, int bottom) {
+        protected override void OnLayout(bool changed, int left, int top, int right, int bottom)
+        {
             base.OnLayout(changed, left, top, right, bottom);
-            GetScreenDimensions();
+            this.GetScreenDimensions();
         }
 
-        protected override void OnDraw(Canvas canvas) {
+        private void GetScreenDimensions()
+        {
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            ((Activity)this.Context).WindowManager.DefaultDisplay.GetMetrics(displayMetrics);
+            this.screenWidth = displayMetrics.WidthPixels;
+            this.screenHeight = displayMetrics.HeightPixels;
+        }
+
+        protected override void OnDraw(Canvas canvas)
+        {
             base.OnDraw(canvas);
 
             var majorPaint = new Android.Graphics.Paint();
             var minorPaint = new Android.Graphics.Paint();
 
-            var colors = new[] {
+            var colors = new[]
+            {
                 Color.FromHex("#f3855b").ToAndroid(),
                 Color.FromHex("#fbcf93").ToAndroid(),
                 Color.FromHex("#fbe960").ToAndroid(),
                 Color.FromHex("#a0e67a").ToAndroid(),
                 Color.FromHex("#33c6ee").ToAndroid(),
-                Color.FromHex("#c652ba").ToAndroid()
+                Color.FromHex("#c652ba").ToAndroid(),
             };
 
             // Make these into true pixels from DP.
-            HorizontalItemSize = ConvertDpToPixel(HorizontalItemSize, Context);
-            VerticalItemSize = ConvertDpToPixel(VerticalItemSize, Context);
-            MajorGridLineThickness = ConvertDpToPixel(MajorGridLineThickness, Context);
-            GridLineThickness = ConvertDpToPixel(GridLineThickness, Context);
+            this.HorizontalItemSize = ConvertDpToPixel(this.HorizontalItemSize, this.Context);
+            this.VerticalItemSize = ConvertDpToPixel(this.VerticalItemSize, this.Context);
+            this.MajorGridLineThickness = ConvertDpToPixel(this.MajorGridLineThickness, this.Context);
+            this.GridLineThickness = ConvertDpToPixel(this.GridLineThickness, this.Context);
 
-            if (Inverse) {
-                DrawInverse(canvas, majorPaint, colors);
+            if (this.Inverse)
+            {
+                this.DrawInverse(canvas, majorPaint, colors);
             }
-            else {
-                if (MakeGridRainbows) {
+            else
+            {
+                if (this.MakeGridRainbows)
+                {
                     var a = canvas.Width * Math.Pow(Math.Sin(2 * Math.PI * ((90 + 0.75) / 2)), 2);
                     var b = canvas.Height * Math.Pow(Math.Sin(2 * Math.PI * ((90 + 0.0) / 2)), 2);
                     var c = canvas.Width * Math.Pow(Math.Sin(2 * Math.PI * ((90 + 0.25) / 2)), 2);
@@ -126,151 +156,162 @@ namespace Drastic.Maui.DebugRainbows {
                     majorPaint.SetShader(shader);
                 }
 
-                DrawNormal(canvas, majorPaint, minorPaint);
+                this.DrawNormal(canvas, majorPaint, minorPaint);
             }
         }
 
-        private void DrawNormal(Canvas canvas, Android.Graphics.Paint majorPaint, Android.Graphics.Paint minorPaint) {
-            majorPaint.StrokeWidth = MajorGridLineThickness;
-            majorPaint.Color = MajorGridLineColor.ToAndroid();
-            majorPaint.Alpha = (int)(255 * MajorGridLineOpacity);
+        private void DrawNormal(Canvas canvas, Android.Graphics.Paint majorPaint, Android.Graphics.Paint minorPaint)
+        {
+            majorPaint.StrokeWidth = this.MajorGridLineThickness;
+            majorPaint.Color = this.MajorGridLineColor.ToAndroid();
+            majorPaint.Alpha = (int)(255 * this.MajorGridLineOpacity);
 
-            minorPaint.StrokeWidth = GridLineThickness;
-            minorPaint.Color = GridLineColor.ToAndroid();
-            minorPaint.Alpha = (int)(255 * GridLineOpacity);
+            minorPaint.StrokeWidth = this.GridLineThickness;
+            minorPaint.Color = this.GridLineColor.ToAndroid();
+            minorPaint.Alpha = (int)(255 * this.GridLineOpacity);
 
-            if (GridOrigin == DebugGridOrigin.TopLeft) {
+            if (this.GridOrigin == DebugGridOrigin.TopLeft)
+            {
                 float verticalPosition = 0;
                 int i = 0;
-                while (verticalPosition <= screenHeight) {
-                    canvas.DrawLine(0, verticalPosition, screenWidth, verticalPosition, MajorGridLineInterval > 0 && i % MajorGridLineInterval == 0 ? majorPaint : minorPaint);
-                    verticalPosition += VerticalItemSize;
+                while (verticalPosition <= this.screenHeight)
+                {
+                    canvas.DrawLine(0, verticalPosition, this.screenWidth, verticalPosition, this.MajorGridLineInterval > 0 && i % this.MajorGridLineInterval == 0 ? majorPaint : minorPaint);
+                    verticalPosition += this.VerticalItemSize;
                     i++;
                 }
 
                 float horizontalPosition = 0;
                 i = 0;
-                while (horizontalPosition <= screenWidth) {
-                    canvas.DrawLine(horizontalPosition, 0, horizontalPosition, screenHeight, MajorGridLineInterval > 0 && i % MajorGridLineInterval == 0 ? majorPaint : minorPaint);
-                    horizontalPosition += HorizontalItemSize;
+                while (horizontalPosition <= this.screenWidth)
+                {
+                    canvas.DrawLine(horizontalPosition, 0, horizontalPosition, this.screenHeight, this.MajorGridLineInterval > 0 && i % this.MajorGridLineInterval == 0 ? majorPaint : minorPaint);
+                    horizontalPosition += this.HorizontalItemSize;
                     i++;
                 }
             }
-            else if (GridOrigin == DebugGridOrigin.Center) {
-                var gridLinesHorizontalCenter = screenWidth / 2;
-                var gridLinesVerticalCenter = screenHeight / 2;
-                var amountOfVerticalLines = screenWidth / HorizontalItemSize;
-                var amountOfHorizontalLines = screenHeight / VerticalItemSize;
+            else if (this.GridOrigin == DebugGridOrigin.Center)
+            {
+                var gridLinesHorizontalCenter = this.screenWidth / 2;
+                var gridLinesVerticalCenter = this.screenHeight / 2;
+                var amountOfVerticalLines = this.screenWidth / this.HorizontalItemSize;
+                var amountOfHorizontalLines = this.screenHeight / this.VerticalItemSize;
 
                 // Draw the horizontal lines.
-                for (int i = 0; i < (amountOfHorizontalLines / 2); i++) {
+                for (int i = 0; i < (amountOfHorizontalLines / 2); i++)
+                {
                     canvas.DrawLine(
                         startX: 0,
-                        startY: gridLinesVerticalCenter + (i * VerticalItemSize),
-                        stopX: screenWidth,
-                        stopY: gridLinesVerticalCenter + (i * VerticalItemSize),
-                        paint: MajorGridLineInterval > 0 && i % MajorGridLineInterval == 0 ? majorPaint : minorPaint
-                    );
+                        startY: gridLinesVerticalCenter + (i * this.VerticalItemSize),
+                        stopX: this.screenWidth,
+                        stopY: gridLinesVerticalCenter + (i * this.VerticalItemSize),
+                        paint: this.MajorGridLineInterval > 0 && i % this.MajorGridLineInterval == 0 ? majorPaint : minorPaint);
 
                     canvas.DrawLine(
                         startX: 0,
-                        startY: gridLinesVerticalCenter - (i * VerticalItemSize),
-                        stopX: screenWidth,
-                        stopY: gridLinesVerticalCenter - (i * VerticalItemSize),
-                        paint: MajorGridLineInterval > 0 && i % MajorGridLineInterval == 0 ? majorPaint : minorPaint
-                    );
+                        startY: gridLinesVerticalCenter - (i * this.VerticalItemSize),
+                        stopX: this.screenWidth,
+                        stopY: gridLinesVerticalCenter - (i * this.VerticalItemSize),
+                        paint: this.MajorGridLineInterval > 0 && i % this.MajorGridLineInterval == 0 ? majorPaint : minorPaint);
                 }
 
                 // Draw vertical lines.
-                for (int i = 0; i < (amountOfVerticalLines / 2); i++) {
+                for (int i = 0; i < (amountOfVerticalLines / 2); i++)
+                {
                     canvas.DrawLine(
-                        startX: gridLinesHorizontalCenter + (i * HorizontalItemSize),
+                        startX: gridLinesHorizontalCenter + (i * this.HorizontalItemSize),
                         startY: 0,
-                        stopX: gridLinesHorizontalCenter + (i * HorizontalItemSize),
-                        stopY: screenHeight,
-                        paint: MajorGridLineInterval > 0 && i % MajorGridLineInterval == 0 ? majorPaint : minorPaint
-                    );
+                        stopX: gridLinesHorizontalCenter + (i * this.HorizontalItemSize),
+                        stopY: this.screenHeight,
+                        paint: this.MajorGridLineInterval > 0 && i % this.MajorGridLineInterval == 0 ? majorPaint : minorPaint);
 
                     canvas.DrawLine(
-                        startX: gridLinesHorizontalCenter - (i * HorizontalItemSize),
+                        startX: gridLinesHorizontalCenter - (i * this.HorizontalItemSize),
                         startY: 0,
-                        stopX: gridLinesHorizontalCenter - (i * HorizontalItemSize),
-                        stopY: screenHeight,
-                        paint: MajorGridLineInterval > 0 && i % MajorGridLineInterval == 0 ? majorPaint : minorPaint
-                    );
+                        stopX: gridLinesHorizontalCenter - (i * this.HorizontalItemSize),
+                        stopY: this.screenHeight,
+                        paint: this.MajorGridLineInterval > 0 && i % this.MajorGridLineInterval == 0 ? majorPaint : minorPaint);
                 }
             }
         }
 
-        private void DrawInverse(Canvas canvas, Android.Graphics.Paint majorPaint, global::Android.Graphics.Color[] colors) {
+        private void DrawInverse(Canvas canvas, Android.Graphics.Paint majorPaint, global::Android.Graphics.Color[] colors)
+        {
             majorPaint.StrokeWidth = 0;
-            majorPaint.Color = GridLineColor.ToAndroid();
-            majorPaint.Alpha = (int)(255 * GridLineOpacity);
+            majorPaint.Color = this.GridLineColor.ToAndroid();
+            majorPaint.Alpha = (int)(255 * this.GridLineOpacity);
 
-            if (GridOrigin == DebugGridOrigin.TopLeft) {
+            if (this.GridOrigin == DebugGridOrigin.TopLeft)
+            {
                 var horizontalTotal = 0;
-                for (int i = 1; horizontalTotal < screenWidth; i++) {
+                for (int i = 1; horizontalTotal < this.screenWidth; i++)
+                {
                     var verticalTotal = 0;
-                    var horizontalSpacerSize = MajorGridLineInterval > 0 && i % MajorGridLineInterval == 0 ? MajorGridLineThickness : GridLineThickness;
+                    var horizontalSpacerSize = this.MajorGridLineInterval > 0 && i % this.MajorGridLineInterval == 0 ? this.MajorGridLineThickness : this.GridLineThickness;
 
-                    for (int j = 1; verticalTotal < screenHeight; j++) {
-                        var verticalSpacerSize = MajorGridLineInterval > 0 && j % MajorGridLineInterval == 0 ? MajorGridLineThickness : GridLineThickness;
+                    for (int j = 1; verticalTotal < this.screenHeight; j++)
+                    {
+                        var verticalSpacerSize = this.MajorGridLineInterval > 0 && j % this.MajorGridLineInterval == 0 ? this.MajorGridLineThickness : this.GridLineThickness;
 
                         var rectangle = new Android.Graphics.Rect(
                             (int)horizontalTotal,
                             (int)verticalTotal,
-                            (int)(horizontalTotal + HorizontalItemSize),
-                            (int)(verticalTotal + VerticalItemSize)
-                        );
+                            (int)(horizontalTotal + this.HorizontalItemSize),
+                            (int)(verticalTotal + this.VerticalItemSize));
 
-                        if (MakeGridRainbows) {
+                        if (this.MakeGridRainbows)
+                        {
                             var color = colors[(i + j) % colors.Length];
                             majorPaint.Color = color;
                         }
 
                         canvas.DrawRect(rectangle, majorPaint);
 
-                        verticalTotal += (int)(VerticalItemSize + verticalSpacerSize);
+                        verticalTotal += (int)(this.VerticalItemSize + verticalSpacerSize);
                     }
 
-                    horizontalTotal += (int)(HorizontalItemSize + horizontalSpacerSize);
+                    horizontalTotal += (int)(this.HorizontalItemSize + horizontalSpacerSize);
                 }
             }
-            else if (GridOrigin == DebugGridOrigin.Center) {
-                var horizontalRightTotal = (screenWidth / 2) + (int)((MajorGridLineInterval > 0 ? MajorGridLineThickness : GridLineThickness) / 2);
-                var horizontalLeftTotal = (screenWidth / 2) - (int)(HorizontalItemSize + ((MajorGridLineInterval > 0 ? MajorGridLineThickness : GridLineThickness) / 2));
+            else if (this.GridOrigin == DebugGridOrigin.Center)
+            {
+                var horizontalRightTotal = (this.screenWidth / 2) + (int)((this.MajorGridLineInterval > 0 ? this.MajorGridLineThickness : this.GridLineThickness) / 2);
+                var horizontalLeftTotal = (this.screenWidth / 2) - (int)(this.HorizontalItemSize + ((this.MajorGridLineInterval > 0 ? this.MajorGridLineThickness : this.GridLineThickness) / 2));
 
-                for (int i = 1; horizontalRightTotal < screenWidth; i++) {
-                    var horizontalSpacerSize = MajorGridLineInterval > 0 && i % MajorGridLineInterval == 0 ? MajorGridLineThickness : GridLineThickness;
-                    var verticalBottomTotal = (screenHeight / 2) + (int)((MajorGridLineInterval > 0 ? MajorGridLineThickness : GridLineThickness) / 2);
-                    var verticalTopTotal = (screenHeight / 2) - (int)(VerticalItemSize + ((MajorGridLineInterval > 0 ? MajorGridLineThickness : GridLineThickness) / 2));
+                for (int i = 1; horizontalRightTotal < this.screenWidth; i++)
+                {
+                    var horizontalSpacerSize = this.MajorGridLineInterval > 0 && i % this.MajorGridLineInterval == 0 ? this.MajorGridLineThickness : this.GridLineThickness;
+                    var verticalBottomTotal = (this.screenHeight / 2) + (int)((this.MajorGridLineInterval > 0 ? this.MajorGridLineThickness : this.GridLineThickness) / 2);
+                    var verticalTopTotal = (this.screenHeight / 2) - (int)(this.VerticalItemSize + ((this.MajorGridLineInterval > 0 ? this.MajorGridLineThickness : this.GridLineThickness) / 2));
 
-                    for (int j = 1; verticalBottomTotal < screenHeight; j++) {
-                        if (MakeGridRainbows) {
+                    for (int j = 1; verticalBottomTotal < this.screenHeight; j++)
+                    {
+                        if (this.MakeGridRainbows)
+                        {
                             var color = colors[(i + j) % colors.Length];
                             majorPaint.Color = color;
                         }
 
-                        var verticalSpacerSize = MajorGridLineInterval > 0 && j % MajorGridLineInterval == 0 ? MajorGridLineThickness : GridLineThickness;
+                        var verticalSpacerSize = this.MajorGridLineInterval > 0 && j % this.MajorGridLineInterval == 0 ? this.MajorGridLineThickness : this.GridLineThickness;
 
-                        var rectangle = new Android.Graphics.Rect(horizontalRightTotal, verticalBottomTotal, (int)(horizontalRightTotal + HorizontalItemSize), (int)(verticalBottomTotal + VerticalItemSize));
+                        var rectangle = new Android.Graphics.Rect(horizontalRightTotal, verticalBottomTotal, (int)(horizontalRightTotal + this.HorizontalItemSize), (int)(verticalBottomTotal + this.VerticalItemSize));
                         canvas.DrawRect(rectangle, majorPaint);
 
-                        var rectangle2 = new Android.Graphics.Rect(horizontalLeftTotal, verticalTopTotal, (int)(horizontalLeftTotal + HorizontalItemSize), (int)(verticalTopTotal + VerticalItemSize));
+                        var rectangle2 = new Android.Graphics.Rect(horizontalLeftTotal, verticalTopTotal, (int)(horizontalLeftTotal + this.HorizontalItemSize), (int)(verticalTopTotal + this.VerticalItemSize));
                         canvas.DrawRect(rectangle2, majorPaint);
 
-                        var rectangle3 = new Android.Graphics.Rect(horizontalRightTotal, verticalTopTotal, (int)(horizontalRightTotal + HorizontalItemSize), (int)(verticalTopTotal + VerticalItemSize));
+                        var rectangle3 = new Android.Graphics.Rect(horizontalRightTotal, verticalTopTotal, (int)(horizontalRightTotal + this.HorizontalItemSize), (int)(verticalTopTotal + this.VerticalItemSize));
                         canvas.DrawRect(rectangle3, majorPaint);
 
-                        var rectangle4 = new Android.Graphics.Rect(horizontalLeftTotal, verticalBottomTotal, (int)(horizontalLeftTotal + HorizontalItemSize), (int)(verticalBottomTotal + VerticalItemSize));
+                        var rectangle4 = new Android.Graphics.Rect(horizontalLeftTotal, verticalBottomTotal, (int)(horizontalLeftTotal + this.HorizontalItemSize), (int)(verticalBottomTotal + this.VerticalItemSize));
                         canvas.DrawRect(rectangle4, majorPaint);
 
-                        verticalTopTotal -= (int)(VerticalItemSize + verticalSpacerSize);
-                        verticalBottomTotal += (int)(VerticalItemSize + verticalSpacerSize);
+                        verticalTopTotal -= (int)(this.VerticalItemSize + verticalSpacerSize);
+                        verticalBottomTotal += (int)(this.VerticalItemSize + verticalSpacerSize);
                     }
 
-                    horizontalRightTotal += (int)(HorizontalItemSize + horizontalSpacerSize);
-                    horizontalLeftTotal -= (int)(HorizontalItemSize + horizontalSpacerSize);
+                    horizontalRightTotal += (int)(this.HorizontalItemSize + horizontalSpacerSize);
+                    horizontalLeftTotal -= (int)(this.HorizontalItemSize + horizontalSpacerSize);
                 }
             }
         }
