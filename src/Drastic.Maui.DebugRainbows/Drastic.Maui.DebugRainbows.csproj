@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../MultiTargeting.targets" />
+	<PropertyGroup>
+		<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<UseMaui>true</UseMaui>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<IsPackable>true</IsPackable>
+		<Description>Debug layout in MAUI with Rainbows! A fork of Xamarin.Forms.DebugRainbows.</Description>
+		<PackageTags>catalyst winui ios maui debug rainbows</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Maui.DebugRainbows</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Maui.DebugRainbows/CHANGELOG.md</PackageReleaseNotes>
+	</PropertyGroup>
+
+</Project>
