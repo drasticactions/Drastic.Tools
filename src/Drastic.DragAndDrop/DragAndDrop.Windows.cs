@@ -76,9 +76,9 @@ namespace Drastic.DragAndDrop
 
         private async void Panel_DragOver(object sender, Microsoft.UI.Xaml.DragEventArgs e)
         {
+            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
             var filePaths = await this.GetFileList(e);
             this.Dragging?.Invoke(this, new DragAndDropIsDraggingEventArgs(true, filePaths));
-            e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy;
         }
 
         private async Task<List<string>> GetFileList(Microsoft.UI.Xaml.DragEventArgs e)
