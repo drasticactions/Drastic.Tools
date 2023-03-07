@@ -4,9 +4,9 @@
 
 Drastic.Maui.DebugRainbows is a fork of Xamarin.Forms.DebugRainbows, a UI Library for helping visualize layout issues. It currently supports iOS, Catalyst, and Android.
 
-<img width="1483" alt="スクリーンショット 2023-03-07 234603" src="https://user-images.githubusercontent.com/898335/223463670-74d38741-b35f-43fe-8b9e-cf170a3cb6a2.png">
-<img width="1054" alt="2023-03-07_23 50 34" src="https://user-images.githubusercontent.com/898335/223463719-986277d2-904d-40ad-a01c-d3195017c348.png">
-<img width="381" alt="2023-03-07_23 53 53" src="https://user-images.githubusercontent.com/898335/223463729-5963131f-fe4f-4be2-8bd9-40b25fc9178e.png">
+![1](https://user-images.githubusercontent.com/898335/223463670-74d38741-b35f-43fe-8b9e-cf170a3cb6a2.png)
+![2](https://user-images.githubusercontent.com/898335/223463719-986277d2-904d-40ad-a01c-d3195017c348.png)
+![3](https://user-images.githubusercontent.com/898335/223463729-5963131f-fe4f-4be2-8bd9-40b25fc9178e.png)
 
 ## How To Use
 
