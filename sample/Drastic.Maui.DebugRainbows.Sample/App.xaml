@@ -1,0 +1,33 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Drastic.Maui.DebugRainbows.Sample"
+              xmlns:debug="clr-namespace:Drastic.Maui.DebugRainbows;assembly=Drastic.Maui.DebugRainbows"
+             x:Class="Drastic.Maui.DebugRainbows.Sample.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+                <Setter Property="debug:DebugRainbow.ShowColors" Value="true"/>
+                <Setter Property="debug:DebugRainbow.ShowGrid" Value="false" />
+                <Setter Property="debug:DebugRainbow.HorizontalItemSize" Value="20" />
+                <Setter Property="debug:DebugRainbow.VerticalItemSize" Value="20" />
+                <Setter Property="debug:DebugRainbow.MajorGridLineColor" Value="Red" />
+                <Setter Property="debug:DebugRainbow.MajorGridLineInterval" Value="8" />
+                <Setter Property="debug:DebugRainbow.MajorGridLineOpacity" Value=".5" />
+                <Setter Property="debug:DebugRainbow.MajorGridLineWidth" Value="6" />
+                <Setter Property="debug:DebugRainbow.GridLineColor" Value="Red" />
+                <Setter Property="debug:DebugRainbow.GridLineOpacity" Value=".5" />
+                <Setter Property="debug:DebugRainbow.GridLineWidth" Value="1" />
+                <Setter Property="debug:DebugRainbow.GridPadding" Value="0" />
+                <Setter Property="debug:DebugRainbow.GridOrigin" Value="Center" />
+                <Setter Property="debug:DebugRainbow.MakeGridRainbows" Value="true" />
+                <Setter Property="debug:DebugRainbow.Inverse" Value="false" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

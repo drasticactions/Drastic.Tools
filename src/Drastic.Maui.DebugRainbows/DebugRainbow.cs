@@ -339,7 +339,7 @@ namespace Drastic.Maui.DebugRainbows
             }
         }
 
-        private static void IterateChildren(IView content)
+        private static void IterateChildren(Element content)
         {
             if (content != null)
             {
@@ -352,6 +352,16 @@ namespace Drastic.Maui.DebugRainbows
 
                     foreach (var item in ((Layout)content).Children)
                     {
+                        IterateChildren((Element)item);
+                    }
+                }
+                else if (content.GetType().IsSubclassOf(typeof(Microsoft.Maui.Controls.Compatibility.Layout)))
+                {
+                    if (content.GetType() != typeof(DebugGridWrapper)) {
+                        ((Microsoft.Maui.Controls.Compatibility.Layout)content).BackgroundColor = GetRandomColor();
+                    }
+
+                    foreach (var item in ((Microsoft.Maui.Controls.Compatibility.Layout)content).Children) {
                         IterateChildren(item);
                     }
                 }

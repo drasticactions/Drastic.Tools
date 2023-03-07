@@ -8,7 +8,7 @@
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>true</IsPackable>
 		<Description>Debug layout in MAUI with Rainbows! A fork of Xamarin.Forms.DebugRainbows.</Description>
-		<PackageTags>catalyst winui ios maui debug rainbows</PackageTags>
+		<PackageTags>catalyst ios maui debug rainbows</PackageTags>
 		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Maui.DebugRainbows</PackageProjectUrl>
 		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Maui.DebugRainbows/CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>
