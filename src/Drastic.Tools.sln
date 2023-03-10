@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Modal", "Drastic.Mo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Maui.DebugRainbows", "Drastic.Maui.DebugRainbows\Drastic.Maui.DebugRainbows.csproj", "{948EEAF3-0059-44E0-8138-8165044DC45D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Markdown.Maui", "Drastic.Markdown.Maui\Drastic.Markdown.Maui.csproj", "{32B73E40-F0A1-4857-B97E-ABACE0176B1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{948EEAF3-0059-44E0-8138-8165044DC45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{948EEAF3-0059-44E0-8138-8165044DC45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{948EEAF3-0059-44E0-8138-8165044DC45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32B73E40-F0A1-4857-B97E-ABACE0176B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32B73E40-F0A1-4857-B97E-ABACE0176B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32B73E40-F0A1-4857-B97E-ABACE0176B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32B73E40-F0A1-4857-B97E-ABACE0176B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{EE41B5B2-31CA-4052-9E4D-7A40EA3F5650} = {95CF7EC6-4585-45E7-A182-29C795B04850}
 		{D2722D11-B464-4AE1-B690-C3BD2271CF2E} = {95CF7EC6-4585-45E7-A182-29C795B04850}
 		{948EEAF3-0059-44E0-8138-8165044DC45D} = {95CF7EC6-4585-45E7-A182-29C795B04850}
+		{32B73E40-F0A1-4857-B97E-ABACE0176B1E} = {95CF7EC6-4585-45E7-A182-29C795B04850}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {656571A1-8837-49D4-B961-8E2F86ECAB3F}
