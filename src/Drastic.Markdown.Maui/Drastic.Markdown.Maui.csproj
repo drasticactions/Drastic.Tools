@@ -8,8 +8,8 @@
 		<Nullable>enable</Nullable>
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<IsPackable>true</IsPackable>
-		<Description>A Markdown Renderer for MAUI. Supports WinUI, Mac Catalyst, and iOS.</Description>
-		<PackageTags>catalyst winui ios maui markdown</PackageTags>
+		<Description>A Markdown Renderer for MAUI. Supports WinUI, Android, Mac Catalyst, and iOS.</Description>
+		<PackageTags>catalyst winui ios android maui markdown</PackageTags>
 		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Markdown.Maui</PackageProjectUrl>
 		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Markdown.Maui/CHANGELOG.md</PackageReleaseNotes>
 	</PropertyGroup>

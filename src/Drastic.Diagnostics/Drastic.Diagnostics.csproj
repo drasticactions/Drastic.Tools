@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../MultiTargeting.targets" />
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-windows10.0.19041.0;net7.0-android;net7.0-macos;net7.0-tvos</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<WinUIVersion>1.2.221109.1</WinUIVersion>
+		<IsPackable>true</IsPackable>
+		<Description>A diagnostics library for .NET UI Applications</Description>
+		<PackageTags>ios tvos catalyst android macos winui diagnostics</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Diagnostics</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Diagnostics/CHANGELOG.md</PackageReleaseNotes>
+	</PropertyGroup>
+	
+	<ItemGroup Condition="$(TargetFramework.Contains('netstandard')) == true ">
+		<PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+		<PackageReference Include="System.Runtime.Numerics" Version="4.3.0" />
+	</ItemGroup>
+</Project>
