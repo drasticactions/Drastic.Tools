@@ -1,12 +1,8 @@
-﻿using Drastic.HtmlLabel.Maui;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-[assembly: InternalsVisibleTo("HtmlLabel.Forms.Plugin.Shared.Tests")]
+[assembly: InternalsVisibleTo("Drastic.HtmlLabel.Maui.Tests")]
 namespace Drastic.HtmlLabel.Maui
 {
     internal class RendererHelper
