@@ -25,12 +25,17 @@ namespace Drastic.HtmlLabel.Maui
             builder.ConfigureMauiHandlers((handlers) => {
 #if ANDROID
                 HtmlLabelRenderer.Initialize();
-                handlers.AddCompatibilityRenderer(typeof(HtmlLabelRenderer), typeof(HtmlLabelRenderer));
+                handlers.AddCompatibilityRenderer(typeof(HtmlLabel), typeof(HtmlLabelRenderer));
+#endif
+
+#if WINDOWS
+                HtmlLabelRenderer.Initialize();
+                handlers.AddCompatibilityRenderer(typeof(HtmlLabel), typeof(HtmlLabelRenderer));
 #endif
 
 #if IOS || MACCATALYST
                 HtmlLabelRenderer.Initialize();
-                handlers.AddCompatibilityRenderer(typeof(HtmlLabelRenderer), typeof(HtmlLabelRenderer));
+                handlers.AddCompatibilityRenderer(typeof(HtmlLabel), typeof(HtmlLabelRenderer));
 #endif
             });
 
