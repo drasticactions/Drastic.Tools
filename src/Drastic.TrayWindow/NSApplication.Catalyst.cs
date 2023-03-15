@@ -37,6 +37,18 @@ namespace Drastic.TrayWindow
         }
 
         /// <summary>
+        /// Close window in a given application.
+        /// </summary>
+        /// <param name="window">The sender UIWindow to invoke the command.</param>
+        public static async Task CloseWindow(UIWindow window)
+        {
+            var sharedApplication = GetSharedApplication();
+            var nsWindow = await window.GetNSWindowFromUIWindowAsync();
+            NativeHandle nonNullHandle = nsWindow!.GetNonNullHandle("sender");
+            Drastic.Interop.ObjC.Call(nsWindow!.Handle, "performClose:", nonNullHandle);
+        }
+
+        /// <summary>
         /// Sets the activaction policy on a Mac Catalyst app.
         /// </summary>
         /// <param name="policy">The sender UIWindow to invoke the command.</param>
