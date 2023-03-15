@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="UriExtensions.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -7,9 +11,13 @@ namespace Drastic.HtmlLabel.Maui
     public static class UriExtensions
     {
         public static bool IsHttp(this Uri uri) => uri != null && uri.Scheme.ToUpperInvariant().Contains("HTTP");
+
         public static bool IsEmail(this Uri uri) => uri.MatchSchema("mailto");
+
         public static bool IsTel(this Uri uri) => uri.MatchSchema("tel");
+
         public static bool IsSms(this Uri uri) => uri.MatchSchema("sms");
+
         public static bool IsGeo(this Uri uri) => uri.MatchSchema("geo");
 
         public static void LaunchBrowser(this Uri uri, BrowserLaunchOptions options)
@@ -27,7 +35,9 @@ namespace Drastic.HtmlLabel.Maui
         public static bool LaunchEmail(this Uri uri)
         {
             if (uri == null)
+            {
                 return false;
+            }
 
             var qParams = uri.ParseQueryString();
             var to = uri.Target();
@@ -39,7 +49,7 @@ namespace Drastic.HtmlLabel.Maui
                     Subject = qParams.GetFirst("subject") ?? string.Empty,
                     Body = qParams.GetFirst("body") ?? string.Empty,
                     Cc = qParams.Get("cc") ?? new List<string>(),
-                    Bcc = qParams.Get("bcc") ?? new List<string>()
+                    Bcc = qParams.Get("bcc") ?? new List<string>(),
                 };
                 Email.ComposeAsync(message);
                 return true;
@@ -49,13 +59,14 @@ namespace Drastic.HtmlLabel.Maui
                 System.Diagnostics.Debug.WriteLine(@"            ERROR: ", ex.Message);
                 return false;
             }
-
         }
 
         public static bool LaunchTel(this Uri uri)
         {
             if (uri == null)
+            {
                 return false;
+            }
 
             var to = uri.Target();
             try
@@ -73,7 +84,9 @@ namespace Drastic.HtmlLabel.Maui
         public static bool LaunchSms(this Uri uri)
         {
             if (uri == null)
+            {
                 return false;
+            }
 
             var qParams = uri.ParseQueryString();
             var to = uri.Target();
@@ -94,7 +107,9 @@ namespace Drastic.HtmlLabel.Maui
         public static bool LaunchMaps(this Uri uri)
         {
             if (uri == null)
+            {
                 return false;
+            }
 
             var target = uri.Target();
             try
@@ -115,7 +130,7 @@ namespace Drastic.HtmlLabel.Maui
 
         private static string Target(this Uri uri)
         {
-            return Uri.UnescapeDataString(uri.AbsoluteUri.Substring(uri.Scheme.Length + 1).Split('?')[0].Replace("/", ""));
+            return Uri.UnescapeDataString(uri.AbsoluteUri.Substring(uri.Scheme.Length + 1).Split('?')[0].Replace("/", string.Empty));
         }
 
         private static bool MatchSchema(this Uri uri, string schema)

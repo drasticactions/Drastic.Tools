@@ -1,22 +1,68 @@
-﻿using CoreGraphics;
-using Foundation;
+﻿// <copyright file="BaseTextViewRenderer.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
 using System;
 using System.ComponentModel;
 using System.Linq;
+using CoreGraphics;
+using Drastic.HtmlLabel.Maui;
+using Foundation;
 using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
-
+using Microsoft.Maui.Controls.Platform;
 using UIKit;
 using NativeTextView = UIKit.UITextView;
-using Microsoft.Maui.Controls.Platform;
-using Drastic.HtmlLabel.Maui;
 
 namespace Drastic.HtmlLabel.Maui
 {
     public abstract class BaseTextViewRenderer<TElement> : ViewRenderer<TElement, NativeTextView>
         where TElement : Label
     {
-        private SizeRequest _perfectSize;
-        private bool _perfectSizeValid;
+        private SizeRequest perfectSize;
+        private bool perfectSizeValid;
+
+        public override SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint)
+        {
+            if (!this.perfectSizeValid)
+            {
+                this.perfectSize = base.GetDesiredSize(double.PositiveInfinity, double.PositiveInfinity);
+                this.perfectSize.Minimum = new Size(Math.Min(10, this.perfectSize.Request.Width), this.perfectSize.Request.Height);
+                this.perfectSizeValid = true;
+            }
+
+            var widthFits = widthConstraint >= this.perfectSize.Request.Width;
+            var heightFits = heightConstraint >= this.perfectSize.Request.Height;
+
+            if (widthFits && heightFits)
+            {
+                return this.perfectSize;
+            }
+
+            var result = base.GetDesiredSize(widthConstraint, heightConstraint);
+            var tinyWidth = Math.Min(10, result.Request.Width);
+            result.Minimum = new Size(tinyWidth, result.Request.Height);
+
+            if (widthFits || this.Element.LineBreakMode == LineBreakMode.NoWrap)
+            {
+                return result;
+            }
+
+            var containerIsNotInfinitelyWide = !double.IsInfinity(widthConstraint);
+
+            if (containerIsNotInfinitelyWide)
+            {
+                var textCouldHaveWrapped = this.Element.LineBreakMode == LineBreakMode.WordWrap || this.Element.LineBreakMode == LineBreakMode.CharacterWrap;
+                var textExceedsContainer = result.Request.Width > widthConstraint;
+
+                if (textExceedsContainer || textCouldHaveWrapped)
+                {
+                    var expandedWidth = Math.Max(tinyWidth, widthConstraint);
+                    result.Request = new Size(expandedWidth, result.Request.Height);
+                }
+            }
+
+            return result;
+        }
 
         protected override NativeTextView CreateNativeControl()
         {
@@ -25,47 +71,49 @@ namespace Drastic.HtmlLabel.Maui
                 Editable = false,
                 ScrollEnabled = false,
                 ShowsVerticalScrollIndicator = false,
-                BackgroundColor = UIColor.Clear
+                BackgroundColor = UIColor.Clear,
             };
             return control;
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<TElement> e)
         {
-            _perfectSizeValid = false;
+            this.perfectSizeValid = false;
 
             if (e.NewElement != null)
             {
                 try
                 {
-                    if (Control == null)
+                    if (this.Control == null)
                     {
-                        SetNativeControl(CreateNativeControl());
+                        this.SetNativeControl(this.CreateNativeControl());
                     }
-                    bool shouldInteractWithUrl = !Element.GestureRecognizers.Any();
+
+                    bool shouldInteractWithUrl = !this.Element.GestureRecognizers.Any();
                     if (shouldInteractWithUrl)
                     {
                         // Setting the data detector types mask to capture all types of link-able data
-                        Control.DataDetectorTypes = UIDataDetectorType.All;
-                        Control.Selectable = true;
-                        Control.Delegate = new TextViewDelegate(NavigateToUrl);
+                        this.Control.DataDetectorTypes = UIDataDetectorType.All;
+                        this.Control.Selectable = true;
+                        this.Control.Delegate = new TextViewDelegate(this.NavigateToUrl);
                     }
                     else
                     {
-                        Control.Selectable = false;
-                        foreach (var recognizer in Element.GestureRecognizers.OfType<TapGestureRecognizer>())
+                        this.Control.Selectable = false;
+                        foreach (var recognizer in this.Element.GestureRecognizers.OfType<TapGestureRecognizer>())
                         {
                             if (recognizer.Command != null)
                             {
                                 var command = recognizer.Command;
-                                Control.AddGestureRecognizer(new UITapGestureRecognizer(() => { command.Execute(recognizer.CommandParameter); }));
+                                this.Control.AddGestureRecognizer(new UITapGestureRecognizer(() => { command.Execute(recognizer.CommandParameter); }));
                             }
                         }
                     }
-                    UpdateLineBreakMode();
-                    UpdateHorizontalTextAlignment();
-                    ProcessText();
-                    UpdatePadding();
+
+                    this.UpdateLineBreakMode();
+                    this.UpdateHorizontalTextAlignment();
+                    this.ProcessText();
+                    this.UpdatePadding();
                 }
                 catch (Exception ex)
                 {
@@ -83,10 +131,10 @@ namespace Drastic.HtmlLabel.Maui
             {
                 try
                 {
-                    UpdateLineBreakMode();
-                    UpdateHorizontalTextAlignment();
-                    ProcessText();
-                    UpdatePadding();
+                    this.UpdateLineBreakMode();
+                    this.UpdateHorizontalTextAlignment();
+                    this.ProcessText();
+                    this.UpdatePadding();
                 }
                 catch (Exception ex)
                 {
@@ -96,127 +144,53 @@ namespace Drastic.HtmlLabel.Maui
         }
 
         protected abstract void ProcessText();
+
         protected abstract bool NavigateToUrl(NSUrl url);
-
-        public override SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint)
-        {
-            if (!_perfectSizeValid)
-            {
-                _perfectSize = base.GetDesiredSize(double.PositiveInfinity, double.PositiveInfinity);
-                _perfectSize.Minimum = new Size(Math.Min(10, _perfectSize.Request.Width), _perfectSize.Request.Height);
-                _perfectSizeValid = true;
-            }
-
-            var widthFits = widthConstraint >= _perfectSize.Request.Width;
-            var heightFits = heightConstraint >= _perfectSize.Request.Height;
-
-            if (widthFits && heightFits)
-                return _perfectSize;
-
-            var result = base.GetDesiredSize(widthConstraint, heightConstraint);
-            var tinyWidth = Math.Min(10, result.Request.Width);
-            result.Minimum = new Size(tinyWidth, result.Request.Height);
-
-            if (widthFits || Element.LineBreakMode == LineBreakMode.NoWrap)
-                return result;
-
-            var containerIsNotInfinitelyWide = !double.IsInfinity(widthConstraint);
-
-            if (containerIsNotInfinitelyWide)
-            {
-                var textCouldHaveWrapped = Element.LineBreakMode == LineBreakMode.WordWrap || Element.LineBreakMode == LineBreakMode.CharacterWrap;
-                var textExceedsContainer = result.Request.Width > widthConstraint;
-
-                if (textExceedsContainer || textCouldHaveWrapped)
-                {
-                    var expandedWidth = Math.Max(tinyWidth, widthConstraint);
-                    result.Request = new Size(expandedWidth, result.Request.Height);
-                }
-            }
-
-            return result;
-        }
 
         private void UpdateLineBreakMode()
         {
-#if __MOBILE__
-            switch (Element.LineBreakMode)
+            switch (this.Element.LineBreakMode)
             {
                 case LineBreakMode.NoWrap:
-                    Control.TextContainer.LineBreakMode = UILineBreakMode.Clip;
+                    this.Control.TextContainer.LineBreakMode = UILineBreakMode.Clip;
                     break;
                 case LineBreakMode.WordWrap:
-                    Control.TextContainer.LineBreakMode = UILineBreakMode.WordWrap;
+                    this.Control.TextContainer.LineBreakMode = UILineBreakMode.WordWrap;
                     break;
                 case LineBreakMode.CharacterWrap:
-                    Control.TextContainer.LineBreakMode = UILineBreakMode.CharacterWrap;
+                    this.Control.TextContainer.LineBreakMode = UILineBreakMode.CharacterWrap;
                     break;
                 case LineBreakMode.HeadTruncation:
-                    Control.TextContainer.LineBreakMode = UILineBreakMode.HeadTruncation;
+                    this.Control.TextContainer.LineBreakMode = UILineBreakMode.HeadTruncation;
                     break;
                 case LineBreakMode.MiddleTruncation:
-                    Control.TextContainer.LineBreakMode = UILineBreakMode.MiddleTruncation;
+                    this.Control.TextContainer.LineBreakMode = UILineBreakMode.MiddleTruncation;
                     break;
                 case LineBreakMode.TailTruncation:
-                    Control.TextContainer.LineBreakMode = UILineBreakMode.TailTruncation;
+                    this.Control.TextContainer.LineBreakMode = UILineBreakMode.TailTruncation;
                     break;
             }
-#else
-			switch (Element.LineBreakMode)
-			{
-				case LineBreakMode.NoWrap:
-					Control.TextContainer.LineBreakMode = NSLineBreakMode.Clipping;
-					break;
-				case LineBreakMode.WordWrap:
-					Control.TextContainer.LineBreakMode = NSLineBreakMode.ByWordWrapping;
-					break;
-				case LineBreakMode.CharacterWrap:
-					Control.TextContainer.LineBreakMode = NSLineBreakMode.CharWrapping;
-					break;
-				case LineBreakMode.HeadTruncation:
-					Control.TextContainer.LineBreakMode = NSLineBreakMode.TruncatingHead;
-					break;
-				case LineBreakMode.MiddleTruncation:
-					Control.TextContainer.LineBreakMode = NSLineBreakMode.TruncatingMiddle;
-					break;
-				case LineBreakMode.TailTruncation:
-					Control.TextContainer.LineBreakMode = NSLineBreakMode.TruncatingTail;
-					break;
-			}
-#endif
         }
 
         private void UpdatePadding()
         {
-#if __MOBILE__
+            this.Control.TextContainerInset = new UIEdgeInsets(
+                (float)this.Element.Padding.Top,
+                (float)this.Element.Padding.Left,
+                (float)this.Element.Padding.Bottom,
+                (float)this.Element.Padding.Right);
 
-            Control.TextContainerInset = new UIEdgeInsets(
-                (float)Element.Padding.Top,
-                (float)Element.Padding.Left,
-                (float)Element.Padding.Bottom,
-                (float)Element.Padding.Right);
-
-            UpdateLayout();
-#endif
+            this.UpdateLayout();
         }
 
         private void UpdateLayout()
         {
-#if __MOBILE__
-            LayoutSubviews();
-#else
-			Layout();
-#endif
+            this.LayoutSubviews();
         }
 
         private void UpdateHorizontalTextAlignment()
         {
-#if __MOBILE__
-
-            Control.TextAlignment = Element.HorizontalTextAlignment.ToNativeTextAlignment(((IVisualElementController)Element).EffectiveFlowDirection);
-#else
-			Control.Alignment = Element.HorizontalTextAlignment.ToNativeTextAlignment(((IVisualElementController)Element).EffectiveFlowDirection);
-#endif
+            this.Control.TextAlignment = this.Element.HorizontalTextAlignment.ToNativeTextAlignment(((IVisualElementController)this.Element).EffectiveFlowDirection);
         }
     }
 }

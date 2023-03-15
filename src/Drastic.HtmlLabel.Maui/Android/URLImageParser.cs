@@ -1,11 +1,15 @@
-﻿using Android.Graphics;
+﻿// <copyright file="URLImageParser.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
+using System.IO;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Text;
 using Android.Widget;
 using Java.Net;
-using System;
-using System.IO;
 
 namespace Drastic.HtmlLabel.Maui
 {
@@ -15,28 +19,28 @@ namespace Drastic.HtmlLabel.Maui
 
         public override void Draw(Canvas canvas)
         {
-            if (Drawable != null)
+            if (this.Drawable != null)
             {
-                Drawable.Draw(canvas); ;
+                this.Drawable.Draw(canvas);
             }
         }
     }
 
     internal class ImageGetterAsyncTask : AsyncTask<string, int, Drawable>
     {
-        private readonly UrlDrawable _urlDrawable;
-        private readonly TextView _container;
+        private readonly UrlDrawable urlDrawable;
+        private readonly TextView container;
 
         public ImageGetterAsyncTask(UrlDrawable urlDrawable, TextView container)
         {
-            _urlDrawable = urlDrawable;
-            _container = container;
+            this.urlDrawable = urlDrawable;
+            this.container = container;
         }
 
         protected override Drawable RunInBackground(params string[] @params)
         {
             var source = @params[0];
-            return FetchDrawable(source);
+            return this.FetchDrawable(source);
         }
 
         protected override void OnPostExecute(Drawable result)
@@ -46,20 +50,28 @@ namespace Drastic.HtmlLabel.Maui
                 return;
             }
 
-            // Set the correct bound according to the result from HTTP call 
-            _urlDrawable.SetBounds(0, 0, 0 + result.IntrinsicWidth, 0 + result.IntrinsicHeight);
+            // Set the correct bound according to the result from HTTP call
+            this.urlDrawable.SetBounds(0, 0, 0 + result.IntrinsicWidth, 0 + result.IntrinsicHeight);
 
-            // Change the reference of the current drawable to the result from the HTTP call 
-            _urlDrawable.Drawable = result;
+            // Change the reference of the current drawable to the result from the HTTP call
+            this.urlDrawable.Drawable = result;
 
             // Redraw the image by invalidating the container
-            _container.Invalidate();
+            this.container.Invalidate();
 
             // For ICS
-            _container.SetHeight(_container.Height + result.IntrinsicHeight);
+            this.container.SetHeight(this.container.Height + result.IntrinsicHeight);
 
             // Pre ICS
-            _container.Ellipsize = null;
+            this.container.Ellipsize = null;
+        }
+
+        private static Stream Fetch(string urlString)
+        {
+            var url = new URL(urlString);
+            var urlConnection = (HttpURLConnection)url.OpenConnection();
+            Stream stream = urlConnection.InputStream;
+            return stream;
         }
 
         private Drawable FetchDrawable(string urlString)
@@ -77,30 +89,22 @@ namespace Drastic.HtmlLabel.Maui
                 return null;
             }
         }
-
-        private static Stream Fetch(string urlString)
-        {
-            var url = new URL(urlString);
-            var urlConnection = (HttpURLConnection)url.OpenConnection();
-            Stream stream = urlConnection.InputStream;
-            return stream;
-        }
     }
 
     internal class UrlImageParser : Java.Lang.Object, Html.IImageGetter
     {
-        private readonly TextView _container;
+        private readonly TextView container;
 
         public UrlImageParser(TextView container)
         {
-            _container = container;
+            this.container = container;
         }
 
         public Drawable GetDrawable(string source)
         {
             var urlDrawable = new UrlDrawable();
 
-            var asyncTask = new ImageGetterAsyncTask(urlDrawable, _container);
+            var asyncTask = new ImageGetterAsyncTask(urlDrawable, this.container);
             _ = asyncTask.Execute(source);
 
             return urlDrawable;

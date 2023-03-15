@@ -1,12 +1,16 @@
-﻿using Foundation;
-using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
+﻿// <copyright file="Extensions.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Foundation;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
+using Microsoft.Maui.Controls.Internals;
 using UIKit;
 using NativeFont = UIKit.UIFont;
-using Microsoft.Maui.Controls.Internals;
 
 namespace Drastic.HtmlLabel.Maui
 {
@@ -33,7 +37,23 @@ namespace Drastic.HtmlLabel.Maui
 
     internal static class FontExtensions
     {
-        static readonly string _defaultFontName = NativeFont.SystemFontOfSize(12).Name;
+        private static readonly string defaultFontName = NativeFont.SystemFontOfSize(12).Name;
+
+/* プロジェクト 'Drastic.HtmlLabel.Maui(net7.0-maccatalyst)' からのマージされていない変更
+前:
+        internal static bool IsBold(NativeFont font)
+後:
+        private static readonly Dictionary<ToNativeFontFontKey, NativeFont> ToUiFont = new Dictionary<ToNativeFontFontKey, NativeFont>();
+
+        public static NativeFont ToUIFont(this Microsoft.Maui.Font self) => self.ToNativeFont();
+
+        internal static bool IsBold(NativeFont font)
+*/
+
+        private static readonly Dictionary<ToNativeFontFontKey, NativeFont> ToUiFont = new Dictionary<ToNativeFontFontKey, NativeFont>();
+
+        public static NativeFont ToUIFont(this Microsoft.Maui.Font self) => self.ToNativeFont();
+
         internal static bool IsBold(NativeFont font)
         {
             UIFontDescriptor fontDescriptor = font.FontDescriptor;
@@ -49,6 +69,8 @@ namespace Drastic.HtmlLabel.Maui
             UIFontDescriptor boldFontDescriptor = fontDescriptor.CreateWithTraits(traits);
             return NativeFont.FromDescriptor(boldFontDescriptor, font.PointSize);
         }
+
+
         internal static NativeFont Italic(this NativeFont self)
         {
             UIFontDescriptor fontDescriptor = self.FontDescriptor;
@@ -66,16 +88,22 @@ namespace Drastic.HtmlLabel.Maui
             UIFontDescriptor boldFontDescriptor = fontDescriptor.CreateWithTraits(traits);
             return NativeFont.FromDescriptor(boldFontDescriptor, self.PointSize);
         }
-        public static NativeFont ToUIFont(this Microsoft.Maui.Font self) => self.ToNativeFont();
 
         internal static NativeFont ToUIFont(this IFontElement element) => element.ToNativeFont();
 
-        static NativeFont _ToNativeFont(string family, float size, FontAttributes attributes)
+        internal static string CleanseFontName(string fontName)
+        {
+            var fontFile = FontFile.FromString(fontName);
+
+            return fontFile.PostScriptName;
+        }
+
+        private static NativeFont ToNativeFont1(string family, float size, FontAttributes attributes)
         {
             var bold = (attributes & FontAttributes.Bold) != 0;
             var italic = (attributes & FontAttributes.Italic) != 0;
 
-            if (family != null && family != _defaultFontName)
+            if (family != null && family != defaultFontName)
             {
                 try
                 {
@@ -88,14 +116,21 @@ namespace Drastic.HtmlLabel.Maui
                         {
                             var traits = (UIFontDescriptorSymbolicTraits)0;
                             if (bold)
+                            {
                                 traits = traits | UIFontDescriptorSymbolicTraits.Bold;
+                            }
+
                             if (italic)
+                            {
                                 traits = traits | UIFontDescriptorSymbolicTraits.Italic;
+                            }
 
                             descriptor = descriptor.CreateWithTraits(traits);
                             result = NativeFont.FromDescriptor(descriptor, size);
                             if (result != null)
+                            {
                                 return result;
+                            }
                         }
                     }
 
@@ -114,10 +149,16 @@ namespace Drastic.HtmlLabel.Maui
                         result = NativeFont.SystemFontOfSize(size, UIFontWeight.Regular);
                         return result;
                     }
+
                     if (result == null)
+                    {
                         result = NativeFont.FromName(family, size);
+                    }
+
                     if (result != null)
+                    {
                         return result;
+                    }
                 }
                 catch
                 {
@@ -134,22 +175,17 @@ namespace Drastic.HtmlLabel.Maui
             }
 
             if (italic)
+            {
                 return NativeFont.ItalicSystemFontOfSize(size);
+            }
 
             if (bold)
+            {
                 return NativeFont.BoldSystemFontOfSize(size);
+            }
 
             return NativeFont.SystemFontOfSize(size);
         }
-
-        internal static string CleanseFontName(string fontName)
-        {
-            var fontFile = FontFile.FromString(fontName);
-
-            return fontFile.PostScriptName;
-        }
-
-        static readonly Dictionary<ToNativeFontFontKey, NativeFont> ToUiFont = new Dictionary<ToNativeFontFontKey, NativeFont>();
 
         internal static bool IsDefault(this Span self)
         {
@@ -157,24 +193,24 @@ namespace Drastic.HtmlLabel.Maui
                     self.FontAttributes == FontAttributes.None;
         }
 
-        static NativeFont ToNativeFont(this IFontElement element)
+        private static NativeFont ToNativeFont(this IFontElement element)
         {
             var fontFamily = element.FontFamily;
             var fontSize = (float)element.FontSize;
             var fontAttributes = element.FontAttributes;
-            return ToNativeFont(fontFamily, fontSize, fontAttributes, _ToNativeFont);
+            return ToNativeFont(fontFamily, fontSize, fontAttributes, ToNativeFont1);
         }
 
-        static NativeFont ToNativeFont(this Microsoft.Maui.Font self)
+        private static NativeFont ToNativeFont(this Microsoft.Maui.Font self)
         {
             var size = (float)self.Size;
 
             var fontAttributes = self.GetFontAttributes();
 
-            return ToNativeFont(self.Family, size, fontAttributes, _ToNativeFont);
+            return ToNativeFont(self.Family, size, fontAttributes, ToNativeFont1);
         }
 
-        static NativeFont ToNativeFont(string family, float size, FontAttributes attributes, Func<string, float, FontAttributes, NativeFont> factory)
+        private static NativeFont ToNativeFont(string family, float size, FontAttributes attributes, Func<string, float, FontAttributes, NativeFont> factory)
         {
             var key = new ToNativeFontFontKey(family, size, attributes);
 
@@ -182,7 +218,9 @@ namespace Drastic.HtmlLabel.Maui
             {
                 NativeFont value;
                 if (ToUiFont.TryGetValue(key, out value))
+                {
                     return value;
+                }
             }
 
             var generatedValue = factory(family, size, attributes);
@@ -191,23 +229,28 @@ namespace Drastic.HtmlLabel.Maui
             {
                 NativeFont value;
                 if (!ToUiFont.TryGetValue(key, out value))
+                {
                     ToUiFont.Add(key, value = generatedValue);
+                }
+
                 return value;
             }
         }
 
-        struct ToNativeFontFontKey
+        private struct ToNativeFontFontKey
         {
+#pragma warning disable 0414 // these are not called explicitly, but they are used to establish uniqueness. allow it!
+            private string family;
+
             internal ToNativeFontFontKey(string family, float size, FontAttributes attributes)
             {
-                _family = family;
-                _size = size;
-                _attributes = attributes;
+                this.family = family;
+                this.size = size;
+                this.attributes = attributes;
             }
-#pragma warning disable 0414 // these are not called explicitly, but they are used to establish uniqueness. allow it!
-            string _family;
-            float _size;
-            FontAttributes _attributes;
+
+            private float size;
+            private FontAttributes attributes;
 #pragma warning restore 0414
         }
     }
@@ -229,19 +272,18 @@ namespace Drastic.HtmlLabel.Maui
 
         internal static void SetLinksStyles(this NSMutableAttributedString mutableHtmlString, HtmlLabel element)
         {
-
             UIStringAttributes linkAttributes = null;
 
             if (!element.UnderlineText)
             {
                 linkAttributes ??= new UIStringAttributes();
                 linkAttributes.UnderlineStyle = NSUnderlineStyle.None;
-            };
+            }
             if (!element.LinkColor.IsDefault())
             {
                 linkAttributes ??= new UIStringAttributes();
                 linkAttributes.ForegroundColor = element.LinkColor.ToUIColor();
-            };
+            }
 
             mutableHtmlString.EnumerateAttribute(UIStringAttributeKey.Link, new NSRange(0, mutableHtmlString.Length), NSAttributedStringEnumeration.LongestEffectiveRangeNotRequired,
                 (NSObject value, NSRange range, ref bool stop) =>
@@ -255,21 +297,25 @@ namespace Drastic.HtmlLabel.Maui
                         }
                     }
                 });
-
         }
+
         internal static NSMutableAttributedString RemoveTrailingNewLines(this NSAttributedString htmlString)
         {
             var count = 0;
             for (int i = 1; i <= htmlString.Length; i++)
             {
-                if ("\n" != htmlString.Substring(htmlString.Length - i, 1).Value)
+                if (htmlString.Substring(htmlString.Length - i, 1).Value != "\n")
+                {
                     break;
+                }
 
                 count++;
             }
 
             if (count > 0)
+            {
                 htmlString = htmlString.Substring(0, htmlString.Length - count);
+            }
 
             return new NSMutableAttributedString(htmlString);
         }
@@ -277,7 +323,9 @@ namespace Drastic.HtmlLabel.Maui
         internal static NSMutableAttributedString AddCharacterSpacing(this NSAttributedString attributedString, string text, double characterSpacing)
         {
             if (attributedString == null && characterSpacing == 0)
+            {
                 return null;
+            }
 
             NSMutableAttributedString mutableAttributedString = attributedString as NSMutableAttributedString;
             if (attributedString == null || attributedString.Length == 0)
@@ -293,17 +341,24 @@ namespace Drastic.HtmlLabel.Maui
 
             return mutableAttributedString;
         }
+
         internal static bool HasCharacterAdjustment(this NSMutableAttributedString mutableAttributedString)
         {
             if (mutableAttributedString == null)
+            {
                 return false;
+            }
 
             NSRange removalRange;
             var attributes = mutableAttributedString.GetAttributes(0, out removalRange);
 
             for (uint i = 0; i < attributes.Count; i++)
+            {
                 if (attributes.Keys[i] is NSString nSString && nSString == UIStringAttributeKey.KerningAdjustment)
+                {
                     return true;
+                }
+            }
 
             return false;
         }
@@ -313,13 +368,13 @@ namespace Drastic.HtmlLabel.Maui
             if (!string.IsNullOrEmpty(text))
             {
                 if (characterSpacing == 0 && !mutableAttributedString.HasCharacterAdjustment())
+                {
                     return;
+                }
 
-                mutableAttributedString.AddAttribute
-                (
+                mutableAttributedString.AddAttribute(
                     UIStringAttributeKey.KerningAdjustment,
-                    NSObject.FromObject(characterSpacing), new NSRange(0, text.Length - 1)
-                );
+                    NSObject.FromObject(characterSpacing), new NSRange(0, text.Length - 1));
             }
         }
 
@@ -339,14 +394,23 @@ namespace Drastic.HtmlLabel.Maui
                     return UITextAlignment.Center;
                 case TextAlignment.End:
                     if (isLtr)
+                    {
                         return UITextAlignment.Right;
+                    }
                     else
+                    {
                         return UITextAlignment.Left;
+                    }
+
                 default:
                     if (isLtr)
+                    {
                         return UITextAlignment.Left;
+                    }
                     else
+                    {
                         return UITextAlignment.Right;
+                    }
             }
         }
 

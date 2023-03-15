@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="HttpUtility.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +17,7 @@ namespace Drastic.HtmlLabel.Maui
                 throw new ArgumentNullException(nameof(uri));
             }
 
-            if (uri.Query.Length == 0 || uri.Query.Length == 1 && uri.Query[0] == '?')
+            if (uri.Query.Length == 0 || (uri.Query.Length == 1 && uri.Query[0] == '?'))
             {
                 return new Dictionary<string, List<string>>();
             }
@@ -35,7 +39,10 @@ namespace Drastic.HtmlLabel.Maui
                     {
                         var values = g.Select(p => p.Item2);
                         if (decode)
+                        {
                             values = values.Select(Uri.UnescapeDataString);
+                        }
+
                         return values.ToList();
                     });
         }

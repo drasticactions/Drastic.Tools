@@ -6,7 +6,6 @@ using Microsoft.Maui.Controls.Compatibility.Hosting;
 
 namespace Drastic.HtmlLabel.Maui
 {
-
     /// <summary>
     /// Html Label Application Extensions.
     /// </summary>
@@ -19,10 +18,10 @@ namespace Drastic.HtmlLabel.Maui
         /// <returns>MauiAppBuilder.</returns>
         public static MauiAppBuilder AddHtmlLabelSupport(this MauiAppBuilder builder)
         {
-
             builder.UseMauiCompatibility();
 
-            builder.ConfigureMauiHandlers((handlers) => {
+            builder.ConfigureMauiHandlers((handlers) =>
+            {
 #if ANDROID
                 HtmlLabelRenderer.Initialize();
                 handlers.AddCompatibilityRenderer(typeof(HtmlLabel), typeof(HtmlLabelRenderer));

@@ -1,23 +1,34 @@
-﻿using Drastic.HtmlLabel.Maui;
+﻿// <copyright file="Renderer.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
+using Drastic.HtmlLabel.Maui;
 using Foundation;
 using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
-using System;
+using Drastic.HtmlLabel.Maui;
+using Foundation;
+using Microsoft.Maui.Controls.Compatibility;
+using Microsoft.Maui.Controls.Compatibility.Platform.iOS;
 using UIKit;
 
 [assembly: ExportRenderer(typeof(HtmlLabel), typeof(HtmlLabelRenderer))]
+
 namespace Drastic.HtmlLabel.Maui
 {
     /// <summary>
-    /// HtmlLabel Implementation
+    /// HtmlLabel Implementation.
     /// </summary>
     [Preserve(AllMembers = true)]
     public class HtmlLabelRenderer : BaseTextViewRenderer<HtmlLabel>
     {
         /// <summary>
-        /// Used for registration with dependency service
+        /// Used for registration with dependency service.
         /// </summary>
-        public static void Initialize() { }
+        public static void Initialize()
+        {
+        }
 
         protected override bool NavigateToUrl(NSUrl url)
         {
@@ -25,33 +36,35 @@ namespace Drastic.HtmlLabel.Maui
             {
                 throw new ArgumentNullException(nameof(url));
             }
+
             // Try to handle uri, if it can't be handled, fall back to IOS his own handler.
-            return !RendererHelper.HandleUriClick(Element, url.AbsoluteString);
+            return !RendererHelper.HandleUriClick(this.Element, url.AbsoluteString);
         }
 
         protected override void ProcessText()
         {
-            if (string.IsNullOrWhiteSpace(Element?.Text))
+            if (string.IsNullOrWhiteSpace(this.Element?.Text))
             {
-                Control.Text = string.Empty;
+                this.Control.Text = string.Empty;
                 return;
             }
 
-            Control.Font = Element.ToUIFont();
-            if (!Element.TextColor.IsDefault())
+            this.Control.Font = this.Element.ToUIFont();
+            if (!this.Element.TextColor.IsDefault())
             {
-                Control.TextColor = Element.TextColor.ToUIColor();
+                this.Control.TextColor = this.Element.TextColor.ToUIColor();
             }
 
-            var linkColor = Element.LinkColor;
+            var linkColor = this.Element.LinkColor;
             if (!linkColor.IsDefault())
             {
-                Control.TintColor = linkColor.ToUIColor();
+                this.Control.TintColor = linkColor.ToUIColor();
             }
+
             var isRtl = Device.FlowDirection == FlowDirection.RightToLeft;
-            var styledHtml = new RendererHelper(Element, Element.Text, Device.RuntimePlatform, isRtl).ToString();
-            SetText(styledHtml);
-            SetNeedsDisplay();
+            var styledHtml = new RendererHelper(this.Element, this.Element.Text, Device.RuntimePlatform, isRtl).ToString();
+            this.SetText(styledHtml);
+            this.SetNeedsDisplay();
         }
 
         private void SetText(string html)
@@ -59,7 +72,7 @@ namespace Drastic.HtmlLabel.Maui
             // Create HTML data sting
             var stringType = new NSAttributedStringDocumentAttributes
             {
-                DocumentType = NSDocumentType.HTML
+                DocumentType = NSDocumentType.HTML,
             };
             var nsError = new NSError();
 
@@ -76,24 +89,25 @@ namespace Drastic.HtmlLabel.Maui
 
                     if (font != null)
                     {
-                        md[UIStringAttributeKey.Font] = Control.Font.WithTraitsOfFont(font);
+                        md[UIStringAttributeKey.Font] = this.Control.Font.WithTraitsOfFont(font);
                     }
                     else
                     {
-                        md[UIStringAttributeKey.Font] = Control.Font;
+                        md[UIStringAttributeKey.Font] = this.Control.Font;
                     }
 
                     var foregroundColor = md[UIStringAttributeKey.ForegroundColor] as UIColor;
                     if (foregroundColor == null || foregroundColor.IsEqualToColor(UIColor.Black))
                     {
-                        md[UIStringAttributeKey.ForegroundColor] = Control.TextColor;
+                        md[UIStringAttributeKey.ForegroundColor] = this.Control.TextColor;
                     }
+
                     mutableHtmlString.SetAttributes(md, range);
                 });
 
-            mutableHtmlString.SetLineHeight(Element);
-            mutableHtmlString.SetLinksStyles(Element);
-            Control.AttributedText = mutableHtmlString;
+            mutableHtmlString.SetLineHeight(this.Element);
+            mutableHtmlString.SetLinksStyles(this.Element);
+            this.Control.AttributedText = mutableHtmlString;
         }
     }
 }

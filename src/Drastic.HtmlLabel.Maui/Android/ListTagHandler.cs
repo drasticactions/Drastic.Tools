@@ -1,9 +1,14 @@
-﻿using Android.Text;
+﻿// <copyright file="ListTagHandler.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using Android.Text;
 using Drastic.HtmlLabel.Maui;
 using Microsoft.Maui.Controls.Compatibility;
 using Org.Xml.Sax;
 
 [assembly: ExportRenderer(typeof(HtmlLabel), typeof(HtmlLabelRenderer))]
+
 namespace Drastic.HtmlLabel.Maui
 {
     /// <summary>
@@ -15,10 +20,11 @@ namespace Drastic.HtmlLabel.Maui
         public const string TagOl = "OLC";
         public const string TagLi = "LIC";
 
-        private ListBuilder _listBuilder; // KWI-FIX: removed new, set in constructor
+        private ListBuilder listBuilder; // KWI-FIX: removed new, set in constructor
+
         public ListTagHandler(int listIndent) // KWI-FIX: added constructor with listIndent property
         {
-            _listBuilder = new ListBuilder(listIndent);
+            this.listBuilder = new ListBuilder(listIndent);
         }
 
         public void HandleTag(bool isOpening, string tag, IEditable output, IXMLReader xmlReader)
@@ -29,19 +35,20 @@ namespace Drastic.HtmlLabel.Maui
             // Is list item
             if (isItem)
             {
-                _listBuilder.AddListItem(isOpening, output);
+                this.listBuilder.AddListItem(isOpening, output);
             }
+
             // Is list
             else
             {
                 if (isOpening)
                 {
                     var isOrdered = tag == TagOl;
-                    _listBuilder = _listBuilder.StartList(isOrdered, output);
+                    this.listBuilder = this.listBuilder.StartList(isOrdered, output);
                 }
                 else
                 {
-                    _listBuilder = _listBuilder.CloseList(output);
+                    this.listBuilder = this.listBuilder.CloseList(output);
                 }
             }
         }

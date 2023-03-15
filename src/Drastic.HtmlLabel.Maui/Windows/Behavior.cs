@@ -1,27 +1,36 @@
-﻿using Microsoft.Xaml.Interactivity;
-using Microsoft.Maui.Controls.Compatibility;
+﻿// <copyright file="Behavior.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
 using Drastic.HtmlLabel.Maui;
+using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.UI.Xaml;
+using Microsoft.Xaml.Interactivity;
 
 [assembly: ExportRenderer(typeof(HtmlLabel), typeof(HtmlLabelRenderer))]
+
 namespace Drastic.HtmlLabel.Maui
 {
     internal abstract class Behavior : DependencyObject, IBehavior
-	{
-		public void Attach(DependencyObject associatedObject)
-		{
-			AssociatedObject = associatedObject;
-			OnAttached();
-		}
+    {
+        protected DependencyObject AssociatedObject { get; set; }
 
-		public void Detach() => OnDetaching();
+        public void Attach(DependencyObject associatedObject)
+        {
+            this.AssociatedObject = associatedObject;
+            this.OnAttached();
+        }
 
-		protected virtual void OnAttached() { }
+        public void Detach() => this.OnDetaching();
 
-		protected virtual void OnDetaching() { }
+        protected virtual void OnAttached()
+        {
+        }
 
-		protected DependencyObject AssociatedObject { get; set; }
+        protected virtual void OnDetaching()
+        {
+        }
 
-		DependencyObject IBehavior.AssociatedObject => AssociatedObject;
-	}
+        DependencyObject IBehavior.AssociatedObject => this.AssociatedObject;
+    }
 }

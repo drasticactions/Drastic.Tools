@@ -1,4 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿// <copyright file="StringExtensions.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System.Text.RegularExpressions;
 
 namespace Drastic.HtmlLabel.Maui
 {

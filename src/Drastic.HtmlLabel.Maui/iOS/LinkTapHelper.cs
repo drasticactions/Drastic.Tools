@@ -1,7 +1,11 @@
-﻿using CoreGraphics;
+﻿// <copyright file="LinkTapHelper.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using System;
+using CoreGraphics;
 using Drastic.HtmlLabel.Maui;
 using Foundation;
-using System;
 using UIKit;
 
 namespace Drastic.HtmlLabel.Maui
@@ -33,7 +37,7 @@ namespace Drastic.HtmlLabel.Maui
             {
                 LineFragmentPadding = 0,
                 LineBreakMode = control.LineBreakMode,
-                MaximumNumberOfLines = (nuint)control.Lines
+                MaximumNumberOfLines = (nuint)control.Lines,
             };
 
             using var layoutManager = new NSLayoutManager();
@@ -56,8 +60,8 @@ namespace Drastic.HtmlLabel.Maui
                 _ => 0.0f,
             };
             nfloat alignmentOffset = GetAlignOffset(control.TextAlignment);
-            nfloat xOffset = (bounds.Size.Width - textBoundingBox.Size.Width) * alignmentOffset - textBoundingBox.Location.X;
-            nfloat yOffset = (bounds.Size.Height - textBoundingBox.Size.Height) * alignmentOffset - textBoundingBox.Location.Y;
+            nfloat xOffset = ((bounds.Size.Width - textBoundingBox.Size.Width) * alignmentOffset) - textBoundingBox.Location.X;
+            nfloat yOffset = ((bounds.Size.Height - textBoundingBox.Size.Height) * alignmentOffset) - textBoundingBox.Location.Y;
 
             // Find tapped character
             CGPoint locationOfTouchInLabel = tap.LocationInView(control);

@@ -1,4 +1,8 @@
-﻿using Android.Text;
+﻿// <copyright file="ListBuilder.cs" company="Drastic Actions">
+// Copyright (c) Drastic Actions. All rights reserved.
+// </copyright>
+
+using Android.Text;
 using Android.Text.Style;
 using Android.Widget;
 using Drastic.HtmlLabel.Maui;
@@ -6,44 +10,45 @@ using Java.Lang;
 using Microsoft.Maui.Controls.Compatibility;
 
 [assembly: ExportRenderer(typeof(HtmlLabel), typeof(HtmlLabelRenderer))]
+
 namespace Drastic.HtmlLabel.Maui
 {
     internal class ListBuilder
     {
-        private int _listIndent = 20; // KWI-FIX : changed from constant to prop
+        private readonly int gap = 0;
 
+        private int listIndent = 20; // KWI-FIX : changed from constant to prop
+        private readonly LiGap liGap;
+        private readonly ListBuilder parent = null;
 
-        private readonly int _gap = 0;
-        private readonly LiGap _liGap;
-        private readonly ListBuilder _parent = null;
-
-        private int _liIndex = -1;
-        private int _liStart = -1;
+        private int liIndex = -1;
+        private int liStart = -1;
 
         public ListBuilder(int listIndent) // KWI-FIX: added listIndent
         {
-            _listIndent = listIndent;
-            _parent = null;
-            _gap = 0;
-            _liGap = GetLiGap(null);
+            this.listIndent = listIndent;
+            this.parent = null;
+            this.gap = 0;
+            this.liGap = GetLiGap(null);
         }
 
         private ListBuilder(ListBuilder parent, bool ordered, int listIndent) // KWI-FIX: added listIndent
         {
-            _listIndent = listIndent;
-            _parent = parent;
-            _liGap = parent._liGap;
-            _gap = parent._gap + _listIndent + _liGap.GetGap(ordered);
-            _liIndex = ordered ? 0 : -1;
+            this.listIndent = listIndent;
+            this.parent = parent;
+            this.liGap = parent.liGap;
+            this.gap = parent.gap + this.listIndent + this.liGap.GetGap(ordered);
+            this.liIndex = ordered ? 0 : -1;
         }
 
         public ListBuilder StartList(bool ordered, IEditable output)
         {
-            if (_parent == null && output.Length() > 0)
+            if (this.parent == null && output.Length() > 0)
             {
                 _ = output.Append("\n ");
             }
-            return new ListBuilder(this, ordered, _listIndent); // KWI-FIX: pass thru listIndent
+
+            return new ListBuilder(this, ordered, this.listIndent); // KWI-FIX: pass thru listIndent
         }
 
         public void AddListItem(bool isOpening, IEditable output)
@@ -51,21 +56,21 @@ namespace Drastic.HtmlLabel.Maui
             if (isOpening)
             {
                 EnsureParagraphBoundary(output);
-                _liStart = output.Length();
+                this.liStart = output.Length();
 
-                var lineStart = IsOrdered()
-                    ? ++_liIndex + ". "
+                var lineStart = this.IsOrdered()
+                    ? ++this.liIndex + ". "
                     : "•  ";
                 _ = output.Append(lineStart);
             }
             else
             {
-                if (_liStart >= 0)
+                if (this.liStart >= 0)
                 {
                     EnsureParagraphBoundary(output);
-                    using var leadingMarginSpan = new LeadingMarginSpanStandard(_gap - _liGap.GetGap(IsOrdered()), _gap);
-                    output.SetSpan(leadingMarginSpan, _liStart, output.Length(), SpanTypes.ExclusiveExclusive);
-                    _liStart = -1;
+                    using var leadingMarginSpan = new LeadingMarginSpanStandard(this.gap - this.liGap.GetGap(this.IsOrdered()), this.gap);
+                    output.SetSpan(leadingMarginSpan, this.liStart, output.Length(), SpanTypes.ExclusiveExclusive);
+                    this.liStart = -1;
                 }
             }
         }
@@ -73,23 +78,18 @@ namespace Drastic.HtmlLabel.Maui
         public ListBuilder CloseList(IEditable output)
         {
             EnsureParagraphBoundary(output);
-            ListBuilder result = _parent;
+            ListBuilder result = this.parent;
             if (result == null)
             {
                 result = this;
             }
 
-            if (result._parent == null)
+            if (result.parent == null)
             {
                 _ = output.Append('\n');
             }
 
             return result;
-        }
-
-        private bool IsOrdered()
-        {
-            return _liIndex >= 0;
         }
 
         private static void EnsureParagraphBoundary(IEditable output)
@@ -106,29 +106,34 @@ namespace Drastic.HtmlLabel.Maui
             }
         }
 
-        private class LiGap
-        {
-            private readonly int _orderedGap;
-            private readonly int _unorderedGap;
-
-            internal LiGap(int orderedGap, int unorderedGap)
-            {
-                _orderedGap = orderedGap;
-                _unorderedGap = unorderedGap;
-            }
-
-            public int GetGap(bool ordered)
-            {
-                return ordered ? _orderedGap : _unorderedGap;
-            }
-        }
-
         private static LiGap GetLiGap(TextView tv)
         {
             var orderedGap = tv == null ? 40 : ComputeWidth(tv, true);
             var unorderedGap = tv == null ? 30 : ComputeWidth(tv, false);
 
             return new LiGap(orderedGap, unorderedGap);
+        }
+
+        private bool IsOrdered()
+        {
+            return this.liIndex >= 0;
+        }
+
+        private class LiGap
+        {
+            private readonly int orderedGap;
+            private readonly int unorderedGap;
+
+            internal LiGap(int orderedGap, int unorderedGap)
+            {
+                this.orderedGap = orderedGap;
+                this.unorderedGap = unorderedGap;
+            }
+
+            public int GetGap(bool ordered)
+            {
+                return ordered ? this.orderedGap : this.unorderedGap;
+            }
         }
 
         private static int ComputeWidth(TextView tv, bool isOrdered)
