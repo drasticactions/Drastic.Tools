@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="../MultiTargeting.targets" />
+	<PropertyGroup>
+		<TargetFrameworks>net7.0;net7.0-ios;net7.0-maccatalyst;net7.0-windows10.0.19041.0;net7.0-android</TargetFrameworks>
+		<UseMaui>true</UseMaui>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<IsPackable>true</IsPackable>
+		<Description>Turn HTML strings into MAUI Labels.</Description>
+		<PackageTags>catalyst winui android ios maui html label</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.HtmlLabel.Maui</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.HtmlLabel.Maui/CHANGELOG.md</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+		<CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
+		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+</Project>
