@@ -4,7 +4,7 @@
 
 Drastic.SplashScreen is a simple Twitter-style Splash Screen view for iOS, Catalyst, and tvOS. It was ported from [MSTwitterSplashScreen](https://github.com/mateuszszklarek/MSTwitterSplashScreen).
 
-![test](https://user-images.githubusercontent.com/898335/226174108-fa59f98a-6ca8-4161-bfb2-f25d15c0173a.gif)
+![test2](https://user-images.githubusercontent.com/898335/226174297-d02a9784-cf86-44cb-9be9-297af16da310.gif)
 
 # How To:
 
