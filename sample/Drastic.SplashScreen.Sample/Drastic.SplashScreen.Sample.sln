@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SplashScreen.Sample", "Drastic.SplashScreen.Sample\Drastic.SplashScreen.Sample.csproj", "{418E9265-E49A-4703-B8BB-4FB2C6C0DD7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SplashScreen.Sample.iOS", "Drastic.SplashScreen.Sample.iOS\Drastic.SplashScreen.Sample.iOS.csproj", "{8F4BE8D0-5CBF-4E0C-B6C2-C22C754B307F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SplashScreen.Sample.tvOS", "Drastic.SplashScreen.Sample.tvOS\Drastic.SplashScreen.Sample.tvOS.csproj", "{62E094E0-6B75-486B-B687-5FAF0544F8B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SplashScreen.Sample.Catalyst", "Drastic.SplashScreen.Sample.Catalyst\Drastic.SplashScreen.Sample.Catalyst.csproj", "{65D9CE11-E0D1-4CA0-9712-950FEC8894A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SplashScreen", "..\..\src\Drastic.SplashScreen\Drastic.SplashScreen.csproj", "{D0BE87D8-716D-4F68-95F3-B7714A00B17A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{418E9265-E49A-4703-B8BB-4FB2C6C0DD7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418E9265-E49A-4703-B8BB-4FB2C6C0DD7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418E9265-E49A-4703-B8BB-4FB2C6C0DD7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{418E9265-E49A-4703-B8BB-4FB2C6C0DD7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F4BE8D0-5CBF-4E0C-B6C2-C22C754B307F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4BE8D0-5CBF-4E0C-B6C2-C22C754B307F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4BE8D0-5CBF-4E0C-B6C2-C22C754B307F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4BE8D0-5CBF-4E0C-B6C2-C22C754B307F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E094E0-6B75-486B-B687-5FAF0544F8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E094E0-6B75-486B-B687-5FAF0544F8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E094E0-6B75-486B-B687-5FAF0544F8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E094E0-6B75-486B-B687-5FAF0544F8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65D9CE11-E0D1-4CA0-9712-950FEC8894A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65D9CE11-E0D1-4CA0-9712-950FEC8894A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65D9CE11-E0D1-4CA0-9712-950FEC8894A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65D9CE11-E0D1-4CA0-9712-950FEC8894A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0BE87D8-716D-4F68-95F3-B7714A00B17A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0BE87D8-716D-4F68-95F3-B7714A00B17A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0BE87D8-716D-4F68-95F3-B7714A00B17A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0BE87D8-716D-4F68-95F3-B7714A00B17A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
