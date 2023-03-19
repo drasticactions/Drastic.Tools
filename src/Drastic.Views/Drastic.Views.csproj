@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../MultiTargeting.targets" />
+	<PropertyGroup>
+		<TargetFrameworks>net7.0;net7.0-ios;net7.0-maccatalyst;net7.0-tvos</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<WinUIVersion>1.2.221109.1</WinUIVersion>
+		<IsPackable>true</IsPackable>
+		<Description>A collection of UI controls and views for .NET Platforms.</Description>
+		<PackageTags>ios catalyst tvos ui controls</PackageTags>
+		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Views</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Views/CHANGELOG.md</PackageReleaseNotes>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false" />
+		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+</Project>

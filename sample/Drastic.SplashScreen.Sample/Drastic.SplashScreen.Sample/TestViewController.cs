@@ -14,7 +14,7 @@ namespace Drastic.SplashScreen.Sample
         public TestViewController(CGRect frame)
         {
             this.splashScreen = new Drastic.SplashScreen.SplashScreen(this.TwitterPath(), UIColor.Blue, UIColor.White);
-            this.splashScreen.DurationAnimation = 2f;
+            this.splashScreen.DurationAnimation = 5f;
             this.label = new UILabel(frame)
             {
 #if !TVOS
