@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Markdown.Maui", "Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SplashScreen", "Drastic.SplashScreen\Drastic.SplashScreen.csproj", "{0FA175F2-AED1-4528-BA97-56F519CB1D31}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Flare", "Drastic.Flare\Drastic.Flare.csproj", "{A8653F05-2ACD-4373-A507-DF59AED561DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{0FA175F2-AED1-4528-BA97-56F519CB1D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FA175F2-AED1-4528-BA97-56F519CB1D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FA175F2-AED1-4528-BA97-56F519CB1D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8653F05-2ACD-4373-A507-DF59AED561DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8653F05-2ACD-4373-A507-DF59AED561DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8653F05-2ACD-4373-A507-DF59AED561DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8653F05-2ACD-4373-A507-DF59AED561DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

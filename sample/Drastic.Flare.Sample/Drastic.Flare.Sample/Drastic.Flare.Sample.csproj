@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net7.0-ios;net7.0-maccatalyst;net7.0-tvos</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CreatePackage>false</CreatePackage>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Drastic.Flare\Drastic.Flare.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Icon\" />
+    <None Remove="Icon\dotnet-bot.png" />
+    <None Remove="Icon\dotnet-bot-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Icon\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\dotnet-bot.png" />
+    <EmbeddedResource Include="Icon\dotnet-bot-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Drastic.Masonry" Version="1.0.2" />
+  </ItemGroup>
+</Project>
