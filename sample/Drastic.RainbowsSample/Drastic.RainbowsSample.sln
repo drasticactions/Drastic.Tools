@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.RainbowsSample.iOS", "Drastic.RainbowsSample.iOS\Drastic.RainbowsSample.iOS.csproj", "{7186EE50-60D5-4CDB-B19F-4C8223780F0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Rainbows", "..\..\src\Drastic.Rainbows\Drastic.Rainbows.csproj", "{FFC9C20F-D622-4CC5-A9C6-CDB77347859F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.RainbowsSample.Catalyst", "Drastic.RainbowsSample.Catalyst\Drastic.RainbowsSample.Catalyst.csproj", "{C2FC051F-AACF-47A2-B62D-ED177A96F401}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.RainbowsSample.tvOS", "Drastic.RainbowsSample.tvOS\Drastic.RainbowsSample.tvOS.csproj", "{024BED15-CB2E-41CD-9995-43C789CCE914}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.RainbowsSample.MacOS", "Drastic.RainbowsSample.MacOS\Drastic.RainbowsSample.MacOS.csproj", "{1C1EBE62-1C16-41A9-8E69-A5D8D3AB2C54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7186EE50-60D5-4CDB-B19F-4C8223780F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7186EE50-60D5-4CDB-B19F-4C8223780F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7186EE50-60D5-4CDB-B19F-4C8223780F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7186EE50-60D5-4CDB-B19F-4C8223780F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFC9C20F-D622-4CC5-A9C6-CDB77347859F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC9C20F-D622-4CC5-A9C6-CDB77347859F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC9C20F-D622-4CC5-A9C6-CDB77347859F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC9C20F-D622-4CC5-A9C6-CDB77347859F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2FC051F-AACF-47A2-B62D-ED177A96F401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2FC051F-AACF-47A2-B62D-ED177A96F401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2FC051F-AACF-47A2-B62D-ED177A96F401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2FC051F-AACF-47A2-B62D-ED177A96F401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{024BED15-CB2E-41CD-9995-43C789CCE914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{024BED15-CB2E-41CD-9995-43C789CCE914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{024BED15-CB2E-41CD-9995-43C789CCE914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{024BED15-CB2E-41CD-9995-43C789CCE914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C1EBE62-1C16-41A9-8E69-A5D8D3AB2C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C1EBE62-1C16-41A9-8E69-A5D8D3AB2C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C1EBE62-1C16-41A9-8E69-A5D8D3AB2C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C1EBE62-1C16-41A9-8E69-A5D8D3AB2C54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
