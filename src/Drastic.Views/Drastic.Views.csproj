@@ -12,4 +12,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CreatePackage>false</CreatePackage>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Drastic.Swizzle\Drastic.Swizzle.csproj" />
+  </ItemGroup>
 </Project>

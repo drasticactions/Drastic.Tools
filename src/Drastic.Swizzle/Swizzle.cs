@@ -8,9 +8,9 @@ using System;
 using ObjCRuntime;
 using System.Runtime.InteropServices;
 
-namespace Drastic.Rainbows
+namespace Drastic
 {
-    internal class Swizzle<TDelegate> : IDisposable where TDelegate : class
+    public class Swizzle<TDelegate> : IDisposable where TDelegate : class
     {
         protected IntPtr originalMethod;
         protected IntPtr originalImpl;

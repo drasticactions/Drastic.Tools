@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 
 #nullable disable
 
-namespace Drastic.Rainbows
+namespace Drastic
 {
-    internal class LibObjc
+    public class LibObjc
     {
         const string libobjc = "/usr/lib/libobjc.dylib";
         const string objc_msgSend = "objc_msgSend";

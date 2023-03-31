@@ -6,9 +6,9 @@ using ObjCRuntime;
 
 #nullable disable
 
-namespace Drastic.Rainbows
+namespace Drastic
 {
-    internal static class Extensions
+    public static class Extensions
     {
         public static Class GetClass(this Type type)
         {
