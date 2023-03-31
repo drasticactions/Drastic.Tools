@@ -5,7 +5,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<Description>Create Modal Windows for your WinUI apps.</Description>
+		<IsPackable>true</IsPackable>
+		<Description>Debug your .NET iOS and Mac UIViews with Color Rainbows.</Description>
 		<PackageTags>ios macos tvos mac catalyst uiview rainbows color</PackageTags>
 		<PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.Rainbows</PackageProjectUrl>
 		<PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.Rainbows/CHANGELOG.md</PackageReleaseNotes>
