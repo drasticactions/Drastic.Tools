@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.XamDialogSample", "Drastic.XamDialogSample\Drastic.XamDialogSample.csproj", "{80D27305-13B0-402D-85BE-152E5AA335A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.XamDialogSample.iOS", "Drastic.XamDialogSample.iOS\Drastic.XamDialogSample.iOS.csproj", "{D7BC876E-FF31-4691-AED7-E3D07D1519AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.XamDialogSample.Catalyst", "Drastic.XamDialogSample.Catalyst\Drastic.XamDialogSample.Catalyst.csproj", "{800F874F-C0BD-4F29-B37F-F8D7BAE4ADFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.XamDialogs", "..\..\src\Drastic.XamDialogs\Drastic.XamDialogs.csproj", "{D1517637-CBF7-4A88-9BC2-9CF797567A8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80D27305-13B0-402D-85BE-152E5AA335A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D27305-13B0-402D-85BE-152E5AA335A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D27305-13B0-402D-85BE-152E5AA335A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D27305-13B0-402D-85BE-152E5AA335A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7BC876E-FF31-4691-AED7-E3D07D1519AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7BC876E-FF31-4691-AED7-E3D07D1519AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7BC876E-FF31-4691-AED7-E3D07D1519AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7BC876E-FF31-4691-AED7-E3D07D1519AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{800F874F-C0BD-4F29-B37F-F8D7BAE4ADFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800F874F-C0BD-4F29-B37F-F8D7BAE4ADFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{800F874F-C0BD-4F29-B37F-F8D7BAE4ADFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{800F874F-C0BD-4F29-B37F-F8D7BAE4ADFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1517637-CBF7-4A88-9BC2-9CF797567A8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1517637-CBF7-4A88-9BC2-9CF797567A8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1517637-CBF7-4A88-9BC2-9CF797567A8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1517637-CBF7-4A88-9BC2-9CF797567A8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
