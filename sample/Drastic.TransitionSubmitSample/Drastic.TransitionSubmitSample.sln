@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TransitionSubmitSample", "Drastic.TransitionSubmitSample\Drastic.TransitionSubmitSample.csproj", "{B1945484-FE7F-4194-BADB-B3BCB09FEA04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TransitionSubmitSample.Catalyst", "Drastic.TransitionSubmitSample.Catalyst\Drastic.TransitionSubmitSample.Catalyst.csproj", "{1F3E95BD-2DC0-4737-B1B6-9FA6EF905F08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TransitionSubmitSample.iOS", "Drastic.TransitionSubmitSample.iOS\Drastic.TransitionSubmitSample.iOS.csproj", "{702A85F4-524D-4431-8AEC-3DE823A87D61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TransitionSubmitSample.tvOS", "Drastic.TransitionSubmitSample.tvOS\Drastic.TransitionSubmitSample.tvOS.csproj", "{B8788151-8AA8-454F-A709-5D5AF5F4318B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TransitionSubmit", "..\..\src\Drastic.TransitionSubmit\Drastic.TransitionSubmit.csproj", "{CDB6180A-ECE8-4F1C-B458-3235D3CBDF71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1945484-FE7F-4194-BADB-B3BCB09FEA04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1945484-FE7F-4194-BADB-B3BCB09FEA04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1945484-FE7F-4194-BADB-B3BCB09FEA04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1945484-FE7F-4194-BADB-B3BCB09FEA04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F3E95BD-2DC0-4737-B1B6-9FA6EF905F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F3E95BD-2DC0-4737-B1B6-9FA6EF905F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F3E95BD-2DC0-4737-B1B6-9FA6EF905F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F3E95BD-2DC0-4737-B1B6-9FA6EF905F08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{702A85F4-524D-4431-8AEC-3DE823A87D61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{702A85F4-524D-4431-8AEC-3DE823A87D61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{702A85F4-524D-4431-8AEC-3DE823A87D61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{702A85F4-524D-4431-8AEC-3DE823A87D61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8788151-8AA8-454F-A709-5D5AF5F4318B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8788151-8AA8-454F-A709-5D5AF5F4318B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8788151-8AA8-454F-A709-5D5AF5F4318B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8788151-8AA8-454F-A709-5D5AF5F4318B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDB6180A-ECE8-4F1C-B458-3235D3CBDF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDB6180A-ECE8-4F1C-B458-3235D3CBDF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDB6180A-ECE8-4F1C-B458-3235D3CBDF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDB6180A-ECE8-4F1C-B458-3235D3CBDF71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

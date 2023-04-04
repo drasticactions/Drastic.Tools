@@ -35,6 +35,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Swizzle", "Drastic.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.XamDialogs", "Drastic.XamDialogs\Drastic.XamDialogs.csproj", "{C1C5DF8A-1BEF-4304-96C2-8B031ABF545E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SidePanels", "Drastic.SidePanels\Drastic.SidePanels.csproj", "{08EA428C-5139-49DF-8A77-A7D7420ED0D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TransitionSubmit", "Drastic.TransitionSubmit\Drastic.TransitionSubmit.csproj", "{5147A777-3AD0-4306-BF16-4CC343BF3172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.AdvancedColorPicker", "Drastic.AdvancedColorPicker\Drastic.AdvancedColorPicker.csproj", "{4BD89666-6030-4D33-8C75-404933AE865B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +103,18 @@ Global
 		{C1C5DF8A-1BEF-4304-96C2-8B031ABF545E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1C5DF8A-1BEF-4304-96C2-8B031ABF545E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1C5DF8A-1BEF-4304-96C2-8B031ABF545E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08EA428C-5139-49DF-8A77-A7D7420ED0D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08EA428C-5139-49DF-8A77-A7D7420ED0D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08EA428C-5139-49DF-8A77-A7D7420ED0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08EA428C-5139-49DF-8A77-A7D7420ED0D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5147A777-3AD0-4306-BF16-4CC343BF3172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5147A777-3AD0-4306-BF16-4CC343BF3172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5147A777-3AD0-4306-BF16-4CC343BF3172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5147A777-3AD0-4306-BF16-4CC343BF3172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BD89666-6030-4D33-8C75-404933AE865B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BD89666-6030-4D33-8C75-404933AE865B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BD89666-6030-4D33-8C75-404933AE865B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BD89666-6030-4D33-8C75-404933AE865B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SidePanelsSample", "Drastic.SidePanelsSample\Drastic.SidePanelsSample.csproj", "{5C87CF5E-9897-4B89-8C84-D21667EC8553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SidePanels", "..\..\src\Drastic.SidePanels\Drastic.SidePanels.csproj", "{942CEF3D-0A86-4C98-BAE3-9FC61A9D84A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SidePanelsSample.Catalyst", "Drastic.SidePanelsSample.Catalyst\Drastic.SidePanelsSample.Catalyst.csproj", "{440351E9-F153-4EEB-990E-E3193AA64AC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SidePanelsSample.iOS", "Drastic.SidePanelsSample.iOS\Drastic.SidePanelsSample.iOS.csproj", "{8CE934F1-A7B2-49E1-B01C-A81E3DF24A07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SidePanelsSample.tvOS", "Drastic.SidePanelsSample.tvOS\Drastic.SidePanelsSample.tvOS.csproj", "{F9300C63-9CC7-4DB0-8EF5-591D0200801C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C87CF5E-9897-4B89-8C84-D21667EC8553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C87CF5E-9897-4B89-8C84-D21667EC8553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C87CF5E-9897-4B89-8C84-D21667EC8553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C87CF5E-9897-4B89-8C84-D21667EC8553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942CEF3D-0A86-4C98-BAE3-9FC61A9D84A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942CEF3D-0A86-4C98-BAE3-9FC61A9D84A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942CEF3D-0A86-4C98-BAE3-9FC61A9D84A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942CEF3D-0A86-4C98-BAE3-9FC61A9D84A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440351E9-F153-4EEB-990E-E3193AA64AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440351E9-F153-4EEB-990E-E3193AA64AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440351E9-F153-4EEB-990E-E3193AA64AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440351E9-F153-4EEB-990E-E3193AA64AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE934F1-A7B2-49E1-B01C-A81E3DF24A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE934F1-A7B2-49E1-B01C-A81E3DF24A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE934F1-A7B2-49E1-B01C-A81E3DF24A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE934F1-A7B2-49E1-B01C-A81E3DF24A07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9300C63-9CC7-4DB0-8EF5-591D0200801C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9300C63-9CC7-4DB0-8EF5-591D0200801C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9300C63-9CC7-4DB0-8EF5-591D0200801C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9300C63-9CC7-4DB0-8EF5-591D0200801C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

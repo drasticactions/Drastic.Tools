@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.AdvancedColorPickerSample", "Drastic.AdvancedColorPickerSample\Drastic.AdvancedColorPickerSample.csproj", "{B2665920-F287-42E0-A39D-9ECF8E24E242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.AdvancedColorPickerSample.Catalyst", "Drastic.AdvancedColorPickerSample.Catalyst\Drastic.AdvancedColorPickerSample.Catalyst.csproj", "{1D4DB2B4-BCD7-4247-9D91-E6E69301DB1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.AdvancedColorPickerSample.iOS", "Drastic.AdvancedColorPickerSample.iOS\Drastic.AdvancedColorPickerSample.iOS.csproj", "{F55386D3-2A5C-45ED-822C-9BF0E45708B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.AdvancedColorPickerSample.tvOS", "Drastic.AdvancedColorPickerSample.tvOS\Drastic.AdvancedColorPickerSample.tvOS.csproj", "{85B61A18-A447-46F3-A808-C2CBB5D4BB14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.AdvancedColorPicker", "..\..\src\Drastic.AdvancedColorPicker\Drastic.AdvancedColorPicker.csproj", "{21048A5A-49B4-4260-950C-A417078082FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2665920-F287-42E0-A39D-9ECF8E24E242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2665920-F287-42E0-A39D-9ECF8E24E242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2665920-F287-42E0-A39D-9ECF8E24E242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2665920-F287-42E0-A39D-9ECF8E24E242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D4DB2B4-BCD7-4247-9D91-E6E69301DB1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D4DB2B4-BCD7-4247-9D91-E6E69301DB1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D4DB2B4-BCD7-4247-9D91-E6E69301DB1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D4DB2B4-BCD7-4247-9D91-E6E69301DB1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F55386D3-2A5C-45ED-822C-9BF0E45708B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F55386D3-2A5C-45ED-822C-9BF0E45708B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F55386D3-2A5C-45ED-822C-9BF0E45708B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F55386D3-2A5C-45ED-822C-9BF0E45708B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85B61A18-A447-46F3-A808-C2CBB5D4BB14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85B61A18-A447-46F3-A808-C2CBB5D4BB14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85B61A18-A447-46F3-A808-C2CBB5D4BB14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85B61A18-A447-46F3-A808-C2CBB5D4BB14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21048A5A-49B4-4260-950C-A417078082FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21048A5A-49B4-4260-950C-A417078082FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21048A5A-49B4-4260-950C-A417078082FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21048A5A-49B4-4260-950C-A417078082FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
