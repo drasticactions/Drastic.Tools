@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Drastic.LocalNetworkAddresses.Build\Drastic.LocalNetworkAddresses.Build.csproj" />
+		<ProjectReference Include="..\..\..\src\Drastic.LocalNetworkAddresses\Drastic.LocalNetworkAddresses.csproj" />
+	</ItemGroup>
+	
+	<UsingTask TaskName="Drastic.LocalNetworkAddresses.SetRemoteNetworkSettings" AssemblyFile="$(OutputPath)/Drastic.LocalNetworkAddresses.Build.dll" />
+
+	<Target Name="RunSetRemoteNetworkSettings" AfterTargets="Build">
+		<SetRemoteNetworkSettings DllPath="$(OutputPath)" />
+	</Target>
+</Project>

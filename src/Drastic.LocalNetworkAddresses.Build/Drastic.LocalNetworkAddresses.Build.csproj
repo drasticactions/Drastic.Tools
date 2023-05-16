@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsPublishable>False</IsPublishable>
+		<IsPackable>true</IsPackable>
+		<!--<GeneratePackageOnBuild>True</GeneratePackageOnBuild>-->
+		<!-- <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild> -->
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<CecilVersion>0.11.4</CecilVersion>
+		<VersionSuffix Condition="'$(Configuration)' == 'Debug'">$([System.DateTime]::UtcNow.ToString(`yyyyMMdd-HHmm`))</VersionSuffix>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="ILRepack.Lib.MSBuild" Version="2.1.18" />
+		<PackageReference Include="Microsoft.Build.Framework" Version="16.0.461" />
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.0.461" />
+		<PackageDownload GeneratePathProperty="true" Include="Mono.Cecil" Version="[$(CecilVersion)]" />
+		<Reference Include="Mono.Cecil">
+			<HintPath>$(NuGetPackageRoot)\mono.cecil\$(CecilVersion)\lib\netstandard2.0\Mono.Cecil.dll</HintPath>
+		</Reference>
+		<Reference Include="Mono.Cecil.Rocks.dll">
+			<HintPath>$(NuGetPackageRoot)\mono.cecil\$(CecilVersion)\lib\netstandard2.0\Mono.Cecil.Rocks.dll</HintPath>
+		</Reference>
+		<Reference Include="Mono.Cecil.Pdb.dll">
+			<HintPath>$(NuGetPackageRoot)\mono.cecil\$(CecilVersion)\lib\netstandard2.0\Mono.Cecil.Pdb.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<Import Project="ILRepack.targets" />
+</Project>

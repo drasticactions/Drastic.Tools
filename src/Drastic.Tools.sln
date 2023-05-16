@@ -25,21 +25,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Modal", "Drastic.Mo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Maui.DebugRainbows", "Drastic.Maui.DebugRainbows\Drastic.Maui.DebugRainbows.csproj", "{948EEAF3-0059-44E0-8138-8165044DC45D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Markdown.Maui", "Drastic.Markdown.Maui\Drastic.Markdown.Maui.csproj", "{32B73E40-F0A1-4857-B97E-ABACE0176B1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Markdown.Maui", "Drastic.Markdown.Maui\Drastic.Markdown.Maui.csproj", "{32B73E40-F0A1-4857-B97E-ABACE0176B1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SplashScreen", "Drastic.SplashScreen\Drastic.SplashScreen.csproj", "{0FA175F2-AED1-4528-BA97-56F519CB1D31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.SplashScreen", "Drastic.SplashScreen\Drastic.SplashScreen.csproj", "{0FA175F2-AED1-4528-BA97-56F519CB1D31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Rainbows", "Drastic.Rainbows\Drastic.Rainbows.csproj", "{54A8676B-45EA-496A-A444-A45EAADFEA2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Rainbows", "Drastic.Rainbows\Drastic.Rainbows.csproj", "{54A8676B-45EA-496A-A444-A45EAADFEA2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Swizzle", "Drastic.Swizzle\Drastic.Swizzle.csproj", "{FA362884-2D95-400A-8800-48E71F17A3DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.Swizzle", "Drastic.Swizzle\Drastic.Swizzle.csproj", "{FA362884-2D95-400A-8800-48E71F17A3DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.XamDialogs", "Drastic.XamDialogs\Drastic.XamDialogs.csproj", "{C1C5DF8A-1BEF-4304-96C2-8B031ABF545E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.XamDialogs", "Drastic.XamDialogs\Drastic.XamDialogs.csproj", "{C1C5DF8A-1BEF-4304-96C2-8B031ABF545E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.SidePanels", "Drastic.SidePanels\Drastic.SidePanels.csproj", "{08EA428C-5139-49DF-8A77-A7D7420ED0D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.SidePanels", "Drastic.SidePanels\Drastic.SidePanels.csproj", "{08EA428C-5139-49DF-8A77-A7D7420ED0D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.TransitionSubmit", "Drastic.TransitionSubmit\Drastic.TransitionSubmit.csproj", "{5147A777-3AD0-4306-BF16-4CC343BF3172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.TransitionSubmit", "Drastic.TransitionSubmit\Drastic.TransitionSubmit.csproj", "{5147A777-3AD0-4306-BF16-4CC343BF3172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.AdvancedColorPicker", "Drastic.AdvancedColorPicker\Drastic.AdvancedColorPicker.csproj", "{4BD89666-6030-4D33-8C75-404933AE865B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.AdvancedColorPicker", "Drastic.AdvancedColorPicker\Drastic.AdvancedColorPicker.csproj", "{4BD89666-6030-4D33-8C75-404933AE865B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.LocalNetworkAddresses", "Drastic.LocalNetworkAddresses\Drastic.LocalNetworkAddresses.csproj", "{D48648BB-DBCB-4E50-A59C-539B062D1938}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drastic.LocalNetworkAddresses.Build", "Drastic.LocalNetworkAddresses.Build\Drastic.LocalNetworkAddresses.Build.csproj", "{4D658872-EFF8-4322-A149-433CB419797B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +119,14 @@ Global
 		{4BD89666-6030-4D33-8C75-404933AE865B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BD89666-6030-4D33-8C75-404933AE865B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BD89666-6030-4D33-8C75-404933AE865B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D48648BB-DBCB-4E50-A59C-539B062D1938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D48648BB-DBCB-4E50-A59C-539B062D1938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D48648BB-DBCB-4E50-A59C-539B062D1938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D48648BB-DBCB-4E50-A59C-539B062D1938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D658872-EFF8-4322-A149-433CB419797B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D658872-EFF8-4322-A149-433CB419797B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D658872-EFF8-4322-A149-433CB419797B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D658872-EFF8-4322-A149-433CB419797B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
