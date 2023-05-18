@@ -9,7 +9,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Access your local network IPs from your remote device.</summary>
     <description>Access your local network IPs from your remote device.</description>
-    <tags>llama;ios;android;linux;windows;macos;cross-platform</tags>
+    <tags>local;ip;addresses;remote</tags>
+    <readme>docs\README.md</readme>
     <projectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.LocalNetworkAddresses</projectUrl>
     <license type="expression">MIT</license>
     <dependencies>
@@ -22,6 +23,6 @@
     <file src="Drastic.LocalNetworkAddresses/bin/Debug/netstandard2.0/Drastic.LocalNetworkAddresses.dll" target="lib/netstandard2.0/Drastic.LocalNetworkAddresses.dll" />
     <file src="Drastic.LocalNetworkAddresses.Build/bin/Debug/netstandard2.0/Drastic.LocalNetworkAddresses.Build.dll" target="build" />
     <file src="Drastic.LocalNetworkAddresses.targets" target="build/Drastic.LocalNetworkAddresses.targets" />
-    <file src="README.md" target="" />
+    <file src="README.md" target="docs\" />
   </files>
 </package>
