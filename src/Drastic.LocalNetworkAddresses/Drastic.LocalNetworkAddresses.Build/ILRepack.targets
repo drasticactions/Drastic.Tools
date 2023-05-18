@@ -1,0 +1,26 @@
+<Project>
+    <Target Name="ILRepacker" AfterTargets="Build">
+
+    <ItemGroup>
+        <InputAssemblies Include="$(OutputPath)\Drastic.LocalNetworkAddresses.Build.dll" />
+        <InputAssemblies Include="$(OutputPath)\Mono.Cecil.dll" />
+        <InputAssemblies Include="$(OutputPath)\Mono.Cecil.Pdb.dll" />
+        <InputAssemblies Include="$(OutputPath)\Mono.Cecil.Rocks.dll" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Must be a fully qualified name -->
+        <!-- <DoNotInternalizeAssemblies Include="ExampleAssemblyToMerge3" /> -->
+    </ItemGroup>
+
+    <ILRepack
+        Parallel="true"
+        Internalize="true"
+        InternalizeExclude="@(DoNotInternalizeAssemblies)"
+        InputAssemblies="@(InputAssemblies)"
+        TargetKind="Dll"
+        OutputFile="$(OutputPath)\$(AssemblyName).dll"
+    />
+
+    </Target>
+</Project>

@@ -265,3 +265,5 @@ __pycache__/
 # Mobile.BuildTools
 secrets.json
 secrets.*.json
+
+nupkgs/
