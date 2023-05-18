@@ -1,7 +1,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<UsingTask TaskName="Drastic.LocalNetworkAddresses.SetRemoteNetworkSettings" AssemblyFile="$(MSBuildThisFileDirectory)Drastic.LocalNetworkAddresses.Build.dll" />
+    <UsingTask TaskName="Drastic.LocalNetworkAddresses.SetRemoteNetworkSettings" AssemblyFile="$(MSBuildThisFileDirectory)Drastic.LocalNetworkAddresses.Build.dll" />
 
-    <Target Name="RunSetRemoteNetworkSettings" AfterTargets="Build">
-		<SetRemoteNetworkSettings DllPath="$(OutputPath)" />
-	</Target>
+    <Target Name="RunSetRemoteNetworkSettings" BeforeTargets="CoreCompile">
+        <SetRemoteNetworkSettings DllPath="$(MSBuildThisFileDirectory)..\lib\netstandard2.0\Drastic.LocalNetworkAddresses.dll" />
+    </Target>
 </Project>

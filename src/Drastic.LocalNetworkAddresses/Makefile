@@ -1,4 +1,4 @@
-VERSION=1.0.1
+VERSION=1.0.7
 
 build_msbuild:
 	msbuild /t:Build /p:Configuration=Debug
