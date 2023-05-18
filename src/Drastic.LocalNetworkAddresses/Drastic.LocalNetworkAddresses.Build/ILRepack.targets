@@ -18,6 +18,7 @@
         Internalize="true"
         InternalizeExclude="@(DoNotInternalizeAssemblies)"
         InputAssemblies="@(InputAssemblies)"
+        RenameInternalized="true"
         TargetKind="Dll"
         OutputFile="$(OutputPath)\$(AssemblyName).dll"
     />
