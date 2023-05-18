@@ -8,6 +8,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Drastic.LocalNetworkAddresses" Version="1.0.6" />
+		<PackageReference Include="Drastic.LocalNetworkAddresses" Version="1.0.10" />
 	</ItemGroup>
 </Project>

@@ -31,7 +31,13 @@ namespace Drastic.LocalNetworkAddresses
                 return true;
             }
 
-            var ogDllPath = Path.Combine(Path.GetDirectoryName(dllPath)!, Path.GetFileNameWithoutExtension(dllPath) + "-original.dll");
+            if (IsFileLocked(dllPath))
+            {
+                Log.LogMessage($"{dllPath} is locked, skipping...");
+                return true;
+            }
+
+            var ogDllPath = Path.Combine(Path.GetDirectoryName(dllPath)!, Path.GetTempFileName() + "-original.dll");
             File.Copy(dllPath, ogDllPath, true);
 
             AssemblyDefinition assembly = AssemblyDefinition.ReadAssembly(ogDllPath);
@@ -67,6 +73,23 @@ namespace Drastic.LocalNetworkAddresses
             return allInterfaces.Where(x => x.NetworkInterfaceType != NetworkInterfaceType.Loopback &&
                                             !x.Name.StartsWith("pdp_ip", StringComparison.Ordinal) &&
                                             x.OperationalStatus == OperationalStatus.Up);
+        }
+
+        static bool IsFileLocked(string filePath)
+        {
+            try
+            {
+                using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    // The file is not locked if we can open it with exclusive access and no sharing
+                    return false;
+                }
+            }
+            catch (IOException)
+            {
+                // An IOException is thrown if the file is locked or unavailable
+                return true;
+            }
         }
     }
 }
