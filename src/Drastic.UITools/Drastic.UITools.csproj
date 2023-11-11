@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="../MultiTargeting.targets" />
+    <PropertyGroup>
+        <TargetFrameworks>net7.0;net7.0-ios;net7.0-maccatalyst;net7.0-tvos</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+        <Description>Tooling to help debug UI issues in .NET Applications.</Description>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <PackageTags>FPS counter UI Helpers</PackageTags>
+        <PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.UITools</PackageProjectUrl>
+        <PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.UITools/CHANGELOG.md</PackageReleaseNotes>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
+    </ItemGroup>
+
+</Project>

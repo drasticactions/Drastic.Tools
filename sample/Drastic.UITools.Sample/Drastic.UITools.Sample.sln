@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.UITools.Sample", "Drastic.UITools.Sample.csproj", "{669528A3-8069-463D-B2A9-8151E6C8D1D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.UITools", "..\..\src\Drastic.UITools\Drastic.UITools.csproj", "{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{669528A3-8069-463D-B2A9-8151E6C8D1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669528A3-8069-463D-B2A9-8151E6C8D1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669528A3-8069-463D-B2A9-8151E6C8D1D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669528A3-8069-463D-B2A9-8151E6C8D1D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
