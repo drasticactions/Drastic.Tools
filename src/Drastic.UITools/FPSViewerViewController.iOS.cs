@@ -2,16 +2,9 @@
 // Copyright (c) Drastic Actions. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using CoreFoundation;
-using CoreGraphics;
-using Foundation;
-using ObjCRuntime;
-using UIKit;
 using CFTimeInterval = System.Double;
 
+// Ported from https://github.com/tapwork/WatchdogInspector/tree/master
 namespace Drastic.UITools;
 
 internal class FPSViewerViewController : UIViewController

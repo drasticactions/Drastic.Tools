@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net7.0-android;net7.0-windows10.0.19041.0;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+        <EnableWindowsTargeting>true</EnableWindowsTargeting>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+        <Description>Tooling to help debug UI issues in .NET MAUI Applications.</Description>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <PackageTags>FPS counter UI Helpers</PackageTags>
+        <PackageProjectUrl>https://github.com/drasticactions/Drastic.Tools/tree/main/src/Drastic.UITools.Maui</PackageProjectUrl>
+        <PackageReleaseNotes>https://github.com/drasticactions/Drastic.Tools/blob/main/src/Drastic.UITools.Maui/CHANGELOG.md</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Drastic.UITools\Drastic.UITools.csproj" />
+    </ItemGroup>
+
+</Project>

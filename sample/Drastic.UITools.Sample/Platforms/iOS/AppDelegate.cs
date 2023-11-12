@@ -12,7 +12,7 @@ public class AppDelegate : MauiUIApplicationDelegate
     public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
     {
         var logger = new DebugLoggerProvider();
-        Drastic.UITools.FPSViewer.Start(logger.CreateLogger("Drastic.UITools.Sample"));
+        // Drastic.UITools.FPSViewer.Start(logger.CreateLogger("Drastic.UITools.Sample"));
         return base.FinishedLaunching(application, launchOptions);
     }
 }

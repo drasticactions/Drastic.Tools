@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.UITools.Sample", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.UITools", "..\..\src\Drastic.UITools\Drastic.UITools.csproj", "{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.UITools.Maui", "..\..\src\Drastic.UITools.Maui\Drastic.UITools.Maui.csproj", "{731162BC-CBD8-4BE0-A313-82BB24EC1979}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B39BBA1A-E0C9-4D34-9C92-2C1E0888EBF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731162BC-CBD8-4BE0-A313-82BB24EC1979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731162BC-CBD8-4BE0-A313-82BB24EC1979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731162BC-CBD8-4BE0-A313-82BB24EC1979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731162BC-CBD8-4BE0-A313-82BB24EC1979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

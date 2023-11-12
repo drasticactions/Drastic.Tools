@@ -8,8 +8,12 @@ using Microsoft.Extensions.Logging;
 using ObjCRuntime;
 using CFTimeInterval = System.Double;
 
+// Ported from https://github.com/tapwork/WatchdogInspector/tree/master
 namespace Drastic.UITools;
 
+/// <summary>
+/// FPS Viewer.
+/// </summary>
 public class FPSViewer
 {
     private const double KBestWatchdogFramerate = 60.0;
@@ -25,12 +29,19 @@ public class FPSViewer
     private static double nSECPERSEC = 1000000000;
     private static ILogger? logger;
 
+    /// <summary>
+    /// Gets a value indicating whether the FPSViewer is running.
+    /// </summary>
     public static bool IsRunning => watchdogTimer is not null;
 
+    /// <summary>
+    /// Start the FPSViewer.
+    /// </summary>
+    /// <param name="logger">Optional Logger. Shows the FPS in the logs.</param>
     public static void Start(ILogger? logger = null)
     {
-        FPSViewer.logger = logger;
-        FPSViewer.logger?.LogInformation("Start WatchdogInspector");
+        FPSViewer.logger ??= logger;
+        FPSViewer.logger?.LogInformation("Start FPSViewer");
 
         AddRunLoopObserver();
         AddWatchdogTimer();
@@ -41,9 +52,12 @@ public class FPSViewer
         }
     }
 
+    /// <summary>
+    /// Stop the FPSViewer.
+    /// </summary>
     public static void Stop()
     {
-        FPSViewer.logger?.LogInformation("Stop WatchdogInspector");
+        FPSViewer.logger?.LogInformation("Stop FPSViewer");
 
         if (watchdogTimer is not null)
         {
@@ -59,7 +73,9 @@ public class FPSViewer
 
         if (kObserverRef != IntPtr.Zero)
         {
-            CFInterop.CFRunLoopRemoveObserver(CFInterop.CFRunLoopGetMain(), kObserverRef,
+            CFInterop.CFRunLoopRemoveObserver(
+                CFInterop.CFRunLoopGetMain(),
+                kObserverRef,
                 CFInterop.KCFRunLoopCommonModes);
             kObserverRef = IntPtr.Zero;
         }
@@ -73,16 +89,28 @@ public class FPSViewer
         kInspectorWindow = null;
     }
 
-    public static void SetStallingThreshhold(double time)
+    /// <summary>
+    /// Set the maximum time the main thread can stall before throwing an exception.
+    /// </summary>
+    /// <param name="time">Time.</param>
+    public static void SetStallingThreshHold(double time)
     {
         watchdogMaximumStallingTimeInterval = time;
     }
 
-    public static void SetEnableMainthreadStallingException(bool enable)
+    /// <summary>
+    /// Set if the main thread should throw an exception if it stalls.
+    /// </summary>
+    /// <param name="enable">Flag to enable or disable.</param>
+    public static void SetEnableMainThreadStallingException(bool enable)
     {
         enableWatchdogStallingException = enable;
     }
 
+    /// <summary>
+    /// Set the interval for the watchdog timer.
+    /// </summary>
+    /// <param name="time">Time.</param>
     public static void SetUpdateWatchdogInterval(double time)
     {
         updateWatchdogInterval = time;
@@ -101,7 +129,9 @@ public class FPSViewer
     private static void AddWatchdogTimer()
     {
         watchdogTimer = new DispatchSource.Timer(DispatchQueue.MainQueue);
-        watchdogTimer.SetTimer(DispatchTime.Now, (long)(updateWatchdogInterval * nSECPERSEC),
+        watchdogTimer.SetTimer(
+            DispatchTime.Now,
+            (long)(updateWatchdogInterval * nSECPERSEC),
             (long)(updateWatchdogInterval * nSECPERSEC) / 10);
         watchdogTimer.SetEventHandler(() =>
         {
@@ -125,9 +155,11 @@ public class FPSViewer
     {
         kObserverRef = CFInterop.CFRunLoopObserverCreate(
             IntPtr.Zero,
-            CFInterop.CFOptionFlags.KCFRunLoopAfterWaiting | CFInterop.CFOptionFlags.KCFRunLoopBeforeSources |
-            CFInterop.CFOptionFlags.KCFRunLoopBeforeWaiting,
-            true, 0, ObserverCallback, IntPtr.Zero);
+            CFInterop.CFOptionFlags.KCFRunLoopAfterWaiting | CFInterop.CFOptionFlags.KCFRunLoopBeforeSources | CFInterop.CFOptionFlags.KCFRunLoopBeforeWaiting,
+            true,
+            0,
+            ObserverCallback,
+            IntPtr.Zero);
         var tun = CFInterop.CFRunLoopGetMain();
         CFInterop.CFRunLoopAddObserver(tun, kObserverRef, CFInterop.KCFRunLoopCommonModes);
     }
