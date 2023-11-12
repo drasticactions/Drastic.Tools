@@ -16,7 +16,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Drastic.UITools\Drastic.UITools.csproj" />
+        <ProjectReference Include="..\Drastic.UITools\Drastic.UITools.csproj"/>
     </ItemGroup>
-
+    <ItemGroup>
+        <None Include="CHANGELOG.md" Pack="true" PackagePath="" Visible="false"/>
+        <None Include="README.md" Pack="true" PackagePath="" Visible="false"/>
+    </ItemGroup>
 </Project>
