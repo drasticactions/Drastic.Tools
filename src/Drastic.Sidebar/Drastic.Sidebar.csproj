@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../MultiTargeting.targets"/>
+  <PropertyGroup>
+    <TargetFrameworks>net7.0-maccatalyst;net7.0-ios</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="SidebarListItem.cs" />
+  </ItemGroup>
+
+</Project>

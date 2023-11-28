@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-ios</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Drastic.Sidebar\Drastic.Sidebar.csproj" />
+    <ProjectReference Include="..\Drastic.Sidebar.Sample\Drastic.Sidebar.Sample.csproj" />
+  </ItemGroup>
+</Project>

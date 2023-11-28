@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drastic.Sidebar", "Drastic.Sidebar.csproj", "{7862AA4C-31E7-460C-91E5-6ACC5247D7C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7862AA4C-31E7-460C-91E5-6ACC5247D7C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7862AA4C-31E7-460C-91E5-6ACC5247D7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7862AA4C-31E7-460C-91E5-6ACC5247D7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7862AA4C-31E7-460C-91E5-6ACC5247D7C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
