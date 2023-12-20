@@ -4,9 +4,17 @@ namespace Drastic.Sidebar;
 
 public class SidebarUIViewControllerOptions
 {
-    public List<SidebarItem> MenuItems { get; set; } = new List<SidebarItem>();
+    public List<SidebarItem> MenuItemsAboveHeader { get; set; } = new List<SidebarItem>();
+    
+    public List<SidebarItem> MenuItemsBelowHeader { get; set; } = new List<SidebarItem>();
+    
+    public List<SidebarHeaderItem> HeaderItems { get; set; } = new List<SidebarHeaderItem>();
     
     public UICollectionViewLayout? Layout { get; set; }
+    
+    public UICollectionLayoutListHeaderMode HeaderMode { get; set; } = UICollectionLayoutListHeaderMode.None;
+    
+    public bool HasUnorderedItems => this.MenuItemsAboveHeader.Any() || this.MenuItemsBelowHeader.Any();
 }
 
 public class SidebarSelectionEventArgs : EventArgs
@@ -41,6 +49,7 @@ public class SidebarUIViewController : UIViewController, IUICollectionViewDelega
         ArgumentNullException.ThrowIfNull(this.View);
         this.options = options;
         this.collectionView = new UICollectionView(this.View.Bounds, options.Layout ?? this.CreateLayout());
+        //this.collectionView.DragInteractionEnabled = true;
         this.collectionView.Delegate = this;
 
         this.View.AddSubview(this.collectionView);
@@ -58,10 +67,20 @@ public class SidebarUIViewController : UIViewController, IUICollectionViewDelega
         });
 
         this.ConfigureDataSource();
+        
+        if (this.options.MenuItemsAboveHeader.Any())
+        {
+            this.SetupNavigationItems(this.GetNavigationSnapshot(this.options.MenuItemsAboveHeader));
+        }
 
-        foreach (var item in options.MenuItems)
+        foreach (var item in options.HeaderItems)
         {
             this.SetupNavigationItems(this.GetNavigationSnapshot(item));
+        }
+        
+        if (this.options.MenuItemsBelowHeader.Any())
+        {
+            this.SetupNavigationItems(this.GetNavigationSnapshot(this.options.MenuItemsBelowHeader));
         }
     }
     
@@ -190,8 +209,15 @@ public class SidebarUIViewController : UIViewController, IUICollectionViewDelega
         var sectionIdentifier = new NSString(Guid.NewGuid().ToString());
         this.dataSource.ApplySnapshot(snapshot, sectionIdentifier, false);
     }
+    
+    private NSDiffableDataSourceSectionSnapshot<SidebarItem> GetNavigationSnapshot(List<SidebarItem> item)
+    {
+        var snapshot = new NSDiffableDataSourceSectionSnapshot<SidebarItem>();
+        snapshot.AppendItems(item.ToArray());
+        return snapshot;
+    }
 
-    private NSDiffableDataSourceSectionSnapshot<SidebarItem> GetNavigationSnapshot(SidebarItem item)
+    private NSDiffableDataSourceSectionSnapshot<SidebarItem> GetNavigationSnapshot(SidebarHeaderItem item)
     {
         var snapshot = new NSDiffableDataSourceSectionSnapshot<SidebarItem>();
 
@@ -202,13 +228,20 @@ public class SidebarUIViewController : UIViewController, IUICollectionViewDelega
         return snapshot;
     }
 
+    [Export("collectionView:shouldSelectItemAtIndexPath:")]
+    public bool ShouldSelectItem(UICollectionView collectionView, NSIndexPath indexPath)
+    {
+        var item = this.dataSource?.GetItemIdentifier(indexPath);
+        return item?.IsEnabled ?? false;
+    }
+
     private UICollectionViewLayout CreateLayout()
     {
         return new UICollectionViewCompositionalLayout((sectionIndex, layoutEnvironment) =>
         {
             var configuration = new UICollectionLayoutListConfiguration(UICollectionLayoutListAppearance.Sidebar);
             configuration.ShowsSeparators = false;
-            configuration.HeaderMode = UICollectionLayoutListHeaderMode.FirstItemInSection;
+            configuration.HeaderMode = this.options.HeaderMode;
             return NSCollectionLayoutSection.GetSection(configuration, layoutEnvironment);
         });
     }

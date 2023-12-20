@@ -21,7 +21,7 @@
     <!-- <string>public.app-category.YOUR-CATEGORY-HERE</string> -->
     <key>UIDeviceFamily</key>
     <array>
-        <integer>2</integer>
+        <integer>6</integer>
     </array>
     <key>UISupportedInterfaceOrientations</key>
     <array>

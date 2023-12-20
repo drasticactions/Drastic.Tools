@@ -1,32 +1,37 @@
 namespace Drastic.Sidebar;
 
-public class SidebarItem : NSObject
+public class SidebarHeaderItem : SidebarItem
 {
-    public SidebarItem(string title)
+    public SidebarHeaderItem(string title, List<SidebarItem> items, UIImage? image = default)
+        : base(title, image, SidebarItemType.Header)
     {
-        this.Title = title;
-        this.SidebarItemType = SidebarItemType.Row;
-    }
-
-    public SidebarItem(string title, List<SidebarItem> items)
-    {
-        this.Title = title;
         this.MenuItems = items;
-        this.SidebarItemType = SidebarItemType.Header;
+        this.IsEnabled = false;
     }
-
-    public string Title { get; }
-
-    public UIImage? Image { get; }
-
-    public List<SidebarItem> MenuItems { get; } = new();
-
-    public SidebarItemType SidebarItemType { get; }
+    
+    public List<SidebarItem> MenuItems { get; }
 }
 
-public enum SidebarItemType
+public class SidebarItem : NSObject, ISidebarItem
 {
-    Unknown,
-    Header,
-    Row,
+    public SidebarItem(string title, UIImage? image = default)
+        : this(title, image, SidebarItemType.Row)
+    {
+    }
+
+    internal SidebarItem(string title, UIImage? image = default, SidebarItemType sidebarItemType = SidebarItemType.Row)
+    {
+        this.Title = title;
+        this.UIImage = image;
+        this.SidebarItemType = sidebarItemType;
+        this.IsEnabled = true;
+    }
+    
+    public string Title { get; }
+
+    public UIImage? UIImage { get; }
+    
+    public bool IsEnabled { get; set; }
+
+    public SidebarItemType SidebarItemType { get; }
 }
